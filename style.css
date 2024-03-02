@@ -1,0 +1,52 @@
+body
+{
+    background-color: #f4f4f4;
+    font-family: Arial, Helvetica, sans-serif;
+}
+form
+{
+    padding: 10px;
+    width: 800px;
+}
+fieldset
+{
+    padding: 0px 20px 20px 20px;
+    margin-bottom: 10px;
+    border: 1px solid #df3f3f;
+}
+label
+{
+    width: 200px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 6px;
+}
+.ajout, legend
+{
+    color: #df3f3f;
+    font-weight: bold;
+}
+input,option,select
+{
+    background-color: #fff3f3;
+}
+input,select
+{
+    background-color: #fff3f3;
+    padding: 3px;
+    border: 1px solid #f5c5f5;
+    border-radius: 5px;
+    width: 250px;
+    box-shadow: 1px 2px #c0c0c0 inset;
+}
+select
+{
+    margin-top: 10px;
+}
+input[type=submit],input[type=reset]
+{
+    width: 100px;
+    margin-left: 5px;
+    box-shadow: 1px 1px 1px #d83f3d;
+    cursor: pointer;
+}

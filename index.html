@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+        .title, nav
+        {
+            display: inline-flex;
+            flex-wrap: wrap;
+        }
+        .title a
+        {
+            color: white;
+            text-decoration: none;
+        }
+        li 
+        {
+            display: inline-flex;
+            flex-wrap: wrap;
+            margin-left: 30px;
+        }
+        .trans
+        {
+            text-decoration: none;
+            font-weight: bold;
+            color: orange;
+        }
+        .evene
+        {
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+        }
+        .gestion
+        {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .gestion:hover, .evene:hover
+        {
+            color: orange;
+        }
+        header
+        {
+            background-color: #333;
+            width: 100%;
+            margin-top: -8px;
+            padding-bottom: 10px;
+            padding-right: 16px;
+            margin-left: -8px;
+        }
+        .title
+        {
+            border: 0px solid black;
+            margin-left: 15%;
+        }
+        nav 
+        {
+            border: 0px solid black;
+            margin-left: 13%;
+        }
+        body
+        {
+            background-color: #f4f4f4;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        form
+        {
+            width: 800px;
+            margin-left: 22%;
+        }
+        fieldset
+        {
+            padding: 0px 20px 20px 20px;
+            margin-bottom: 10px;
+            border: 1px solid #df3f3f;
+        }
+        label
+        {
+            width: 200px;
+            display: inline-block;
+            vertical-align: top;
+            margin: 6px;
+        }
+        .ajout
+        {
+            margin-left: 23%;
+            margin-top: 4%;
+        }
+        .ajout, legend
+        {
+            color: #df3f3f;
+            font-weight: bold;
+        }
+        input,option,select
+        {
+            background-color: #fff3f3;
+        }
+        input,select
+        {
+            background-color: #fff3f3;
+            padding: 3px;
+            border: 1px solid #f5c5f5;
+            border-radius: 5px;
+            width: 250px;
+            box-shadow: 1px 2px #c0c0c0 inset;
+        }
+        select
+        {
+            margin-top: 10px;
+        }
+        input[type=submit],input[type=reset]
+        {
+            width: 100px;
+            margin-left: 5px;
+            box-shadow: 1px 1px 1px #d83f3d;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="title"><a href="index.html">Homechip's Laure</a></h1>
+        <nav>
+            <ul>
+                <li ><a href="index.html" class="trans">Transactions</a></li>
+                <li ><a href="page1.php" class="evene">Evènements financiers</a></li>
+                <li ><a href="page2.php" class="gestion">Gestion financière</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1 class="ajout">Ajouter une transaction</h1>
+    <form action="valider_index.php" method="post">
+        <fieldset>
+            <legend>Transactions</legend>
+            <br>
+            <label for="">Date :</label>
+            <input type="date" name="s_date" >
+            <br><br>
+            <label for="">Description :</label>
+            <input type="text" name="s_description" >
+            <br><br>
+            <label for="">Type :</label>
+            <select name="s_type" id="" required>
+                <option value="depenses">Dépenses</option>
+                <option value="recettes">Recettes</option>
+            </select>
+            <br><br>
+            <label for="">Montant :</label>
+            <input type="number" name="s_montant" >
+            <br><br>
+            <label for="">Catégorie :</label>
+            <input type="text" name="s_categorie" >
+        </fieldset>
+        <br>
+        <input type="submit" value="Ajouter">
+        <input type="reset" value="Annuler">
+    </form>
+</body>
+</html>
