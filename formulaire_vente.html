@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Homechip's Laure</title>
+    <link rel="stylesheet" href="form_ven.css">
+    <title>Formulaire des ventes</title>
 </head>
 <body>
     <header>
@@ -43,7 +43,32 @@
         </nav>
     </header>
     <section>
-        
+        <h1 class="ajout">Ajouter une transaction</h1>
+        <form action="" method="post">
+            <fieldset>
+                <legend>Vente</legend>
+                <label for="">Date de Vente :</label>
+                <input type="date" name="s_datevente" class="date">
+                <br><br>
+                <label for="">Quantité Vendue :</label>
+                <input type="text" name="s_quantitevendue" class="quantite">
+                <br><br>
+                <label for="">Montant Total :</label>
+                <input type="text" name="s_montanttotal" class="montant">
+                <br><br>
+                <label for="">Produit :</label>
+                <input type="text" name="s_produit" class="produit">
+                <br><br>
+                <label for="">Client :</label>
+                <input type="text" name="s_client" class="client">
+                <br><br>
+                <label for="">Mode de Paiement :</label>
+                <input type="text" name="s_modepaiement" class="mode">
+            </fieldset>
+            <br>
+            <input type="submit" value="Ajouter">
+            <input type="reset" value="Annuler">
+        </form>
     </section>
     <div class="footer">
         <p>Copyright © 2024 Homechip's Laure | Tous droits réservés <br>

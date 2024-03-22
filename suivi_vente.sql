@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 03 mars 2024 à 01:06
+-- Généré le : jeu. 21 mars 2024 à 15:26
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.0.28
 
@@ -24,47 +24,193 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `enregistrement`
+-- Structure de la table `clients`
 --
 
-CREATE TABLE `enregistrement` (
-  `idenreg` int(11) NOT NULL,
-  `datenreg` date NOT NULL,
-  `descriptionenreg` varchar(255) NOT NULL,
-  `typenreg` varchar(20) NOT NULL,
-  `montantenreg` decimal(10,2) NOT NULL,
-  `categorienreg` varchar(30) NOT NULL
+CREATE TABLE `clients` (
+  `idClient` int(11) NOT NULL,
+  `NomClient` varchar(20) NOT NULL,
+  `AdresseClient` varchar(255) NOT NULL,
+  `CoordonneesClient` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Déchargement des données de la table `enregistrement`
+-- Structure de la table `depenses`
 --
 
-INSERT INTO `enregistrement` (`idenreg`, `datenreg`, `descriptionenreg`, `typenreg`, `montantenreg`, `categorienreg`) VALUES
-(1, '2024-01-05', 'Livraison ', 'depenses', 1000.00, 'Transport '),
-(2, '2024-01-05', 'Achat de banane ', 'depenses', 2500.00, 'Alimentation '),
-(3, '2024-02-01', 'Vente de chips', 'recettes', 500.00, 'Alimentaire'),
-(4, '2024-02-08', 'banane', 'recettes', 1000.00, 'Alimentation');
+CREATE TABLE `depenses` (
+  `idDepense` int(11) NOT NULL,
+  `MontantDepense` varchar(20) NOT NULL,
+  `DateDepense` date NOT NULL,
+  `DescriptionDepense` varchar(255) NOT NULL,
+  `idModePaiement` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `modepaiement`
+--
+
+CREATE TABLE `modepaiement` (
+  `idModePaiement` int(11) NOT NULL,
+  `NomModePaiement` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `produits`
+--
+
+CREATE TABLE `produits` (
+  `idProduit` int(11) NOT NULL,
+  `NomProduit` varchar(20) NOT NULL,
+  `DescriptionProduit` varchar(255) NOT NULL,
+  `PrixVente` varchar(20) NOT NULL,
+  `CoutUnitaire` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `recettes`
+--
+
+CREATE TABLE `recettes` (
+  `idRecette` int(11) NOT NULL,
+  `MontantRecette` varchar(20) NOT NULL,
+  `DateRecette` date NOT NULL,
+  `DescriptionRecette` varchar(255) NOT NULL,
+  `idModePaiement` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ventes`
+--
+
+CREATE TABLE `ventes` (
+  `idVente` int(11) NOT NULL,
+  `DateVente` date NOT NULL,
+  `QuantiteVendue` int(11) NOT NULL,
+  `MontantTotal` varchar(20) NOT NULL,
+  `idProduit` int(11) DEFAULT NULL,
+  `idClient` int(11) DEFAULT NULL,
+  `idModePaiement` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Index pour les tables déchargées
 --
 
 --
--- Index pour la table `enregistrement`
+-- Index pour la table `clients`
 --
-ALTER TABLE `enregistrement`
-  ADD PRIMARY KEY (`idenreg`);
+ALTER TABLE `clients`
+  ADD PRIMARY KEY (`idClient`);
+
+--
+-- Index pour la table `depenses`
+--
+ALTER TABLE `depenses`
+  ADD PRIMARY KEY (`idDepense`),
+  ADD KEY `idModePaiement` (`idModePaiement`);
+
+--
+-- Index pour la table `modepaiement`
+--
+ALTER TABLE `modepaiement`
+  ADD PRIMARY KEY (`idModePaiement`);
+
+--
+-- Index pour la table `produits`
+--
+ALTER TABLE `produits`
+  ADD PRIMARY KEY (`idProduit`);
+
+--
+-- Index pour la table `recettes`
+--
+ALTER TABLE `recettes`
+  ADD PRIMARY KEY (`idRecette`),
+  ADD KEY `idModePaiement` (`idModePaiement`);
+
+--
+-- Index pour la table `ventes`
+--
+ALTER TABLE `ventes`
+  ADD PRIMARY KEY (`idVente`),
+  ADD KEY `idProduit` (`idProduit`),
+  ADD KEY `idClient` (`idClient`),
+  ADD KEY `idModePaiement` (`idModePaiement`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT pour la table `enregistrement`
+-- AUTO_INCREMENT pour la table `clients`
 --
-ALTER TABLE `enregistrement`
-  MODIFY `idenreg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `clients`
+  MODIFY `idClient` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `depenses`
+--
+ALTER TABLE `depenses`
+  MODIFY `idDepense` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `modepaiement`
+--
+ALTER TABLE `modepaiement`
+  MODIFY `idModePaiement` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `produits`
+--
+ALTER TABLE `produits`
+  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `recettes`
+--
+ALTER TABLE `recettes`
+  MODIFY `idRecette` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `ventes`
+--
+ALTER TABLE `ventes`
+  MODIFY `idVente` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `depenses`
+--
+ALTER TABLE `depenses`
+  ADD CONSTRAINT `depenses_ibfk_1` FOREIGN KEY (`idModePaiement`) REFERENCES `modepaiement` (`idModePaiement`);
+
+--
+-- Contraintes pour la table `recettes`
+--
+ALTER TABLE `recettes`
+  ADD CONSTRAINT `recettes_ibfk_1` FOREIGN KEY (`idModePaiement`) REFERENCES `modepaiement` (`idModePaiement`);
+
+--
+-- Contraintes pour la table `ventes`
+--
+ALTER TABLE `ventes`
+  ADD CONSTRAINT `ventes_ibfk_1` FOREIGN KEY (`idProduit`) REFERENCES `produits` (`idProduit`),
+  ADD CONSTRAINT `ventes_ibfk_2` FOREIGN KEY (`idClient`) REFERENCES `clients` (`idClient`),
+  ADD CONSTRAINT `ventes_ibfk_3` FOREIGN KEY (`idModePaiement`) REFERENCES `modepaiement` (`idModePaiement`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

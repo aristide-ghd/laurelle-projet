@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Homechip's Laure</title>
+    <link rel="stylesheet" href="form_dep.css">
+    <title>Formulaire des dépenses</title>
 </head>
 <body>
     <header>
@@ -43,7 +43,26 @@
         </nav>
     </header>
     <section>
-        
+        <h1 class="ajout">Ajouter une transaction</h1>
+        <form action="" method="post">
+            <fieldset>
+                <legend>Dépense</legend>
+                <label for="">Montant de Dépense :</label>
+                <input type="text" name="s_montantdepense" class="montant">
+                <br><br>
+                <label for="">Date de Dépense :</label>
+                <input type="date" name="s_datedepense" class="date">
+                <br><br>
+                <label for="">Description de Dépense :</label>
+                <input type="text" name="s_descriptiondepense" class="description">
+                <br><br>
+                <label for="">Mode de Paiement :</label>
+                <input type="text" name="s_modepaiement" class="mode">
+            </fieldset>
+            <br>
+            <input type="submit" value="Ajouter">
+            <input type="reset" value="Annuler">
+        </form>
     </section>
     <div class="footer">
         <p>Copyright © 2024 Homechip's Laure | Tous droits réservés <br>

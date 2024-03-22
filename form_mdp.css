@@ -37,7 +37,7 @@ header nav /* la navigation de l'en-tete*/
 .block_navigation /* le bloc div du menu*/
 {
     border: solid black 0px;
-    margin-left: 365px;
+    margin-left: 355px;
     font-size: 14px;
 }
 .navigation /* le bloc des puces non numérotées */
@@ -74,7 +74,7 @@ header nav /* la navigation de l'en-tete*/
     right: 50px;
     width: 0;
     height: 0;
-    left: 63.8%;
+    left: 63.1%;
     border-left: 6px solid transparent;
     border-bottom: 6px solid transparent;
     border-right: 6px solid transparent;
@@ -124,7 +124,7 @@ header nav /* la navigation de l'en-tete*/
     right: 50px;
     width: 0;
     height: 0;
-    left: 77.8%;
+    left: 77.1%;
     border-left: 6px solid transparent;
     border-bottom: 6px solid transparent;
     border-right: 6px solid transparent;
@@ -158,13 +158,13 @@ nav li:hover ul /* apparition en bloc de la liste des liens transactions et even
 {
     text-decoration: none;
     font-weight: bold;
-    color: orange;
+    color: white;
 }
 .trans /* apparence du lien transaction */
 {
     text-decoration: none;
     font-weight: bold;
-    color: white;
+    color: orange;
 }
 .evene /* apparence du lien evenement */
 {
@@ -184,11 +184,65 @@ nav li:hover ul /* apparition en bloc de la liste des liens transactions et even
 }
 /* HEADER END */
 
+/* SECTION START */
+.ajout /* grand titre du formulaire*/
+{
+    margin-left: 20%;
+    margin-top: 5%;
+    color: #df3f3f;
+    font-weight: bold;
+}
+form /* le formulaire au complet*/
+{
+    width: 700px;
+    margin-left: 20%;
+}
+fieldset /* le cadran du formulaire*/
+{
+    padding: 20px 20px 20px 20px;
+    margin-bottom: 15px;
+    border: solid #df3f3f 1px;
+}
+legend /* la legende du formulaire */
+{
+    color: #df3f3f;
+    font-weight: bold;
+}
+label /* titre du champs des formulaires */
+{
+    margin: 6px;
+}
+fieldset input /* champs se retrouvant dans le cadran du formulaire */
+{
+    background-color: #fff3f3;
+    padding: 3px;
+    border: solid #f5c5f5 1px;
+    width: 250px;
+    border-radius: 5px;
+    box-shadow: 1px 2px #c0c0c0 inset;
+}
+.nom_mode /* champs du nom mode de paiement */
+{
+    margin-left: 82px;
+}
+input[type=submit], input[type=reset] /* bouton d'ajout et d'annulation */
+{
+    background-color: #fff3f3;
+    padding: 3px;
+    margin-left: 5px;
+    border: solid #f5c5f5 1px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px #d83f3d;
+    width: 100px;
+    cursor: pointer;
+}
+/* SECTION END */
+
 /* FOOTER START */
 .footer /* Le pied de page */
 {
     border: solid black 0px;
-    margin-top: 462px;
+    margin-top: 207px;
     margin-bottom: -2%;
     margin-left: -8px;
     margin-right: -8px;
