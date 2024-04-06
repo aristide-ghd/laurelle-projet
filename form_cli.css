@@ -221,6 +221,10 @@ fieldset input /* champs se retrouvant dans le cadran du formulaire */
     border-radius: 5px;
     box-shadow: 1px 2px #c0c0c0 inset;
 }
+.matclient
+{
+    margin-left: 103px;
+}
 .nom /* champ de nom du client*/
 {
     margin-left: 112px;
@@ -231,7 +235,7 @@ fieldset input /* champs se retrouvant dans le cadran du formulaire */
 }
 .coordonnees /* champs coordonnées du client */
 {
-    margin-left: 50px;
+    margin-left: 49px;
 }
 input[type=submit], input[type=reset] /* bouton d'ajout et d'annulation */
 {

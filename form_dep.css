@@ -212,7 +212,7 @@ label /* titre du champs des formulaires */
 {
     margin: 6px;
 }
-fieldset input /* champs se retrouvant dans le cadran du formulaire */
+fieldset input, fieldset select /* champs se retrouvant dans le cadran du formulaire */
 {
     background-color: #fff3f3;
     padding: 3px;
@@ -220,6 +220,10 @@ fieldset input /* champs se retrouvant dans le cadran du formulaire */
     width: 250px;
     border-radius: 5px;
     box-shadow: 1px 2px #c0c0c0 inset;
+}
+.matdep
+{
+    margin-left: 83px;
 }
 .montant /* champ de montant de recette */
 {
@@ -233,7 +237,7 @@ fieldset input /* champs se retrouvant dans le cadran du formulaire */
 {
     margin-left: 45px;
 }
-.mode /* champs de mode de paiement */
+#listmode /* champs de mode de paiement */
 {
     margin-left: 82px;
 }

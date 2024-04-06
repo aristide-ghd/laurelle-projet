@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="form_mdp.css">
-    <title>Formulaire du Mode de Paiement</title>
+    <link rel="stylesheet" href="gestion.css">
+    <title>Page de gestion</title>
 </head>
 <body>
     <header>
@@ -29,12 +29,12 @@
                     <li >
                         <a href="#" class="evene">Evènements financiers</a><span id="arrow-down"></span>
                         <ul class="liste_evenement">
-                            <li><a href="produit.php">Produits</a></li><br>
-                            <li><a href="client.php">Clients</a></li><br>
-                            <li><a href="vente.php">Ventes</a></li><br>
-                            <li><a href="recette.php">Recettes</a></li><br>
-                            <li><a href="depense.php">Dépenses</a></li><br>
-                            <li><a href="mdp.php">Mode de Paiement</a></li><br>
+                            <li id="tab_prod"><a href="produit.php">Produits</a></li><br>
+                            <li id="tab_cli"><a href="client.php">Clients</a></li><br>
+                            <li id="tab_ven"><a href="vente.php">Ventes</a></li><br>
+                            <li id="tab_rec"><a href="recette.php">Recettes</a></li><br>
+                            <li id="tab_dep"><a href="depense.php">Dépenses</a></li><br>
+                            <li id="tab_mdp"><a href="mdp.php">Mode de Paiement</a></li><br>
                         </ul>
                     </li>
                     <li ><a href="gestion.html" class="gestion">Gestion financière</a></li>
@@ -43,17 +43,26 @@
         </nav>
     </header>
     <section>
-        <h1 class="ajout">Ajouter une transaction</h1>
-        <form action="valider_transaction.php" method="post">
-            <fieldset>
-                <legend>Mode de Paiement</legend>
-                <label for="">Nom Mode de Paiement :</label>
-                <input type="text" name="s_nom_modepaiement" class="nom_mode">
-            </fieldset>
-            <br>
-            <input type="submit" value="Ajouter">
-            <input type="reset" value="Annuler">
-        </form>
+        <table>
+            <thead>
+                <th>Type</th>
+                <th class="tot">Total</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ventes</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Dépenses</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Recettes</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </section>
     <div class="footer">
         <p>Copyright © 2024 Homechip's Laure | Tous droits réservés <br>

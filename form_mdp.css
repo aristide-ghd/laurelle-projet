@@ -221,6 +221,10 @@ fieldset input /* champs se retrouvant dans le cadran du formulaire */
     border-radius: 5px;
     box-shadow: 1px 2px #c0c0c0 inset;
 }
+.matmdp
+{
+    margin-left: 75px;
+}
 .nom_mode /* champs du nom mode de paiement */
 {
     margin-left: 82px;

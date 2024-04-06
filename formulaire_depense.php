@@ -1,3 +1,10 @@
+<?php
+    include("connexion.php");
+    $req = " SELECT * FROM modepaiement ORDER BY idModePaiement";
+    $reponse = $bdd -> query($req);
+    $donnee = $reponse -> fetchAll();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,31 +27,31 @@
                         <ul class="liste_transaction">
                             <li id="form_prod"><a href="formulaire_produit.html">Formulaire Produits</a></li><br>
                             <li id="form_cli"><a href="formulaire_client.html">Formulaire Clients</a></li><br>
-                            <li id="form_ven"><a href="formulaire_vente.html">Formulaire Ventes</a></li><br>
-                            <li id="form_rec"><a href="formulaire_recette.html">Formulaire Recettes</a></li><br>
-                            <li id="form_dep"><a href="formulaire_depense.html">Formulaire Dépenses</a></li><br>
+                            <li id="form_ven"><a href="formulaire_vente.php">Formulaire Ventes</a></li><br>
+                            <li id="form_rec"><a href="formulaire_recette.php">Formulaire Recettes</a></li><br>
+                            <li id="form_dep"><a href="formulaire_depense.php">Formulaire Dépenses</a></li><br>
                             <li id="form_mdp"><a href="formulaire_mdp.html">Formulaire Mode de Paiement</a></li><br>
                         </ul>
                     </li>   
                     <li >
                         <a href="#" class="evene">Evènements financiers</a><span id="arrow-down"></span>
                         <ul class="liste_evenement">
-                            <li><a href="produit.html">Produits</a></li><br>
-                            <li><a href="client.html">Clients</a></li><br>
-                            <li><a href="vente.html">Ventes</a></li><br>
-                            <li><a href="recette.html">Recettes</a></li><br>
-                            <li><a href="depense.html">Dépenses</a></li><br>
-                            <li><a href="mdp.html">Mode de Paiement</a></li><br>
+                            <li><a href="produit.php">Produits</a></li><br>
+                            <li><a href="client.php">Clients</a></li><br>
+                            <li><a href="vente.php">Ventes</a></li><br>
+                            <li><a href="recette.php">Recettes</a></li><br>
+                            <li><a href="depense.php">Dépenses</a></li><br>
+                            <li><a href="mdp.php">Mode de Paiement</a></li><br>
                         </ul>
                     </li>
-                    <li ><a href="page3.php" class="gestion">Gestion financière</a></li>
+                    <li ><a href="gestion.html" class="gestion">Gestion financière</a></li>
                 </ul>
             </div> 
         </nav>
     </header>
     <section>
         <h1 class="ajout">Ajouter une transaction</h1>
-        <form action="" method="post">
+        <form action="valider_transaction.php" method="post">
             <fieldset>
                 <legend>Dépense</legend>
                 <label for="">Montant de Dépense :</label>
@@ -57,7 +64,17 @@
                 <input type="text" name="s_descriptiondepense" class="description">
                 <br><br>
                 <label for="">Mode de Paiement :</label>
-                <input type="text" name="s_modepaiement" class="mode">
+                <select name="s_modepaiement" id="listmode">
+                    <?php
+                        foreach ($donnee as $listemode){
+                    ?>
+                    <option value="<?= $listemode['idModePaiement'] ?>">
+                        <?= $listemode['NomModePaiement'] ?>
+                    </option>
+                    <?php
+                        }
+                    ?>
+                </select>
             </fieldset>
             <br>
             <input type="submit" value="Ajouter">

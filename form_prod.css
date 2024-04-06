@@ -237,6 +237,10 @@ fieldset input /* champs se retrouvant dans le cadran du formulaire */
 {
     margin-left: 99px;
 }
+.matprod
+{
+    margin-left: 72px;
+}
 input[type=submit], input[type=reset] /* bouton d'ajout et d'annulation */
 {
     background-color: #fff3f3;

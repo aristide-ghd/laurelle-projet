@@ -221,21 +221,34 @@ fieldset input /* champs se retrouvant dans le cadran du formulaire */
     border-radius: 5px;
     box-shadow: 1px 2px #c0c0c0 inset;
 }
+fieldset select
+{
+    background-color: #fff3f3;
+    padding: 3px;
+    border: solid #f5c5f5 1px;
+    width: 250px;
+    border-radius: 5px;
+    box-shadow: 1px 2px #c0c0c0 inset;
+}
+.matrec
+{
+    margin-left: 82px;
+}
 .montant /* champ de montant de recette */
 {
     margin-left: 65px;
 }
 .date /* champs de date de recette */
 {
-    margin-left: 90px;
+    margin-left: 89px;
 }
 .description /* champs de Description de Recette */
 {
-    margin-left: 45px;
+    margin-left: 43px;
 }
-.mode /* champs de mode de paiement */
+#listmode /* champs de mode de paiement */
 {
-    margin-left: 73px;
+    margin-left: 71px;
 }
 input[type=submit], input[type=reset] /* bouton d'ajout et d'annulation */
 {
