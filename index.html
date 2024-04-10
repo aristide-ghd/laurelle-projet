@@ -3,52 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Homechip's Laure</title>
 </head>
 <body>
     <header>
-        <nav>
-            <div class="title">
-                <a href="index.html">Homechip's Laure</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Homechip's Laure</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Transactions</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="formulaire_produit.html">Formulaire Produits</a></li>
+                                <li><a class="dropdown-item" href="formulaire_client.html">Formulaire Clients</a></li>
+                                <li><a class="dropdown-item" href="formulaire_vente.php">Formulaire Ventes</a></li>
+                                <li><a class="dropdown-item" href="formulaire_recette.php">Formulaire Recettes</a></li>
+                                <li><a class="dropdown-item" href="formulaire_depense.php">Formulaire Dépenses</a></li>
+                                <li><a class="dropdown-item" href="formulaire_mdp.html">Formulaire Mode de Paiement</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Evènements financiers</a>
+                            <ul class="dropdown-menu liste_evenement" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="produit.php">Produits</a></li>
+                                <li><a class="dropdown-item" href="client.php">Clients</a></li>
+                                <li><a class="dropdown-item" href="vente.php">Ventes</a></li>
+                                <li><a class="dropdown-item" href="recette.php">Recettes</a></li>
+                                <li><a class="dropdown-item" href="depense.php">Dépenses</a></li>
+                                <li><a class="dropdown-item" href="mdp.php">Mode de Paiement</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="gestion.html">Gestion financière</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="block_navigation">
-                <ul class="navigation">
-                    <li ><a href="index.html" class="accueil">Accueil</a></li>
-                    <li >
-                        <a href="#" class="trans">Transactions<span class="arrow-down"></span></a>
-                        <ul class="liste_transaction">
-                            <li id="form_prod"><a href="formulaire_produit.html">Formulaire Produits</a></li><br>
-                            <li id="form_cli"><a href="formulaire_client.html">Formulaire Clients</a></li><br>
-                            <li id="form_ven"><a href="formulaire_vente.php">Formulaire Ventes</a></li><br>
-                            <li id="form_rec"><a href="formulaire_recette.php">Formulaire Recettes</a></li><br>
-                            <li id="form_dep"><a href="formulaire_depense.php">Formulaire Dépenses</a></li><br>
-                            <li id="form_mdp"><a href="formulaire_mdp.html">Formulaire Mode de Paiement</a></li><br>
-                        </ul>
-                    </li>   
-                    <li >
-                        <a href="#" class="evene">Evènements financiers</a><span id="arrow-down"></span>
-                        <ul class="liste_evenement">
-                            <li id="tab_prod"><a href="produit.php">Produits</a></li><br>
-                            <li id="tab_cli"><a href="client.php">Clients</a></li><br>
-                            <li id="tab_ven"><a href="vente.php">Ventes</a></li><br>
-                            <li id="tab_rec"><a href="recette.php">Recettes</a></li><br>
-                            <li id="tab_dep"><a href="depense.php">Dépenses</a></li><br>
-                            <li id="tab_mdp"><a href="mdp.php">Mode de Paiement</a></li><br>
-                        </ul>
-                    </li>
-                    <li ><a href="gestion.html" class="gestion">Gestion financière</a></li>
-                </ul>
-            </div> 
         </nav>
     </header>
     <section>
-        
+        <!-- Ajoutez votre contenu ici -->
     </section>
-    <div class="footer">
-        <p>Copyright © 2024 Homechip's Laure | Tous droits réservés <br>
-            Design by: <a href="https://ari-luxury.com">Ari-Luxury</a>
-        </p>
-    </div>
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span class="text-muted">Copyright © 2024 Homechip's Laure | Tous droits réservés.
+            Design by: <a href="https://ari-luxury.com">Ari-Luxury</a></span>
+        </div>
+    </footer>
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjO3uiV7A9TL7MwHNBW9R+Ep2T4klo7YwGI5Os/qGIlDQ2hF5V1dE7" crossorigin="anonymous"></script>
 </body>
 </html>
