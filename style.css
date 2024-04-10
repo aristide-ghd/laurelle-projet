@@ -1,0 +1,213 @@
+/* HEADER START */
+header /* l'en-tete */
+{
+    font-family: Arial, Helvetica, sans-serif;
+    border: solid black 0px;
+    background-color: #333;
+    width: 100%;
+    margin-top: -8px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-right: 16px;
+    margin-left: -8px;
+}
+body /* le corps de la page*/
+{
+    background-color: #f4f4f4;
+    font-family: Arial, Helvetica, sans-serif;
+}
+header nav /* la navigation de l'en-tete*/
+{
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+.title /* le bloc du titre */
+{
+    border: solid black 0px;
+    margin-left: 130px;
+    padding-top: 12px;
+    font-size: 20px;
+}
+.title a /* le lien du titre*/
+{
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+.block_navigation /* le bloc div du menu*/
+{
+    border: solid black 0px;
+    margin-left: 365px;
+    font-size: 14px;
+}
+.navigation /* le bloc des puces non numérotées */
+{
+    border: solid black 0px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+.navigation li /* les liens du bloc navigation */
+{
+    float: left;
+}
+.trans, .evene, .gestion /* le transaction, l'evenement et la gestion*/
+{
+    margin-left: 30px;
+}
+.liste_transaction /* le bloc de la litre transaction*/
+{
+    border: solid black 0px;
+    list-style-type: none;
+    margin-left: 30px;
+    margin-top: 5px;
+    padding-left: 0px;
+    width: 250px;
+    display: none;
+    position: absolute;
+    z-index: 0;
+}
+.arrow-down /* la flèche du lien transaction*/
+{
+    position: absolute;
+    top: 47px;
+    right: 50px;
+    width: 0;
+    height: 0;
+    left: 63.8%;
+    border-left: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid white;
+    transform: rotate(45deg);
+}
+.liste_transaction li /* les puces de la liste transaction*/
+{
+    background-color: slategray;
+    border-bottom: solid black 0.5px;
+    border-radius: 5px;
+    width: 220px;
+    padding-left: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.liste_transaction li:hover /* au survol des puces de la liste transaction*/
+{
+    background-color: green;
+}
+.liste_transaction a /* les liens de la liste transaction */
+{
+    text-decoration: none;
+    color: white;
+    transition: all 0.2s ease;
+}
+.liste_transaction a:hover /* au survol des liens de la liste transaction */
+{
+    transform: translateX(5px);
+}
+.liste_evenement /* le bloc de la liste evenements */
+{
+    border: solid black 0px;
+    list-style-type: none;
+    margin-left: 30px;
+    padding-left: 0px;
+    display: none;
+    position: absolute;
+    width: 160px;
+    margin-top: 5px;
+    z-index: 0;
+}
+#arrow-down /* la fleche du lien evenement */
+{
+    position: absolute;
+    top: 47px;
+    right: 50px;
+    width: 0;
+    height: 0;
+    left: 77.8%;
+    border-left: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid white;
+    transform: rotate(45deg);
+}
+.liste_evenement li /* les puces du bloc liste evenement */
+{
+    background-color: slategray;
+    width: 150px;
+    border-bottom: solid black 0.5px;
+    border-radius: 5px;
+    padding-left: 25px ;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.liste_evenement li:hover /* au survol des puces du bloc liste evenement */
+{
+    background-color: green;
+}
+.liste_evenement a /* au survol des liens du bloc liste evenement */
+{
+    text-decoration: none;
+    color: white;
+}
+nav li:hover ul /* apparition en bloc de la liste des liens transactions et evenements au survol*/
+{
+    display: block;
+}
+.accueil /* apparence du lien accueil*/
+{
+    text-decoration: none;
+    font-weight: bold;
+    color: orange;
+}
+.trans /* apparence du lien transaction */
+{
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+.evene /* apparence du lien evenement */
+{
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+.gestion /* apparence du lien gestion */
+{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.navigation a:hover /* au survol de tous les liens contenus dans le bloc navigation*/ 
+{
+    color: orange;
+}
+/* HEADER END */
+
+/* FOOTER START */
+.footer /* Le pied de page */
+{
+    border: solid black 0px;
+    margin-top: 462px;
+    margin-bottom: -2%;
+    margin-left: -8px;
+    margin-right: -8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #333;
+    color: whitesmoke;
+    font-size: 15px;
+}
+.footer p /* le paragraphe du pied de page*/
+{
+    font-family: Arial, Helvetica, sans-serif;
+    border: solid black 0px;
+    text-align: center;
+    font-weight: bold;
+}
+.footer a /* lien du paragraphe du pied de page */
+{
+    color: orange;
+    text-decoration: none;
+}
+/* FOOTER END */
