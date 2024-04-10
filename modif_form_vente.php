@@ -33,41 +33,8 @@
     <title>Modification des ventes</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="title">
-                <a href="index.html">Homechip's Laure</a>
-            </div>
-            <div class="block_navigation">
-                <ul class="navigation">
-                    <li ><a href="index.html" class="accueil">Accueil</a></li>
-                    <li >
-                        <a href="#" class="trans">Transactions<span class="arrow-down"></span></a>
-                        <ul class="liste_transaction">
-                            <li id="form_prod"><a href="formulaire_produit.html">Formulaire Produits</a></li><br>
-                            <li id="form_cli"><a href="formulaire_client.html">Formulaire Clients</a></li><br>
-                            <li id="form_ven"><a href="formulaire_vente.php">Formulaire Ventes</a></li><br>
-                            <li id="form_rec"><a href="formulaire_recette.php">Formulaire Recettes</a></li><br>
-                            <li id="form_dep"><a href="formulaire_depense.php">Formulaire Dépenses</a></li><br>
-                            <li id="form_mdp"><a href="formulaire_mdp.html">Formulaire Mode de Paiement</a></li><br>
-                        </ul>
-                    </li>   
-                    <li >
-                        <a href="#" class="evene">Evènements financiers</a><span id="arrow-down"></span>
-                        <ul class="liste_evenement">
-                            <li><a href="produit.php">Produits</a></li><br>
-                            <li><a href="client.php">Clients</a></li><br>
-                            <li><a href="vente.php">Ventes</a></li><br>
-                            <li><a href="recette.php">Recettes</a></li><br>
-                            <li><a href="depense.php">Dépenses</a></li><br>
-                            <li><a href="mdp.php">Mode de Paiement</a></li><br>
-                        </ul>
-                    </li>
-                    <li ><a href="gestion.html" class="gestion">Gestion financière</a></li>
-                </ul>
-            </div> 
-        </nav>
-    </header>
+<?php include 'navbar/navbar.php'; ?>
+
     <section>
         <h1 class="ajout">Ajouter une transaction</h1>
         <form action="valider_modif_form.php" method="post">

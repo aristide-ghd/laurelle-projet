@@ -1,6 +1,53 @@
+/* Style pour la liste déroulante */
+.dropdown-menu {
+    background-color: #f8f9fa; /* Couleur de fond */
+    border: none; /* Supprimer la bordure */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre */
+    padding: 10px; /* Espacement interne */
+}
+
+/* Style pour les éléments de la liste déroulante */
+.dropdown-menu .dropdown-item {
+    color: #333; /* Couleur du texte */
+    font-size: 14px; /* Taille de la police */
+}
+
+/* Style pour les éléments de la liste déroulante au survol */
+.dropdown-menu .dropdown-item:hover {
+    background-color: #e9ecef; /* Couleur de fond au survol */
+}
+
+/* Style pour les listes déroulantes */
+.dropdown-menu ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style pour les liens de la liste déroulante */
+.dropdown-menu a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+/* Style pour les liens de la liste déroulante au survol */
+.dropdown-menu a:hover {
+    color: #007bff; /* Couleur du lien au survol */
+}
+
+/* Ajout d'espacement entre les éléments de la liste */
+.dropdown-menu .dropdown-item {
+    padding: 8px 12px;
+}
+
+/* Espacement entre les sous-listes et les éléments parent */
+.dropdown-menu .dropdown-menu {
+    margin-top: 5px;
+    margin-left: 100%;
+}
+
 /* HEADER START */
-header /* l'en-tete */
-{
+header {
     font-family: Arial, Helvetica, sans-serif;
     border: solid black 0px;
     background-color: #333;
@@ -11,52 +58,52 @@ header /* l'en-tete */
     padding-right: 16px;
     margin-left: -8px;
 }
-body /* le corps de la page*/
-{
+
+body {
     background-color: #f4f4f4;
     font-family: Arial, Helvetica, sans-serif;
 }
-header nav /* la navigation de l'en-tete*/
-{
+
+header nav {
     display: inline-flex;
     flex-wrap: wrap;
 }
-.title /* le bloc du titre */
-{
+
+.title {
     border: solid black 0px;
     margin-left: 130px;
     padding-top: 12px;
     font-size: 20px;
 }
-.title a /* le lien du titre*/
-{
+
+.title a {
     color: white;
     font-weight: bold;
     text-decoration: none;
 }
-.block_navigation /* le bloc div du menu*/
-{
+
+.block_navigation {
     border: solid black 0px;
     margin-left: 365px;
     font-size: 14px;
 }
-.navigation /* le bloc des puces non numérotées */
-{
+
+.navigation {
     border: solid black 0px;
     display: inline-flex;
     flex-wrap: wrap;
     list-style-type: none;
 }
-.navigation li /* les liens du bloc navigation */
-{
+
+.navigation li {
     float: left;
 }
-.trans, .evene, .gestion /* le transaction, l'evenement et la gestion*/
-{
+
+.trans, .evene, .gestion {
     margin-left: 30px;
 }
-.liste_transaction /* le bloc de la litre transaction*/
-{
+
+.liste_transaction {
     border: solid black 0px;
     list-style-type: none;
     margin-left: 30px;
@@ -67,8 +114,8 @@ header nav /* la navigation de l'en-tete*/
     position: absolute;
     z-index: 0;
 }
-.arrow-down /* la flèche du lien transaction*/
-{
+
+.arrow-down {
     position: absolute;
     top: 47px;
     right: 50px;
@@ -81,8 +128,8 @@ header nav /* la navigation de l'en-tete*/
     border-top: 6px solid white;
     transform: rotate(45deg);
 }
-.liste_transaction li /* les puces de la liste transaction*/
-{
+
+.liste_transaction li {
     background-color: slategray;
     border-bottom: solid black 0.5px;
     border-radius: 5px;
@@ -91,102 +138,110 @@ header nav /* la navigation de l'en-tete*/
     padding-top: 5px;
     padding-bottom: 5px;
 }
-.liste_transaction li:hover /* au survol des puces de la liste transaction*/
-{
+
+.liste_transaction li:hover {
     background-color: green;
 }
-.liste_transaction a /* les liens de la liste transaction */
-{
+
+.liste_transaction a {
     text-decoration: none;
     color: white;
     transition: all 0.2s ease;
 }
-.liste_transaction a:hover /* au survol des liens de la liste transaction */
-{
+
+.liste_transaction a:hover {
     transform: translateX(5px);
 }
-.liste_evenement /* le bloc de la liste evenements */
-{
-    border: solid black 0px;
+/* Style pour la liste déroulante "Transactions" */
+.liste_transaction {
+    border: 1px solid #ddd; /* Bordure */
     list-style-type: none;
-    margin-left: 30px;
-    padding-left: 0px;
+    margin: 5px 0 0 30px; /* Marges */
+    padding: 0;
+    width: 250px;
     display: none;
     position: absolute;
-    width: 160px;
-    margin-top: 5px;
-    z-index: 0;
+    z-index: 1;
 }
-#arrow-down /* la fleche du lien evenement */
-{
+
+/* Style pour la flèche de la liste déroulante */
+.arrow-down {
     position: absolute;
     top: 47px;
     right: 50px;
     width: 0;
     height: 0;
-    left: 77.8%;
+    left: calc(100% - 20px); /* Positionnement */
     border-left: 6px solid transparent;
     border-bottom: 6px solid transparent;
     border-right: 6px solid transparent;
     border-top: 6px solid white;
     transform: rotate(45deg);
 }
-.liste_evenement li /* les puces du bloc liste evenement */
-{
+
+/* Style pour les éléments de la liste "Transactions" */
+.liste_transaction li {
     background-color: slategray;
-    width: 150px;
-    border-bottom: solid black 0.5px;
+    border-bottom: 1px solid #ddd; /* Bordure inférieure */
     border-radius: 5px;
-    padding-left: 25px ;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    width: 100%; /* Ajustement de la largeur */
+    padding: 8px 30px; /* Espacement interne */
 }
-.liste_evenement li:hover /* au survol des puces du bloc liste evenement */
-{
-    background-color: green;
+
+/* Style au survol des éléments de la liste "Transactions" */
+.liste_transaction li:hover {
+    background-color: green; /* Changement de couleur au survol */
 }
-.liste_evenement a /* au survol des liens du bloc liste evenement */
-{
+
+/* Style pour les liens de la liste "Transactions" */
+.liste_transaction a {
     text-decoration: none;
     color: white;
+    transition: all 0.2s ease;
 }
-nav li:hover ul /* apparition en bloc de la liste des liens transactions et evenements au survol*/
-{
+
+/* Style au survol des liens de la liste "Transactions" */
+.liste_transaction a:hover {
+    transform: translateX(5px); /* Effet de décalage */
+}
+
+
+nav li:hover ul {
     display: block;
 }
-.accueil /* apparence du lien accueil*/
-{
+
+.accueil {
     text-decoration: none;
     font-weight: bold;
     color: orange;
 }
-.trans /* apparence du lien transaction */
-{
+
+.trans {
     text-decoration: none;
     font-weight: bold;
     color: white;
 }
-.evene /* apparence du lien evenement */
-{
+
+.evene {
     text-decoration: none;
     font-weight: bold;
     color: white;
 }
-.gestion /* apparence du lien gestion */
-{
+
+.gestion {
     color: white;
     text-decoration: none;
     font-weight: bold;
 }
-.navigation a:hover /* au survol de tous les liens contenus dans le bloc navigation*/ 
-{
+
+.navigation a:hover {
     color: orange;
 }
+
 /* HEADER END */
 
 /* FOOTER START */
-.footer /* Le pied de page */
-{
+.footer {
     border: solid black 0px;
     margin-top: 462px;
     margin-bottom: -2%;
@@ -198,15 +253,15 @@ nav li:hover ul /* apparition en bloc de la liste des liens transactions et even
     color: whitesmoke;
     font-size: 15px;
 }
-.footer p /* le paragraphe du pied de page*/
-{
+
+.footer p {
     font-family: Arial, Helvetica, sans-serif;
     border: solid black 0px;
     text-align: center;
     font-weight: bold;
 }
-.footer a /* lien du paragraphe du pied de page */
-{
+
+.footer a {
     color: orange;
     text-decoration: none;
 }
