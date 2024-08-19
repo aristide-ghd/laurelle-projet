@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 21 mars 2024 à 15:26
+-- Généré le : jeu. 11 juil. 2024 à 22:52
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.0.28
 
@@ -34,6 +34,13 @@ CREATE TABLE `clients` (
   `CoordonneesClient` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `clients`
+--
+
+INSERT INTO `clients` (`idClient`, `NomClient`, `AdresseClient`, `CoordonneesClient`) VALUES
+(1, 'Aristide', 'Godomey', '+22997460140');
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +58,24 @@ CREATE TABLE `depenses` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `entreprise`
+--
+
+CREATE TABLE `entreprise` (
+  `namebusiness` varchar(20) NOT NULL,
+  `motdepasse` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `entreprise`
+--
+
+INSERT INTO `entreprise` (`namebusiness`, `motdepasse`) VALUES
+('Homechips Laure', 'Laure2024');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `modepaiement`
 --
 
@@ -58,6 +83,14 @@ CREATE TABLE `modepaiement` (
   `idModePaiement` int(11) NOT NULL,
   `NomModePaiement` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `modepaiement`
+--
+
+INSERT INTO `modepaiement` (`idModePaiement`, `NomModePaiement`) VALUES
+(1, 'Espèces'),
+(2, 'Mobile Money MTN');
 
 -- --------------------------------------------------------
 
@@ -72,6 +105,14 @@ CREATE TABLE `produits` (
   `PrixVente` varchar(20) NOT NULL,
   `CoutUnitaire` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `produits`
+--
+
+INSERT INTO `produits` (`idProduit`, `NomProduit`, `DescriptionProduit`, `PrixVente`, `CoutUnitaire`) VALUES
+(1, 'Chips Banane', 'Aliment', '500 CFA', '200 CFA'),
+(2, 'Préservatif', 'Préservatif condom fraise', '1000 ', '500');
 
 -- --------------------------------------------------------
 
@@ -104,6 +145,13 @@ CREATE TABLE `ventes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Déchargement des données de la table `ventes`
+--
+
+INSERT INTO `ventes` (`idVente`, `DateVente`, `QuantiteVendue`, `MontantTotal`, `idProduit`, `idClient`, `idModePaiement`) VALUES
+(1, '2024-05-02', 2, '1000 CFA', 1, 1, 1);
+
+--
 -- Index pour les tables déchargées
 --
 
@@ -119,6 +167,12 @@ ALTER TABLE `clients`
 ALTER TABLE `depenses`
   ADD PRIMARY KEY (`idDepense`),
   ADD KEY `idModePaiement` (`idModePaiement`);
+
+--
+-- Index pour la table `entreprise`
+--
+ALTER TABLE `entreprise`
+  ADD PRIMARY KEY (`namebusiness`);
 
 --
 -- Index pour la table `modepaiement`
@@ -156,7 +210,7 @@ ALTER TABLE `ventes`
 -- AUTO_INCREMENT pour la table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `idClient` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idClient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `depenses`
@@ -168,13 +222,13 @@ ALTER TABLE `depenses`
 -- AUTO_INCREMENT pour la table `modepaiement`
 --
 ALTER TABLE `modepaiement`
-  MODIFY `idModePaiement` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idModePaiement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `recettes`
@@ -186,7 +240,7 @@ ALTER TABLE `recettes`
 -- AUTO_INCREMENT pour la table `ventes`
 --
 ALTER TABLE `ventes`
-  MODIFY `idVente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idVente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
