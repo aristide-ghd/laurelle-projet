@@ -1,11 +1,11 @@
 <header>
         <nav>
             <div class="title">
-                <a href="index.php">Homechip's Laure</a>
+                <a href="home.php">Homechip's Laure</a>
             </div>
             <div class="block_navigation">
                 <ul class="navigation">
-                    <li ><a href="index.php" class="accueil">Accueil</a></li>
+                    <li ><a href="home.php" class="accueil">Accueil</a></li>
                     <li >
                         <a href="#" class="trans">Transactions<span class="arrow-down"></span></a>
                         <ul class="liste_transaction">

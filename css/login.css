@@ -1,0 +1,80 @@
+/*le corps de la page*/
+body
+{
+    font-family: Arial, Helvetica, sans-serif;
+    /* background-color: ghostwhite; */
+    background-color: #4A4A4A;
+}
+/*les champs a remplir*/
+input
+{
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    border: solid #f5c5f5 1px;
+    padding: 3px;
+    background-color: #fff3f3;
+    box-shadow: 2px 2px #c0c0c0 inset;
+}
+#deuxblocs
+{
+    border: solid black 0px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+    margin: auto;
+    padding-left: 10%;
+    margin-top: 8%;
+}
+.image_achat
+{
+    border: solid black 0px;
+    width: 40%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.infos
+{
+    border: solid black 0px;
+    padding: 0px 40px;
+    width: 40%;
+    background-color: beige;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+/* le titre de mon formulaire*/
+h2
+{
+    color: #df3f3f;
+    text-align: center;
+}
+/* le cadran de mon formulaire */
+fieldset
+{
+    /* width: %; */
+    padding: 20px;
+    border: solid #df3f3f 1px;
+}
+/* le boutton de connexion */
+button
+{
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
+    border: solid #f5c5f5 1px;
+    padding: 3px;
+    margin-left: 35%;
+    background-color: #fff3f3;
+    box-shadow: 2px 2px #c0c0c0 inset;
+    color: #df3f3f;
+    cursor: pointer;
+}
+/* au survol du boutton de connexion */
+button:hover
+{
+    color: white;
+    background-color: #df3f3f;
+    box-shadow: 0px 0px inset;
+}
