@@ -3,28 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/form_mdp.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css/form_mdp.css"> -->
     <title>Formulaire du Mode de Paiement</title>
+    <style>
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .ajout{
+            margin-top: 60px;
+        }
+    </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <?php include 'navbar/en_tete.php'; ?>
-    <section>
-        <h1 class="ajout">Ajouter une transaction</h1>
+    
+    <section class="container mt-5 flex-grow-1">
+        <h1 class="ajout text-center text-danger mb-4">Ajouter un Mode de Paiement</h1>
         <form action="valider_transaction.php" method="post">
-            <fieldset>
-                <legend>Mode de Paiement</legend>
-                <label for="">Nom Mode de Paiement :</label>
-                <input type="text" name="s_nom_modepaiement" class="nom_mode">
+            <fieldset class="border p-4 rounded">
+                <legend class="w-auto">Mode de Paiement</legend>
+                
+                <div class="mb-3">
+                    <label for="nomModePaiement" class="form-label">Nom Mode de Paiement :</label>
+                    <input type="text" id="nomModePaiement" name="s_nom_modepaiement" class="form-control nom_mode" required>
+                </div>
             </fieldset>
-            <br>
-            <input type="submit" value="Ajouter">
-            <input type="reset" value="Annuler">
+
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="reset" class="btn btn-secondary">Annuler</button>
+            </div>
         </form>
     </section>
-    <div class="footer">
-        <p>Copyright © 2024 Homechip's Laure | Tous droits réservés <br>
-            Design by: <a href="https://ari-luxury.com">Ari-Luxury</a>
-        </p>
-    </div>
+
+    <footer class="bg-dark text-white text-center py-4 footer">
+        <p class="mb-0 ">Copyright © 2024 Homechip's Laure | Tous droits réservés</p>
+        <p class="mb-0 ">Design by: <a href="https://ari-luxury.com" class="text-white text-decoration-none">Ari-Luxury</a></p>
+    </footer>
+
+    <!-- Bootstrap JS (optional, for interactive components) -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>

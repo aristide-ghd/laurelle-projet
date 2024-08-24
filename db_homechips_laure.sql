@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : jeu. 11 juil. 2024 à 22:52
+-- Hôte : localhost
+-- Généré le : mar. 20 août 2024 à 11:10
 -- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.0.28
+-- Version de PHP : 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `suivi_vente`
+-- Base de données : `db_homechips_laure`
 --
 
 -- --------------------------------------------------------
@@ -112,7 +112,7 @@ CREATE TABLE `produits` (
 
 INSERT INTO `produits` (`idProduit`, `NomProduit`, `DescriptionProduit`, `PrixVente`, `CoutUnitaire`) VALUES
 (1, 'Chips Banane', 'Aliment', '500 CFA', '200 CFA'),
-(2, 'Préservatif', 'Préservatif condom fraise', '1000 ', '500');
+(2, 'Préservatif', 'Préservatif condom fraise', '1000 CFA', '500 CFA');
 
 -- --------------------------------------------------------
 
