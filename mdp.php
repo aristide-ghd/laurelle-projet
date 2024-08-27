@@ -50,9 +50,12 @@
                         <td><?= $liste['NomModePaiement'] ?></td>
                         <td>
                             <a href="modif_form_mdp.php?id=<?= $liste['idModePaiement'] ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>
-                            <a href="modif_form_mdp.php?id=<?= $liste['idModePaiement'] ?>"
+                            <!-- <a href="modif_form_mdp.php?id=<?= $liste['idModePaiement'] ?>"
                                 onclick="return confirm('Voulez-vous supprimer cet enregistrement?')" class="btn btn-danger btn-sm col-lg-5 col-md-12 col-sm-12">Supprimer
-                            </a>
+                            </a> -->
+                            <button type="button" class="btn btn-danger btn-sm col-lg-5 col-md-12 col-sm-12" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $liste['idModePaiement'] ?>">
+                                Supprimer
+                            </button>
                         </td>
                     </tr>
                     <?php
@@ -63,11 +66,44 @@
         </div>
     </section>
 
+    <!-- Modale Bootstrap pour la confirmation de suppression -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Es-tu sûr de vouloir supprimer ce mode de paiement ? <br>
+                    Cette action est irréversible.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <!-- Le lien de suppression réel -->
+                    <a href="#" id="confirmDelete" class="btn btn-danger">Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="bg-dark text-white text-center py-3 mt-auto">
         <p class="mb-0">Copyright © 2024 Homechip's Laure | Tous droits réservés</p>
         <p class="mb-0">Design by: <a href="https://ari-luxury.com" class="text-white text-decoration-none">Ari-Luxury</a></p>
     </footer>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
+
+    <script>
+        // Script pour passer l'ID du mode de paiement à la modale et configurer le lien de suppression
+        var deleteModal = document.getElementById('deleteModal');
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget; // Bouton qui a déclenché la modale
+            var idModePaiement = button.getAttribute('data-id'); // Extraction de l'ID
+
+            var confirmDelete = document.getElementById('confirmDelete');
+            confirmDelete.href = 'delete_mdp.php?id=' + idModePaiement; // Configuration du lien de suppression
+        });
+    </script>
 </body>
 </html>

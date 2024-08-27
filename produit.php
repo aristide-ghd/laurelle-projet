@@ -55,8 +55,9 @@
                         <td><?= $liste['CoutUnitaire'] ?></td>
                         <td>
                             <a href="modif_form_prod.php?id=<?= $liste['idProduit'] ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>
-                            <a href="modif_form_prod.php?id=<?= $liste['idProduit'] ?>"
-                                onclick="return confirm('Voulez-vous supprimer cet enregistrement?')" class="btn btn-danger btn-sm col-lg-5 col-md-12 col-sm-12">Supprimer</a>
+                            <button type="button" class="btn btn-danger btn-sm col-lg-5 col-md-12 col-sm-12" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $liste['idProduit'] ?>">
+                                Supprimer
+                            </button>
                         </td>
                     </tr>
                     <?php 
@@ -67,6 +68,27 @@
         </div>
     </section>
 
+    <!-- Modale Bootstrap pour la confirmation de suppression -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Es-tu sûr de vouloir supprimer ce produit ? <br>
+                    Cette action est irréversible.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <!-- Le lien de suppression réel -->
+                    <a href="#" id="confirmDelete" class="btn btn-danger">Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer bg-dark text-white text-center py-4">
         <p class="mb-0 ">Copyright © 2024 Homechip's Laure | Tous droits réservés</p>
         <p class="mb-0 ">Design by: <a href="https://ari-luxury.com" class="text-white text-decoration-none">Ari-Luxury</a></p>
@@ -74,62 +96,17 @@
 
     <!-- Bootstrap JS (optional, for interactive components) -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+
+    <script>
+        // Script pour passer l'ID du produit à la modale et configurer le lien de suppression
+        var deleteModal = document.getElementById('deleteModal');
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget; // Bouton qui a déclenché la modale
+            var idProduit = button.getAttribute('data-id'); // Extraction de l'ID
+
+            var confirmDelete = document.getElementById('confirmDelete');
+            confirmDelete.href = 'delete_produit.php?id=' + idProduit; // Configuration du lien de suppression
+        });
+    </script>
 </body>
 </html>
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/tab_prod.css">
-    <title>Page Produit</title>
-</head>
-<body>
-    <section>
-        <h1>Voici une liste de vos produits</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Matricule Produit</th>
-                    <th>Nom du produit</th>
-                    <th>Description du Produit</th>
-                    <th>Prix de Vente</th>
-                    <th>Cout Unitaire</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                    foreach($donnee as $liste){ 
-                ?>
-                <tr>
-                    <td><?= $liste['idProduit'] ?></td>
-                    <td><?= $liste['NomProduit'] ?></td>
-                    <td><?= $liste['DescriptionProduit'] ?></td>
-                    <td><?= $liste['PrixVente'] ?></td>
-                    <td><?= $liste['CoutUnitaire'] ?></td>
-                    <td>
-                        <button class="btn1">
-                            <a href="modif_form_prod.php?id=<?= $liste['idProduit'] ?>">Modifier</a>
-                        </button>
-                        <button class="btn2">
-                            <a href="modif_form_prod.php?id=<?= $liste['idProduit'] ?>"
-                                onclick="return confirm('Voulez-vous supprimez ce enregistrement?')">Supprimer</a>
-                        </button>
-                    </td>
-                </tr>
-                <?php 
-                    }
-                ?>
-            </tbody>
-        </table>
-    </section>
-    <div class="footer">
-        <p>Copyright © 2024 Homechip's Laure | Tous droits réservés <br>
-            Design by: <a href="https://ari-luxury.com">Ari-Luxury</a>
-        </p>
-    </div>
-</body>
-</html> -->
