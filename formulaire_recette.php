@@ -17,6 +17,7 @@
     <style>
         .ajout{
             margin-top: 60px;
+            color: #198754;
         }
     </style>
 </head>
@@ -24,7 +25,7 @@
     <?php include 'navbar/en_tete.php'; ?>
     
     <section class="container my-5 flex-grow-1">
-        <h1 class="ajout text-center text-danger mb-4">Ajouter une recette</h1>
+        <h1 class="ajout text-center mb-4">Ajouter une recette</h1>
         <form action="valider_transaction.php" method="post">
             <fieldset class="border p-4 rounded">
                 <legend class="w-auto">Recette</legend>

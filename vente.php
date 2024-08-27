@@ -66,8 +66,8 @@
                         <td><?= $liste['idClient'] ?></td>
                         <td><?= $liste['idModePaiement'] ?></td>
                         <td>
-                            <a href="modif_form_prod.php?id=<?= $liste['idProduit'] ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>
-                            <a href="modif_form_prod.php?id=<?= $liste['idProduit'] ?>"
+                            <a href="modif_form_vente.php?id=<?= $liste['idVente'] ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>
+                            <a href="modif_form_vente.php?id=<?= $liste['idVente'] ?>"
                                 onclick="return confirm('Voulez-vous supprimer cet enregistrement?')" class="btn btn-danger btn-sm col-lg-5 col-md-12 col-sm-12">Supprimer</a>
                         </td>
                     </tr>

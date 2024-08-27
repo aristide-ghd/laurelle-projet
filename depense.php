@@ -55,8 +55,8 @@
                         <td><?= $liste['DescriptionDepense'] ?></td>
                         <td><?= $liste['idModePaiement'] ?></td>
                         <td>
-                            <a href="modif_form_recette.php?id=<?= $liste['idRecette'] ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>
-                            <a href="modif_form_recette.php?id=<?= $liste['idRecette'] ?>"
+                            <a href="modif_form_depense.php?id=<?= $liste['idDepense'] ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>
+                            <a href="modif_form_depense.php?id=<?= $liste['idDepense'] ?>"
                                 onclick="return confirm('Voulez-vous supprimer cet enregistrement?')" class="btn btn-danger btn-sm col-lg-5 col-md-12 col-sm-12">Supprimer
                             </a>
                         </td>

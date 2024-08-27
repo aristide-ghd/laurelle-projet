@@ -20,57 +20,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/form_dep.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css/form_dep.css"> -->
     <title>Modifications des dépenses</title>
+    <style>
+        .ajout{
+            margin-top: 60px;
+            color: #0d6efd;
+        }
+    </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <?php include 'navbar/en_tete.php'; ?>
-    <section>
-        <h1 class="ajout">Ajouter une transaction</h1>
+
+    <section class="container my-5 flex-grow-1">
+        <h1 class="ajout text-center mb-4">Modifier une dépense</h1>
         <form action="valider_modif_form.php" method="post">
-            <fieldset>
-                <legend>Dépense</legend>
-                <label for="">Matricule Dépense :</label>
-                <input type="text" name="s_numero" class="matdep" value= "<?= $liste['idDepense'] ?>">
-                <br><br>
-                <label for="">Montant de Dépense :</label>
-                <input type="text" name="s_montantdepense" class="montant" value= "<?= $liste['MontantDepense'] ?>">
-                <br><br>
-                <label for="">Date de Dépense :</label>
-                <input type="date" name="s_datedepense" class="date" value= "<?= $liste['DateDepense'] ?>">
-                <br><br>
-                <label for="">Description de Dépense :</label>
-                <input type="text" name="s_descriptiondepense" class="description" value= "<?= $liste['DescriptionDepense'] ?>">
-                <br><br>
-                <label for="">Mode de Paiement :</label>
-                <select name="s_modepaiement" id="listmode">
-                    <?php
-                            foreach ($donnee as $listemode)
-                            {
-                                if($listemode['idModePaiement'] == $mdp)
-                                {?>
-                                    <option selected value="<?= $listemode['idModePaiement'] ?>">
-                                                            <?= $listemode['NomModePaiement'] ?>
-                                    </option>
-                    <?php       }
-                                else
-                                {?>
-                                    <option value="<?= $listemode['idModePaiement'] ?>">
-                                                    <?= $listemode['NomModePaiement'] ?>
-                                    </option>
-                    <?php       }
-                            }?>
-                </select>
+            <fieldset class="border p-4 rounded">
+                <legend class="fw-bold">Dépense</legend>
+
+                <div class="mb-3">
+                    <label for="s_numero" class="form-label">Matricule Dépense :</label>
+                    <input type="text" id="s_numero" name="s_numero" class="form-control" value="<?= $liste['idDepense'] ?>" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label for="s_montantdepense" class="form-label">Montant de Dépense :</label>
+                    <input type="text" id="s_montantdepense" name="s_montantdepense" class="form-control" value="<?= $liste['MontantDepense'] ?>">
+                </div>
+
+                <div class="mb-3">
+                    <label for="s_datedepense" class="form-label">Date de Dépense :</label>
+                    <input type="date" id="s_datedepense" name="s_datedepense" class="form-control" value="<?= $liste['DateDepense'] ?>">
+                </div>
+
+                <div class="mb-3">
+                    <label for="s_descriptiondepense" class="form-label">Description de Dépense :</label>
+                    <input type="text" id="s_descriptiondepense" name="s_descriptiondepense" class="form-control" value="<?= $liste['DescriptionDepense'] ?>">
+                </div>
+
+                <div class="mb-3">
+                    <label for="listmode" class="form-label">Mode de Paiement :</label>
+                    <select name="s_modepaiement" id="listmode" class="form-select">
+                        <?php
+                                foreach ($donnee as $listemode)
+                                {
+                                    if($listemode['idModePaiement'] == $mdp)
+                                    {?>
+                                        <option selected value="<?= $listemode['idModePaiement'] ?>">
+                                                                <?= $listemode['NomModePaiement'] ?>
+                                        </option>
+                        <?php       }
+                                    else
+                                    {?>
+                                        <option value="<?= $listemode['idModePaiement'] ?>">
+                                                        <?= $listemode['NomModePaiement'] ?>
+                                        </option>
+                        <?php       }
+                                }?>
+                    </select>
+                </div>
             </fieldset>
-            <br>
-            <input type="submit" value="Ajouter">
-            <input type="reset" value="Annuler">
+
+            <div class="mt-4 text-center">
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="reset" class="btn btn-secondary">Annuler</button>
+            </div>
         </form>
     </section>
-    <div class="footer">
-        <p>Copyright © 2024 Homechip's Laure | Tous droits réservés <br>
-            Design by: <a href="https://ari-luxury.com">Ari-Luxury</a>
-        </p>
-    </div>
+
+    <footer class="footer bg-dark text-white text-center py-4">
+        <p class="mb-0 ">Copyright © 2024 Homechip's Laure | Tous droits réservés</p>
+        <p class="mb-0 ">Design by: <a href="https://ari-luxury.com" class="text-white text-decoration-none">Ari-Luxury</a></p>
+    </footer>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>

@@ -11,6 +11,16 @@
             /* margin-top: 4%; */
             width: 100%;
         }
+        .carousel-caption h5 {
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .carousel-caption p {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -18,9 +28,45 @@
 
     <section class="container my-5 pt-5 flex-grow-1">
         <div class="row bigbloc mt-5 ">
-            <div class="col-md-6 col-sm-12 mb-4">
+            <!-- <div class="col-md-6 col-sm-12 mb-4">
                 <div class="card">
                     <img src="image/chips.jpg" class="card-img-top" alt="Chips Image">
+                </div>
+            </div> -->
+            <div class="col-md-6 mb-4">
+                <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="image/chips4.jpg" class="d-block w-100" alt="Image 1">
+                            <div class="carousel-caption d-none d-sm-block">
+                                <h5>Délicieux Chips Faits Maison</h5>
+                                <p>Découvrez notre variété de chips croustillantes et savoureuses.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="image/chips5.jpg" class="d-block w-100" alt="Image 2">
+                            <div class="carousel-caption d-none d-sm-block">
+                                <h5 class="">Une Explosion de Saveurs</h5>
+                                <p class="">Nos chips sont disponibles dans une gamme de saveurs exquises.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="image/chips6.jpg" class="d-block w-100" alt="Image 3">
+                            <div class="carousel-caption d-none d-sm-block">
+                                <h5>Parfait pour les Moments de Convivialité</h5>
+                                <p>Partagez nos chips avec vos proches pour un moment inoubliable.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Contrôles de navigation -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">

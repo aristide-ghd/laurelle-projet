@@ -11,43 +11,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/form_cli.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css/form_cli.css"> -->
     <title>Modifications des clients</title>
+    <style>
+        .ajout{
+            margin-top: 60px;
+            color: #0d6efd;
+        }
+    </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <?php include 'navbar/en_tete.php'; ?>
-    <section>
-        <h1 class="ajout">Ajouter une transaction</h1>
+
+    <section class="container my-5 flex-grow-1">
+        <h1 class="ajout text-center mb-4">Modifier un client</h1>
         <form action="valider_modif_form.php" method="post">
-            <fieldset>
-                <legend>Client</legend>
-                <?php
-                    foreach($donnee as $liste){
-                ?>
-                <label for="">Matricule Client :</label>
-                <input type="text" name="s_numero" class="matclient" value= "<?= $liste['idClient'] ?>">
-                <br><br>
-                <label for="">Nom du Client :</label>
-                <input type="text" name="s_nomclient" class="nom" value= "<?= $liste['NomClient'] ?>">
-                <br><br>
-                <label for="">Adresse du client :</label>
-                <input type="text" name="s_adresseclient" class="adresse" value= "<?= $liste['AdresseClient'] ?>">
-                <br><br>
-                <label for="">Coordonnées du Client :</label>
-                <input type="text" name="s_coordonneesclient" class="coordonnees" value= "<?= $liste['CoordonneesClient'] ?>">
-                <?php
-                    }
-                ?>
+            <fieldset class="border p-4 rounded">
+                <legend class="fw-bold">Client</legend>
+                <?php foreach($donnee as $liste){ ?>
+                    <div class="mb-3">
+                        <label for="s_numero" class="form-label">Matricule Client :</label>
+                        <input type="text" id="s_numero" name="s_numero" class="form-control" value="<?= $liste['idClient'] ?>" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="s_nomclient" class="form-label">Nom du Client :</label>
+                        <input type="text" id="s_nomclient" name="s_nomclient" class="form-control" value="<?= $liste['NomClient'] ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="s_adresseclient" class="form-label">Adresse du client :</label>
+                        <input type="text" id="s_adresseclient" name="s_adresseclient" class="form-control" value="<?= $liste['AdresseClient'] ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="s_coordonneesclient" class="form-label">Coordonnées du Client :</label>
+                        <input type="text" id="s_coordonneesclient" name="s_coordonneesclient" class="form-control" value="<?= $liste['CoordonneesClient'] ?>">
+                    </div>
+                <?php } ?>
             </fieldset>
-            <br>
-            <input type="submit" value="Ajouter">
-            <input type="reset" value="Annuler">
+            <div class="mt-4 text-center">
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="reset" class="btn btn-secondary">Annuler</button>
+            </div>
         </form>
     </section>
-    <div class="footer">
-        <p>Copyright © 2024 Homechip's Laure | Tous droits réservés <br>
-            Design by: <a href="https://ari-luxury.com">Ari-Luxury</a>
-        </p>
-    </div>
+
+    <footer class="footer bg-dark text-white text-center py-4">
+        <p class="mb-0 ">Copyright © 2024 Homechip's Laure | Tous droits réservés</p>
+        <p class="mb-0 ">Design by: <a href="https://ari-luxury.com" class="text-white text-decoration-none">Ari-Luxury</a></p>
+    </footer>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>

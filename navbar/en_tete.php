@@ -18,6 +18,10 @@
             top: 0;
             z-index: 1000;
         }
+        .accueil
+        {
+            color: green;
+        }
     </style>
 </head>
 <body>
@@ -30,7 +34,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="sous_menu navbar-nav ms-lg-auto ms-sm-5 ms-xs-5 me-5">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="home.php">Accueil</a>
+                    <a class="accueil nav-link text-white" href="home.php">Accueil</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownTransactions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
