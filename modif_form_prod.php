@@ -4,6 +4,16 @@
     $req = "SELECT * FROM produits where idProduit= $matprod";
     $reponse = $bdd -> query($req);
     $donnee = $reponse -> fetchAll();
+
+    // Séparer le prix de vente et la devise
+    foreach ($donnee as &$liste) {
+        $prixVenteDetails = explode(' ', $liste['PrixVente']);
+        $liste['Prix'] = $prixVenteDetails[0]; // Le prix sans la devise
+        $liste['DevisePrixVente'] = $prixVenteDetails[1]; // La devise
+        $coutUnitDetails = explode(' ', $liste['CoutUnitaire']);
+        $liste['Cout'] = $coutUnitDetails[0]; // Le coût unitaire sans la devise
+        $liste['DeviseCoutUnit'] = $coutUnitDetails[1]; // La devise
+    }
 ?>
 
 <!DOCTYPE html>
@@ -43,14 +53,46 @@
                         <label for="s_descriptionproduit" class="form-label">Description du Produit :</label>
                         <input type="text" id="s_descriptionproduit" name="s_descriptionproduit" class="form-control" value="<?= $liste['DescriptionProduit'] ?>">
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="s_prixvente" class="form-label">Prix de vente :</label>
                         <input type="text" id="s_prixvente" name="s_prixvente" class="form-control" value="<?= $liste['PrixVente'] ?>">
+                    </div> -->
+                    <div class="mb-3 row">
+                        <div class="col">
+                            <label for="s_prixvente" class="form-label">Prix de vente :</label>
+                            <input type="text" id="s_prixvente" name="s_prixvente" class="form-control" value="<?= $liste['Prix'] ?>">
+                        </div>
+                        <div class="col">
+                            <label for="s_deviseprixvente" class="form-label">Devise :</label>
+                            <select id="s_deviseprixvente" name="s_deviseprixvente" class="form-select" onchange="synchronizeCurrencies(this)">
+                                <option value="CFA" <?= $liste['DevisePrixVente'] == 'CFA' ? 'selected' : '' ?>>CFA</option>
+                                <option value="EUR" <?= $liste['DevisePrixVente'] == 'EUR' ? 'selected' : '' ?>>Euro</option>
+                                <option value="USD" <?= $liste['DevisePrixVente'] == 'USD' ? 'selected' : '' ?>>Dollar</option>
+                                <!-- Ajoute d'autres devises si nécessaire -->
+                            </select>
+                        </div>
                     </div>
-                    <div class="mb-3">
+
+                    <!-- <div class="mb-3">
                         <label for="s_coutunit" class="form-label">Coût unitaire :</label>
                         <input type="text" id="s_coutunit" name="s_coutunit" class="form-control" value="<?= $liste['CoutUnitaire'] ?>">
+                    </div> -->
+                    <div class="mb-3 row">
+                        <div class="col">
+                            <label for="s_coutunit" class="form-label">Coût unitaire :</label>
+                            <input type="text" id="s_coutunit" name="s_coutunit" class="form-control" value="<?= $liste['Cout'] ?>">
+                        </div>
+                        <div class="col">
+                            <label for="s_devisecoutunit" class="form-label">Devise :</label>
+                            <select id="s_devisecoutunit" name="s_devisecoutunit" class="form-select" onchange="synchronizeCurrencies(this)">
+                                <option value="CFA" <?= $liste['DeviseCoutUnit'] == 'CFA' ? 'selected' : '' ?>>CFA</option>
+                                <option value="EUR" <?= $liste['DeviseCoutUnit'] == 'EUR' ? 'selected' : '' ?>>Euro</option>
+                                <option value="USD" <?= $liste['DeviseCoutUnit'] == 'USD' ? 'selected' : '' ?>>Dollar</option>
+                                <!-- Ajoute d'autres devises si nécessaire -->
+                            </select>
+                        </div>
                     </div>
+
                 <?php } ?>
             </fieldset>
             
@@ -67,5 +109,18 @@
     </footer>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+
+    <script>
+        function synchronizeCurrencies(selectedElement) {
+            var selectedValue = selectedElement.value;
+
+            // Synchroniser la devise Prix de vente avec Coût unitaire et vice versa
+            if (selectedElement.id === 's_deviseprixvente') {
+                document.getElementById('s_devisecoutunit').value = selectedValue;
+            } else {
+                document.getElementById('s_deviseprixvente').value = selectedValue;
+            }
+        }
+    </script>
 </body>
 </html>

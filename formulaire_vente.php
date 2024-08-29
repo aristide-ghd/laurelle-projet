@@ -46,12 +46,28 @@
                 
                 <div class="mb-3">
                     <label for="s_quantitevendue" class="form-label">Quantité Vendue :</label>
-                    <input type="text" name="s_quantitevendue" class="form-control" id="s_quantitevendue" required>
+                    <input type="number" name="s_quantitevendue" class="form-control" id="s_quantitevendue" required>
                 </div>
                 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="s_montanttotal" class="form-label">Montant Total :</label>
                     <input type="text" name="s_montanttotal" class="form-control" id="s_montanttotal" required>
+                </div> -->
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label for="s_montanttotal" class="form-label">Montant Total :</label>
+                        <input type="text" id="s_montanttotal" name="s_montanttotal" class="form-control" required>
+                    </div>
+                    <div class="col">
+                        <label for="deviseMontantTotal" class="form-label">Devise :</label>
+                        <select id="deviseMontantTotal" name="s_devisemontanttotal" class="form-select" required>
+                            <option value="">Selectionner la monnaie...</option>
+                            <option value="CFA">CFA</option>
+                            <option value="EUR">Euro</option>
+                            <option value="USD">Dollar</option>
+                            <!-- Ajouter d'autres devises si nécessaire -->
+                        </select>
+                    </div>
                 </div>
                 
                 <div class="mb-3">

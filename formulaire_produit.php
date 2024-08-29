@@ -33,14 +33,46 @@
                     <input type="text" id="descriptionProduit" name="s_descriptionproduit" class="form-control" required>
                 </div>
                 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="prixVente" class="form-label">Prix de vente :</label>
                     <input type="text" id="prixVente" name="s_prixvente" class="form-control" required>
+                </div> -->
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label for="prixVente" class="form-label">Prix de vente :</label>
+                        <input type="text" id="prixVente" name="s_prixvente" class="form-control" required>
+                    </div>
+                    <div class="col">
+                        <label for="devisePrixVente" class="form-label">Devise :</label>
+                        <select id="devisePrixVente" name="s_deviseprixvente" class="form-select" required>
+                            <option value="">Selectionner la monnaie...</option>
+                            <option value="CFA">CFA</option>
+                            <option value="EUR">Euro</option>
+                            <option value="USD">Dollar</option>
+                            <!-- Ajouter d'autres devises si nécessaire -->
+                        </select>
+                    </div>
                 </div>
                 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="coutUnit" class="form-label">Coût unitaire :</label>
                     <input type="text" id="coutUnit" name="s_coutunit" class="form-control" required>
+                </div> -->
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label for="coutUnit" class="form-label">Coût unitaire :</label>
+                        <input type="text" id="coutUnit" name="s_coutunit" class="form-control" required>
+                    </div>
+                    <div class="col">
+                        <label for="deviseCoutUnit" class="form-label">Devise :</label>
+                        <select id="deviseCoutUnit" name="s_devisecoutunit" class="form-select" required>
+                            <option value="">Selectionner la monnaie...</option>
+                            <option value="CFA">CFA</option>
+                            <option value="EUR">Euro</option>
+                            <option value="USD">Dollar</option>
+                            <!-- Ajouter d'autres devises si nécessaire -->
+                        </select>
+                    </div>
                 </div>
             </fieldset>
 
@@ -58,5 +90,24 @@
 
     <!-- Bootstrap JS and dependencies -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
+
+    <!-- Bootstrap JS and dependencies -->
+    <script>
+        const devisePrixVente = document.getElementById('devisePrixVente');
+        const deviseCoutUnit = document.getElementById('deviseCoutUnit');
+
+        // Fonction pour synchroniser les devises
+        function syncDevises(event) {
+            if (event.target.id === 'devisePrixVente') {
+                deviseCoutUnit.value = event.target.value;
+            } else if (event.target.id === 'deviseCoutUnit') {
+                devisePrixVente.value = event.target.value;
+            }
+        }
+
+        // Ajout des écouteurs d'événements pour les deux sélecteurs
+        devisePrixVente.addEventListener('change', syncDevises);
+        deviseCoutUnit.addEventListener('change', syncDevises);
+    </script>
 </body>
 </html>

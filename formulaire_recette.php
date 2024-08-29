@@ -30,9 +30,25 @@
             <fieldset class="border p-4 rounded">
                 <legend class="w-auto">Recette</legend>
                 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="montantRecette" class="form-label">Montant de Recette :</label>
                     <input type="text" id="montantRecette" name="s_montantrecette" class="form-control" required>
+                </div> -->
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label for="montantRecette" class="form-label">Montant de Recette :</label>
+                        <input type="text" id="montantRecette" name="s_montantrecette" class="form-control" required>
+                    </div>
+                    <div class="col">
+                        <label for="deviseMontantRecette" class="form-label">Devise :</label>
+                        <select id="deviseMontantRecette" name="s_devisemontantrecette" class="form-select" required>
+                            <option value="">Selectionner la monnaie...</option>
+                            <option value="CFA">CFA</option>
+                            <option value="EUR">Euro</option>
+                            <option value="USD">Dollar</option>
+                            <!-- Ajouter d'autres devises si nécessaire -->
+                        </select>
+                    </div>
                 </div>
                 
                 <div class="mb-3">

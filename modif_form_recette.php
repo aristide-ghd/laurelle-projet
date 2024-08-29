@@ -8,6 +8,10 @@
     foreach($donnee1 as $liste)
     {
         $mdp = $liste['idModePaiement'];
+
+        $montantRecetteDetails = explode(' ', $liste['MontantRecette']);
+        $liste['Montant'] = $montantRecetteDetails[0];
+        $liste['DeviseMontantRecette'] = $montantRecetteDetails[1];
     }
 
     $req = " SELECT * FROM modepaiement ORDER BY idModePaiement";
@@ -44,9 +48,25 @@
                     <input type="text" id="s_numero" name="s_numero" class="form-control" value="<?= $liste['idRecette'] ?>" readonly>
                 </div>
 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="s_montantrecette" class="form-label">Montant de Recette :</label>
                     <input type="text" id="s_montantrecette" name="s_montantrecette" class="form-control" value="<?= $liste['MontantRecette'] ?>">
+                </div> -->
+
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label for="s_montantrecette" class="form-label">Montant de recette :</label>
+                        <input type="text" id="s_montantrecette" name="s_montantrecette" class="form-control" value="<?= $liste['Montant'] ?>">
+                    </div>
+                    <div class="col">
+                        <label for="s_devisemontantrecette" class="form-label">Devise :</label>
+                        <select id="s_devisemontantrecette" name="s_devisemontantrecette" class="form-select">
+                            <option value="CFA" <?= $liste['DeviseMontantRecette'] == 'CFA' ? 'selected' : '' ?>>CFA</option>
+                            <option value="EUR" <?= $liste['DeviseMontantRecette'] == 'EUR' ? 'selected' : '' ?>>Euro</option>
+                            <option value="USD" <?= $liste['DeviseMontantRecette'] == 'USD' ? 'selected' : '' ?>>Dollar</option>
+                            <!-- Ajoute d'autres devises si nécessaire -->
+                        </select>
+                    </div>
                 </div>
 
                 <div class="mb-3">

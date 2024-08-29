@@ -30,9 +30,25 @@
             <fieldset class="border p-4 rounded">
                 <legend class="w-auto">Dépense</legend>
                 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="montantDepense" class="form-label">Montant de Dépense :</label>
                     <input type="text" id="montantDepense" name="s_montantdepense" class="form-control montant" required>
+                </div> -->
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label for="montantDepense" class="form-label">Montant de Dépense :</label>
+                        <input type="text" id="montantDepense" name="s_montantdepense" class="form-control montant" required>
+                    </div>
+                    <div class="col">
+                        <label for="deviseMontantDepense" class="form-label">Devise :</label>
+                        <select id="deviseMontantDepense" name="s_devisemontantdepense" class="form-select" required>
+                            <option value="">Selectionner la monnaie...</option>
+                            <option value="CFA">CFA</option>
+                            <option value="EUR">Euro</option>
+                            <option value="USD">Dollar</option>
+                            <!-- Ajouter d'autres devises si nécessaire -->
+                        </select>
+                    </div>
                 </div>
                 
                 <div class="mb-3">
