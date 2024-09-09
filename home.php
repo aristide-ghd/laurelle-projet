@@ -74,7 +74,7 @@
                     <h1 class="display-4">Bienvenue sur Homechip's Laure</h1>
                     <p class="lead">Nous sommes heureux de vous accueillir sur notre application de gestion des ventes, dépenses et recettes.</p>
                     <p>Prenez le contrôle de votre entreprise et gérez vos activités en toute simplicité avec <span class="fw-bold">Homechip's Laure</span>.</p>
-                    <a href="formulaire_vente.php" class="btn btn-primary btn-lg mt-3">Commencer</a>
+                    <a href="formulaire_vente.php" class="begin btn btn-primary btn-lg mt-3">Commencer</a>
                 </div>
             </div>
         </div>

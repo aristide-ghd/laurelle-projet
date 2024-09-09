@@ -18,9 +18,14 @@
             top: 0;
             z-index: 1000;
         }
-        .accueil
-        {
-            color: green;
+        /* .offcanvas-end {
+            width: 250px;
+        } */
+        .offcanvas-header {
+            border-bottom: 1px solid #dee2e6;
+        }
+        .offcanvas-body {
+            padding: 1rem;
         }
     </style>
 </head>
@@ -28,44 +33,51 @@
 <header class="bg-dark py-2">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid">
         <a class="navbar-brand ms-5 fw-bold" href="home.php">Homechip's Laure</a>
-        <button class="navbar-toggler me-5 border border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler me-5 border border-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="sous_menu navbar-nav ms-lg-auto ms-sm-5 ms-xs-5 me-5">
-                <li class="nav-item">
-                    <a class="accueil nav-link text-white" href="home.php">Accueil</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownTransactions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Transactions
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownTransactions">
-                        <li><a class="dropdown-item" href="formulaire_produit.php">Formulaire Produits</a></li>
-                        <li><a class="dropdown-item" href="formulaire_client.php">Formulaire Clients</a></li>
-                        <li><a class="dropdown-item" href="formulaire_vente.php">Formulaire Ventes</a></li>
-                        <li><a class="dropdown-item" href="formulaire_recette.php">Formulaire Recettes</a></li>
-                        <li><a class="dropdown-item" href="formulaire_depense.php">Formulaire Dépenses</a></li>
-                        <li><a class="dropdown-item" href="formulaire_mdp.php">Formulaire Mode de Paiement</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownEvents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Evènements financiers
-                    </a>
-                    <ul class="dropdown-menu ms-lg-2" aria-labelledby="navbarDropdownEvents">
-                        <li><a class="dropdown-item" href="produit.php">Produits</a></li>
-                        <li><a class="dropdown-item" href="client.php">Clients</a></li>
-                        <li><a class="dropdown-item" href="vente.php">Ventes</a></li>
-                        <li><a class="dropdown-item" href="recette.php">Recettes</a></li>
-                        <li><a class="dropdown-item" href="depense.php">Dépenses</a></li>
-                        <li><a class="dropdown-item" href="mdp.php">Mode de Paiement</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="gestion.php">Gestion financière</a>
-                </li>
-            </ul>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+            <div class="offcanvas-header">
+                <h5 id="offcanvasMenuLabel"><a class="navbar-brand fw-bold text-dark" href="home.php">Homechip's Laure</a></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body bg-dark">
+                <ul class="navbar-nav flex-column-md ms-lg-auto me-lg-5">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="home.php">Accueil</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-white dropdown-toggle" href="#" id="dropdownTransactions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Transactions
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownTransactions">
+                            <li><a class="dropdown-item" href="formulaire_produit.php">Formulaire Produits</a></li>
+                            <li><a class="dropdown-item" href="formulaire_client.php">Formulaire Clients</a></li>
+                            <li><a class="dropdown-item" href="formulaire_vente.php">Formulaire Ventes</a></li>
+                            <li><a class="dropdown-item" href="formulaire_recette.php">Formulaire Recettes</a></li>
+                            <li><a class="dropdown-item" href="formulaire_depense.php">Formulaire Dépenses</a></li>
+                            <li><a class="dropdown-item" href="formulaire_mdp.php">Formulaire Mode de Paiement</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-white dropdown-toggle" href="#" id="dropdownEvents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Evènements financiers
+                        </a>
+                        <ul class="dropdown-menu ms-lg-2" aria-labelledby="dropdownEvents">
+                            <li><a class="dropdown-item" href="produit.php">Produits</a></li>
+                            <li><a class="dropdown-item" href="client.php">Clients</a></li>
+                            <li><a class="dropdown-item" href="vente.php">Ventes</a></li>
+                            <li><a class="dropdown-item" href="recette.php">Recettes</a></li>
+                            <li><a class="dropdown-item" href="depense.php">Dépenses</a></li>
+                            <li><a class="dropdown-item" href="mdp.php">Mode de Paiement</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="gestion.php">Gestion financière</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </header>
@@ -108,4 +120,50 @@
                 </ul>
             </div> 
         </nav>
+</header> -->
+
+
+<!-- <header class="bg-dark py-2">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid">
+        <a class="navbar-brand ms-5 fw-bold" href="home.php">Homechip's Laure</a>
+        <button class="navbar-toggler me-5 border border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="sous_menu navbar-nav ms-lg-auto ms-sm-5 ms-xs-5 me-5">
+                <li class="nav-item">
+                    <a class="accueil nav-link text-white" href="home.php">Accueil</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownTransactions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Transactions
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownTransactions">
+                        <li><a class="dropdown-item" href="formulaire_produit.php">Formulaire Produits</a></li>
+                        <li><a class="dropdown-item" href="formulaire_client.php">Formulaire Clients</a></li>
+                        <li><a class="dropdown-item" href="formulaire_vente.php">Formulaire Ventes</a></li>
+                        <li><a class="dropdown-item" href="formulaire_recette.php">Formulaire Recettes</a></li>
+                        <li><a class="dropdown-item" href="formulaire_depense.php">Formulaire Dépenses</a></li>
+                        <li><a class="dropdown-item" href="formulaire_mdp.php">Formulaire Mode de Paiement</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdownEvents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Evènements financiers
+                    </a>
+                    <ul class="dropdown-menu ms-lg-2" aria-labelledby="navbarDropdownEvents">
+                        <li><a class="dropdown-item" href="produit.php">Produits</a></li>
+                        <li><a class="dropdown-item" href="client.php">Clients</a></li>
+                        <li><a class="dropdown-item" href="vente.php">Ventes</a></li>
+                        <li><a class="dropdown-item" href="recette.php">Recettes</a></li>
+                        <li><a class="dropdown-item" href="depense.php">Dépenses</a></li>
+                        <li><a class="dropdown-item" href="mdp.php">Mode de Paiement</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="gestion.php">Gestion financière</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </header> -->
