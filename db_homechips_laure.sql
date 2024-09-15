@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 20 août 2024 à 11:10
--- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.1.17
+-- Généré le : dim. 15 sep. 2024 à 12:41
+-- Version du serveur : 10.11.8-MariaDB-0ubuntu0.23.10.1
+-- Version de PHP : 8.2.10-2ubuntu2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,7 +39,12 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`idClient`, `NomClient`, `AdresseClient`, `CoordonneesClient`) VALUES
-(1, 'Aristide', 'Godomey', '+22997460140');
+(2, 'Lerocher HAZOUNME', 'Tori', '+229 97979797'),
+(3, 'Larissa HADONOU', 'Agla', '00229 97 97 97 97'),
+(4, 'Abdalah MOUSSA', 'Godomey', '00229 56 56 56 56'),
+(5, 'Fresnel AWEKE', 'Wologuede', '00229 96 96 96 96'),
+(6, 'Kandé KAMISSOKO', 'Jericho', '00228 95 68 35 49 '),
+(7, 'Frutueux DOWES', 'Kpahou', '00229 46 46 46 46');
 
 -- --------------------------------------------------------
 
@@ -54,6 +59,14 @@ CREATE TABLE `depenses` (
   `DescriptionDepense` varchar(255) NOT NULL,
   `idModePaiement` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `depenses`
+--
+
+INSERT INTO `depenses` (`idDepense`, `MontantDepense`, `DateDepense`, `DescriptionDepense`, `idModePaiement`) VALUES
+(1, '2000 USD', '2024-08-21', 'Achat de banane', 2),
+(2, '5600 USD', '2024-08-31', 'vuvuvu', 2);
 
 -- --------------------------------------------------------
 
@@ -89,8 +102,9 @@ CREATE TABLE `modepaiement` (
 --
 
 INSERT INTO `modepaiement` (`idModePaiement`, `NomModePaiement`) VALUES
-(1, 'Espèces'),
-(2, 'Mobile Money MTN');
+(2, 'Mobile Money MTN'),
+(3, 'Espèces'),
+(4, 'Mobile Money Moov');
 
 -- --------------------------------------------------------
 
@@ -111,8 +125,15 @@ CREATE TABLE `produits` (
 --
 
 INSERT INTO `produits` (`idProduit`, `NomProduit`, `DescriptionProduit`, `PrixVente`, `CoutUnitaire`) VALUES
-(1, 'Chips Banane', 'Aliment', '500 CFA', '200 CFA'),
-(2, 'Préservatif', 'Préservatif condom fraise', '1000 CFA', '500 CFA');
+(3, 'Patate douce', 'Aliment', '1200 USD', '700 USD'),
+(4, 'Sardine', 'Aliment', '500 CFA', '400 CFA'),
+(5, 'Cube', 'Aliment', '25 CFA', '15 CFA'),
+(6, 'Spaghetti', 'Blé', '400 CFA', '350 CFA'),
+(7, 'Salade', 'Légumes', '300 CFA', '150 CFA'),
+(8, 'Pommade', 'Soins et beauté', '1500 EUR', '1000 EUR'),
+(9, 'hgfguffjh', 'gkgkgkjbnm ', '2000 USD', '2000 USD'),
+(10, 'Plastique', 'Objet', '1500 EUR', '1000 EUR'),
+(11, 'tttttttttt', 'dhedthe', '2000 USD', '1000 USD');
 
 -- --------------------------------------------------------
 
@@ -127,6 +148,14 @@ CREATE TABLE `recettes` (
   `DescriptionRecette` varchar(255) NOT NULL,
   `idModePaiement` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `recettes`
+--
+
+INSERT INTO `recettes` (`idRecette`, `MontantRecette`, `DateRecette`, `DescriptionRecette`, `idModePaiement`) VALUES
+(2, '2000 EUR', '2024-08-31', 'Vente d´huile', 2),
+(3, '600 USD', '2024-08-21', 'ggggg', 3);
 
 -- --------------------------------------------------------
 
@@ -149,7 +178,11 @@ CREATE TABLE `ventes` (
 --
 
 INSERT INTO `ventes` (`idVente`, `DateVente`, `QuantiteVendue`, `MontantTotal`, `idProduit`, `idClient`, `idModePaiement`) VALUES
-(1, '2024-05-02', 2, '1000 CFA', 1, 1, 1);
+(1, '2024-08-21', 2, '600 USD', 3, 2, 2),
+(2, '2024-08-16', 5, '1500 CFA', 6, 4, 4),
+(3, '2024-08-31', 2, '2000 EUR', 6, 3, 3),
+(4, '2024-08-31', 3, '3000 EUR', 6, 6, 4),
+(5, '2024-09-18', 2, '2000 CFA', 6, 5, 3);
 
 --
 -- Index pour les tables déchargées
@@ -210,37 +243,37 @@ ALTER TABLE `ventes`
 -- AUTO_INCREMENT pour la table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `idClient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idClient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `depenses`
 --
 ALTER TABLE `depenses`
-  MODIFY `idDepense` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDepense` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `modepaiement`
 --
 ALTER TABLE `modepaiement`
-  MODIFY `idModePaiement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idModePaiement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `recettes`
 --
 ALTER TABLE `recettes`
-  MODIFY `idRecette` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRecette` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `ventes`
 --
 ALTER TABLE `ventes`
-  MODIFY `idVente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idVente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Contraintes pour les tables déchargées
@@ -250,21 +283,21 @@ ALTER TABLE `ventes`
 -- Contraintes pour la table `depenses`
 --
 ALTER TABLE `depenses`
-  ADD CONSTRAINT `depenses_ibfk_1` FOREIGN KEY (`idModePaiement`) REFERENCES `modepaiement` (`idModePaiement`);
+  ADD CONSTRAINT `depenses_ibfk_1` FOREIGN KEY (`idModePaiement`) REFERENCES `modepaiement` (`idModePaiement`) ON DELETE SET NULL;
 
 --
 -- Contraintes pour la table `recettes`
 --
 ALTER TABLE `recettes`
-  ADD CONSTRAINT `recettes_ibfk_1` FOREIGN KEY (`idModePaiement`) REFERENCES `modepaiement` (`idModePaiement`);
+  ADD CONSTRAINT `recettes_ibfk_1` FOREIGN KEY (`idModePaiement`) REFERENCES `modepaiement` (`idModePaiement`) ON DELETE SET NULL;
 
 --
 -- Contraintes pour la table `ventes`
 --
 ALTER TABLE `ventes`
-  ADD CONSTRAINT `ventes_ibfk_1` FOREIGN KEY (`idProduit`) REFERENCES `produits` (`idProduit`),
-  ADD CONSTRAINT `ventes_ibfk_2` FOREIGN KEY (`idClient`) REFERENCES `clients` (`idClient`),
-  ADD CONSTRAINT `ventes_ibfk_3` FOREIGN KEY (`idModePaiement`) REFERENCES `modepaiement` (`idModePaiement`);
+  ADD CONSTRAINT `ventes_ibfk_1` FOREIGN KEY (`idProduit`) REFERENCES `produits` (`idProduit`) ON DELETE SET NULL,
+  ADD CONSTRAINT `ventes_ibfk_2` FOREIGN KEY (`idClient`) REFERENCES `clients` (`idClient`) ON DELETE SET NULL,
+  ADD CONSTRAINT `ventes_ibfk_3` FOREIGN KEY (`idModePaiement`) REFERENCES `modepaiement` (`idModePaiement`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
