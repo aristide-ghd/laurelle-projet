@@ -41,18 +41,18 @@
                 <legend class="w-auto">Fournisseur</legend>
                 
                 <div class="mb-3">
-                    <label for="nomClient" class="form-label">Nom du fournisseur :</label>
-                    <input type="text" id="nomClient" name="s_nomclient" class="form-control" required>
+                    <label for="nomFournisseur" class="form-label">Nom du fournisseur :</label>
+                    <input type="text" id="nomFournisseur" name="s_nomfournisseur" class="form-control" required>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="adresseClient" class="form-label">Adresse du fournisseur :</label>
-                    <input type="text" id="adresseClient" name="s_adresseclient" class="form-control" required>
+                    <label for="adresseFournisseur" class="form-label">Adresse du fournisseur :</label>
+                    <input type="text" id="adresseFournisseur" name="s_adressefournisseur" class="form-control" required>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="coordonneesClient" class="form-label">Coordonnées du fournisseur :</label>
-                    <input type="text" id="coordonneesClient" name="s_coordonneesclient" class="form-control" required>
+                    <label for="coordonneesFournisseur" class="form-label">Coordonnées du fournisseur :</label>
+                    <input type="text" id="coordonneesFournisseur" name="s_coordonneesfournisseur" class="form-control" required>
                 </div>
                 
             </fieldset>

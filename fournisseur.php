@@ -9,7 +9,7 @@
     }
 
     include('connexion.php');
-    $req = "SELECT * FROM clients";
+    $req = "SELECT * FROM fournisseurs";
     $reponse = $bdd -> query($req);
     $donnee = $reponse -> fetchAll();
 ?>
@@ -65,13 +65,13 @@
                         foreach($donnee as $liste){
                     ?>
                     <tr>
-                        <td><?= $liste['idClient'] ?></td>
-                        <td><?= $liste['NomClient'] ?></td>
-                        <td><?= $liste['AdresseClient'] ?></td>
-                        <td><?= $liste['CoordonneesClient'] ?></td>
+                        <td><?= $liste['idFournisseur'] ?></td>
+                        <td><?= $liste['NomFournisseur'] ?></td>
+                        <td><?= $liste['AdresseFournisseur'] ?></td>
+                        <td><?= $liste['CoordonneesFournisseur'] ?></td>
                         <td>
-                            <a href="modif_form_fournisseur.php?id=<?= $liste['idClient'] ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>
-                            <button type="button" class="btn btn-danger btn-sm col-lg-5 col-md-12 col-sm-12" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $liste['idClient'] ?>">
+                            <a href="modif_form_fournisseur.php?id=<?= $liste['idFournisseur'] ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>
+                            <button type="button" class="btn btn-danger btn-sm col-lg-5 col-md-12 col-sm-12" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $liste['idFournisseur'] ?>">
                                 Supprimer
                             </button>
                         </td>
@@ -117,10 +117,10 @@
         var deleteModal = document.getElementById('deleteModal');
         deleteModal.addEventListener('show.bs.modal', function (event) {
             var button = event.relatedTarget; // Bouton qui a déclenché la modale
-            var idClient = button.getAttribute('data-id'); // Extraction de l'ID
+            var idFournisseur = button.getAttribute('data-id'); // Extraction de l'ID
 
             var confirmDelete = document.getElementById('confirmDelete');
-            confirmDelete.href = 'delete_fournisseur.php?id=' + idClient; // Configuration du lien de suppression
+            confirmDelete.href = 'delete_fournisseur.php?id=' + idFournisseur; // Configuration du lien de suppression
         });
     </script>
 </body>

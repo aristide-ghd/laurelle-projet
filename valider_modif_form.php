@@ -7,15 +7,14 @@
     $deviseprixvente = $_POST['s_deviseprixvente'];
     $cout = $_POST['s_coutunit'];
     $devisecoutunit = $_POST['s_devisecoutunit'];
-    $nomcli = $_POST['s_nomclient'];
-    $adressecli = $_POST['s_adresseclient'];
-    $coordonneescli = $_POST['s_coordonneesclient'];
+    $nomfournisseur = $_POST['s_nomfournisseur'];
+    $adressefournisseur = $_POST['s_adressefournisseur'];
+    $coordonneesfournisseur = $_POST['s_coordonneesfournisseur'];
     $datevente = $_POST['s_datevente'];
     $quantitevendue = $_POST['s_quantitevendue'];
     $montanttotal = $_POST['s_montanttotal'];
     $devisemontanttotal = $_POST['s_devisemontanttotal'];
     $produit = $_POST['s_produit'];
-    $client = $_POST['s_client'];
     $modepaiement = $_POST['s_modepaiement'];
     $montantrecette = $_POST['s_montantrecette'];
     $devisemontantrecette = $_POST['s_devisemontantrecette'];
@@ -58,17 +57,17 @@
         }
     }
 
-    if(empty($matricule)||empty($nomcli)||empty($adressecli)||empty($coordonneescli))
+    if(empty($nomfournisseur)||empty($adressefournisseur)||empty($coordonneesfournisseur))
     {
         echo "<script>alert('Veuillez remplir tous les champs')</script>";
     }
     else
     {
-        $req = "UPDATE clients
-        set NomClient = '$nomcli',
-        AdresseClient = '$adressecli',
-        CoordonneesClient = '$coordonneescli'
-        where idClient = $matricule";
+        $req = "UPDATE fournisseurs
+        set NomFournisseur = '$nomfournisseur',
+        AdresseFournisseur = '$adressefournisseur',
+        CoordonneesFournisseur = '$coordonneesfournisseur'
+        where idFournisseur = $matricule";
         if($bdd -> query($req) == true)
         {
             echo "<script>alert('Modification effectuée avec succès')</script>";
@@ -76,11 +75,11 @@
         }
         else
         {
-            echo "<script>alert('Echec de modification de l etudiant')</script";
+            echo "<script>alert('Echec de modification du fournissfournisseur')</script";
         }
     }
 
-    if(empty($matricule)||empty($datevente)||empty($quantitevendue)||empty($montanttotal)||empty($devisemontanttotal)||empty($produit)||empty($client)||empty($modepaiement))
+    if(empty($datevente)||empty($quantitevendue)||empty($montanttotal)||empty($devisemontanttotal)||empty($produit)||empty($modepaiement))
     {
         echo "<script>alert('Veuillez remplir tous les champs')</script>";
     }
@@ -91,7 +90,6 @@
         QuantiteVendue = '$quantitevendue',
         MontantTotal = '$montanttotalfinal',
         idProduit = '$produit',
-        idClient = '$client',
         idModePaiement = '$modepaiement'
         where idVente = $matricule";
         if($bdd -> query($req) == true)
@@ -105,7 +103,7 @@
         }
     }
 
-    if(empty($matricule)||empty($montantrecette)||empty($devisemontantrecette)||empty($daterecette)||empty($descriptionrecette)||empty($modepaiement))
+    if(empty($montantrecette)||empty($devisemontantrecette)||empty($daterecette)||empty($descriptionrecette)||empty($modepaiement))
     {
         echo "<script>alert('Veuillez remplir tous les champs')</script>";
     }
@@ -128,7 +126,7 @@
         }
     }
 
-    if(empty($matricule)||empty($montantdepense)||empty($devisemontantdepense)||empty($datedepense)||empty($descriptiondepense)||empty($modepaiement))
+    if(empty($montantdepense)||empty($devisemontantdepense)||empty($datedepense)||empty($descriptiondepense)||empty($modepaiement))
     {
         echo "<script>alert('Veuillez remplir tous les champs')</script>";
     }
@@ -151,7 +149,7 @@
         }
     }
 
-    if(empty($matricule)||empty($nom_modepaiement))
+    if(empty($nom_modepaiement))
     {
         echo "<script>alert('Veuillez remplir tous les champs')</script>";
     }

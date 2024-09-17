@@ -8,7 +8,6 @@
     foreach($donnee3 as $liste)
     {
         $produit = $liste['idProduit'];
-        $client = $liste['idClient'];
         $mdp = $liste['idModePaiement'];
 
         $montantTotalDetails = explode(' ', $liste['MontantTotal']);
@@ -19,10 +18,6 @@
     $req = " SELECT * FROM produits ORDER BY idProduit";
     $reponse = $bdd -> query($req);
     $donnee = $reponse -> fetchAll();
-
-    $req1 = " SELECT * FROM clients ORDER BY idClient";
-    $reponse1 = $bdd -> query($req1);
-    $donnee1 = $reponse1 -> fetchAll();
 
     $req2 = " SELECT * FROM modepaiement ORDER BY idModePaiement";
     $reponse2 = $bdd -> query($req2);
@@ -69,10 +64,6 @@
                     <input type="text" id="s_quantitevendue" name="s_quantitevendue" class="form-control" value="<?= $liste['QuantiteVendue'] ?>">
                 </div>
 
-                <!-- <div class="mb-3">
-                    <label for="s_montanttotal" class="form-label">Montant Total :</label>
-                    <input type="text" id="s_montanttotal" name="s_montanttotal" class="form-control" value="<?= $liste['MontantTotal'] ?>">
-                </div> -->
                 <div class="mb-3 row">
                     <div class="col">
                         <label for="s_montanttotal" class="form-label">Montant Total :</label>
@@ -105,28 +96,6 @@
                                     {?>
                                         <option value="<?= $listeproduit['idProduit'] ?>">
                                                         <?= $listeproduit['NomProduit'] ?>
-                                        </option>
-                        <?php       }
-                                }?>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label for="listclient" class="form-label">Client :</label>
-                    <select name="s_client" id="listclient" class="form-select">
-                        <?php
-                                foreach ($donnee1 as $listeclient)
-                                {
-                                    if($listeclient['idClient'] == $client)
-                                    {?>
-                                        <option selected value="<?= $listeclient['idClient'] ?>">
-                                                                <?= $listeclient['NomClient'] ?>
-                                        </option>
-                        <?php       }
-                                    else
-                                    {?>
-                                        <option value="<?= $listeclient['idClient'] ?>">
-                                                        <?= $listeclient['NomClient'] ?>
                                         </option>
                         <?php       }
                                 }?>

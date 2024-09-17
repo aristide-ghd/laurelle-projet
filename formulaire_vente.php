@@ -13,9 +13,9 @@
     $reponse = $bdd -> query($req);
     $donnee = $reponse -> fetchAll();
 
-    $req1 = " SELECT * FROM clients ORDER BY idClient";
-    $reponse1 = $bdd -> query($req1);
-    $donnee1 = $reponse1 -> fetchAll();
+    // $req1 = " SELECT * FROM clients ORDER BY idClient";
+    // $reponse1 = $bdd -> query($req1);
+    // $donnee1 = $reponse1 -> fetchAll();
 
     $req2 = " SELECT * FROM modepaiement ORDER BY idModePaiement";
     $reponse2 = $bdd -> query($req2);
@@ -90,18 +90,6 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
-                
-                <!-- <div class="mb-3">
-                    <label for="listclient" class="form-label">Client :</label>
-                    <select name="s_client" id="listclient" class="form-select" required>
-                        <option value="">Selectionner le client...</option>
-                        <?php foreach ($donnee1 as $listeclient): ?>
-                            <option value="<?= $listeclient['idClient'] ?>">
-                                <?= $listeclient['NomClient'] ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div> -->
                 
                 <div class="mb-3">
                     <label for="listmode" class="form-label">Mode de Paiement :</label>

@@ -1,7 +1,7 @@
 <?php
     include('connexion.php');
-    $matcli = $_GET['id'];
-    $req = "SELECT * FROM clients where idClient= $matcli";
+    $matfournisseur = $_GET['id'];
+    $req = "SELECT * FROM fournisseurs where idFournisseur= $matfournisseur";
     $reponse = $bdd -> query($req);
     $donnee = $reponse -> fetchAll();
 ?>
@@ -32,19 +32,19 @@
                 <?php foreach($donnee as $liste){ ?>
                     <div class="mb-3">
                         <label for="s_numero" class="form-label">Matricule fournisseur :</label>
-                        <input type="text" id="s_numero" name="s_numero" class="form-control" value="<?= $liste['idClient'] ?>" readonly>
+                        <input type="text" id="s_numero" name="s_numero" class="form-control" value="<?= $liste['idFournisseur'] ?>" readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="s_nomclient" class="form-label">Nom du fournisseur :</label>
-                        <input type="text" id="s_nomclient" name="s_nomclient" class="form-control" value="<?= $liste['NomClient'] ?>">
+                        <label for="s_nomfournisseur" class="form-label">Nom du fournisseur :</label>
+                        <input type="text" id="s_nomfournisseur" name="s_nomfournisseur" class="form-control" value="<?= $liste['NomFournisseur'] ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="s_adresseclient" class="form-label">Adresse du fournisseur :</label>
-                        <input type="text" id="s_adresseclient" name="s_adresseclient" class="form-control" value="<?= $liste['AdresseClient'] ?>">
+                        <label for="s_adressefournisseur" class="form-label">Adresse du fournisseur :</label>
+                        <input type="text" id="s_adressefournisseur" name="s_adressefournisseur" class="form-control" value="<?= $liste['AdresseFournisseur'] ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="s_coordonneesclient" class="form-label">Coordonnées du fournisseur :</label>
-                        <input type="text" id="s_coordonneesclient" name="s_coordonneesclient" class="form-control" value="<?= $liste['CoordonneesClient'] ?>">
+                        <label for="s_coordonneesfournisseur" class="form-label">Coordonnées du fournisseur :</label>
+                        <input type="text" id="s_coordonneesfournisseur" name="s_coordonneesfournisseur" class="form-control" value="<?= $liste['CoordonneesFournisseur'] ?>">
                     </div>
                 <?php } ?>
             </fieldset>

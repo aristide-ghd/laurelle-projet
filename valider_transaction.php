@@ -6,9 +6,9 @@
     $deviseprixvente = $_POST['s_deviseprixvente'];
     $cout = $_POST['s_coutunit'];
     $devisecoutunit = $_POST['s_devisecoutunit'];
-    $nomcli = $_POST['s_nomclient'];
-    $adressecli = $_POST['s_adresseclient'];
-    $coordonneescli = $_POST['s_coordonneesclient'];
+    $nomfournisseur = $_POST['s_nomfournisseur'];
+    $adressefournisseur = $_POST['s_adressefournisseur'];
+    $coordonneesfournisseur = $_POST['s_coordonneesfournisseur'];
     $datevente = $_POST['s_datevente'];
     $quantitevendue = $_POST['s_quantitevendue'];
     $montanttotal = $_POST['s_montanttotal'];
@@ -52,13 +52,13 @@
         }
     }
 
-    if(empty($nomcli)||empty($adressecli)||empty($coordonneescli))
+    if(empty($nomfournisseur)||empty($adressefournisseur)||empty($coordonneesfournisseur))
     {
         echo "<script>alert('Veuillez remplir tous les champs')</script>";
     }
     else
     {
-        $req1 = "INSERT INTO clients values(0, '$nomcli', '$adressecli', '$coordonneescli')";
+        $req1 = "INSERT INTO fournisseurs values(0, '$nomfournisseur', '$adressefournisseur', '$coordonneesfournisseur')";
         if($bdd -> query($req1) == true)
         {
             echo "Transaction effectué avec succès";
