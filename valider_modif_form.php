@@ -53,7 +53,7 @@
         }
         else
         {
-            echo "<script>alert('Echec de modification de l etudiant')</script";
+            echo "<script>alert('Echec de modification du produit')</script";
         }
     }
 
@@ -75,7 +75,7 @@
         }
         else
         {
-            echo "<script>alert('Echec de modification du fournissfournisseur')</script";
+            echo "<script>alert('Echec de modification du fournisseur')</script";
         }
     }
 
@@ -99,7 +99,7 @@
         }
         else
         {
-            echo "<script>alert('Echec de modification de l etudiant')</script";
+            echo "<script>alert('Echec de modification dune vente')</script";
         }
     }
 
@@ -122,7 +122,7 @@
         }
         else
         {
-            echo "<script>alert('Echec de modification de l etudiant')</script";
+            echo "<script>alert('Echec de modification de la recette')</script";
         }
     }
 
@@ -145,7 +145,7 @@
         }
         else
         {
-            echo "<script>alert('Echec de modification de l etudiant')</script";
+            echo "<script>alert('Echec de modification de la depense')</script";
         }
     }
 
@@ -165,7 +165,7 @@
         }
         else
         {
-            echo "Echec de transaction";
+            echo "Echec de modification dun mode de paiement";
         }
     }
 ?>
