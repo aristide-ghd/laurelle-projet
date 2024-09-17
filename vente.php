@@ -1,4 +1,13 @@
 <?php
+    session_start();
+    
+    // Vérification si l'utilisateur est connecté
+    if(!isset($_SESSION['logged_in'])) {
+        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
+        header("Location: index.php");
+        exit;
+    }
+
     include("connexion.php");
     $req = " SELECT * FROM ventes ";
     $reponse = $bdd -> query($req);
@@ -48,7 +57,6 @@
                         <th>Quantité Vendue</th>
                         <th>Montant Total</th>
                         <th>Matricule Produit</th>
-                        <th>Matricule Client</th>
                         <th>Matricule Mode de Paiement</th>
                         <th class="col-lg-2 col-md-2">Actions</th>
                     </tr>
@@ -63,7 +71,6 @@
                         <td><?= $liste['QuantiteVendue'] ?></td>
                         <td><?= $liste['MontantTotal'] ?></td>
                         <td><?= $liste['idProduit'] ?></td>
-                        <td><?= $liste['idClient'] ?></td>
                         <td><?= $liste['idModePaiement'] ?></td>
                         <td>
                             <a href="modif_form_vente.php?id=<?= $liste['idVente'] ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>

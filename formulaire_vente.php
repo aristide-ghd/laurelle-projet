@@ -1,4 +1,13 @@
 <?php
+    session_start();
+    
+    // Vérification si l'utilisateur est connecté
+    if(!isset($_SESSION['logged_in'])) {
+        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
+        header("Location: index.php");
+        exit;
+    }
+    
     include("connexion.php");
     $req = " SELECT * FROM produits ORDER BY idProduit";
     $reponse = $bdd -> query($req);
@@ -82,7 +91,7 @@
                     </select>
                 </div>
                 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="listclient" class="form-label">Client :</label>
                     <select name="s_client" id="listclient" class="form-select" required>
                         <option value="">Selectionner le client...</option>
@@ -92,7 +101,7 @@
                             </option>
                         <?php endforeach; ?>
                     </select>
-                </div>
+                </div> -->
                 
                 <div class="mb-3">
                     <label for="listmode" class="form-label">Mode de Paiement :</label>

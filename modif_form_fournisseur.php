@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/form_cli.css"> -->
-    <title>Modifications des clients</title>
+    <title>Modifications des fournisseurs</title>
     <style>
         .ajout{
             margin-top: 60px;
@@ -25,25 +25,25 @@
     <?php include 'navbar/en_tete.php'; ?>
 
     <section class="container my-5 flex-grow-1">
-        <h1 class="ajout text-center mb-4">Modifier un client</h1>
+        <h1 class="ajout text-center mb-4">Modifier un fournisseur</h1>
         <form action="valider_modif_form.php" method="post">
             <fieldset class="border p-4 rounded">
-                <legend class="fw-bold">Client</legend>
+                <legend class="fw-bold">Fournisseur</legend>
                 <?php foreach($donnee as $liste){ ?>
                     <div class="mb-3">
-                        <label for="s_numero" class="form-label">Matricule Client :</label>
+                        <label for="s_numero" class="form-label">Matricule fournisseur :</label>
                         <input type="text" id="s_numero" name="s_numero" class="form-control" value="<?= $liste['idClient'] ?>" readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="s_nomclient" class="form-label">Nom du Client :</label>
+                        <label for="s_nomclient" class="form-label">Nom du fournisseur :</label>
                         <input type="text" id="s_nomclient" name="s_nomclient" class="form-control" value="<?= $liste['NomClient'] ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="s_adresseclient" class="form-label">Adresse du client :</label>
+                        <label for="s_adresseclient" class="form-label">Adresse du fournisseur :</label>
                         <input type="text" id="s_adresseclient" name="s_adresseclient" class="form-control" value="<?= $liste['AdresseClient'] ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="s_coordonneesclient" class="form-label">Coordonnées du Client :</label>
+                        <label for="s_coordonneesclient" class="form-label">Coordonnées du fournisseur :</label>
                         <input type="text" id="s_coordonneesclient" name="s_coordonneesclient" class="form-control" value="<?= $liste['CoordonneesClient'] ?>">
                     </div>
                 <?php } ?>

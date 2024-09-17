@@ -1,4 +1,13 @@
 <?php 
+    session_start();
+    
+    // Vérification si l'utilisateur est connecté
+    if(!isset($_SESSION['logged_in'])) {
+        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
+        header("Location: index.php");
+        exit;
+    }
+
     include('connexion.php');
     $req = "SELECT * FROM clients";
     $reponse = $bdd -> query($req);
@@ -12,7 +21,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="css/tab_cli.css"> -->
-    <title>Page Client</title>
+    <title>Page fournisseur</title>
     <style>
         .ajout {
             margin-top: 60px;
@@ -39,15 +48,15 @@
     <?php include 'navbar/en_tete.php'; ?>
     
     <section class="container my-5 flex-grow-1">
-        <h1 class="ajout mb-4 text-center">Liste des clients</h1>
+        <h1 class="ajout mb-4 text-center">Liste des fournisseurs</h1>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead class="table-dark">
                     <tr>
-                        <th>Matricule Client</th>
-                        <th>Nom du Client</th>
-                        <th>Adresse du Client</th>
-                        <th>Coordonnées du Client</th>
+                        <th>Matricule fournisseur</th>
+                        <th>Nom du fournisseur</th>
+                        <th>Adresse du fournisseur</th>
+                        <th>Coordonnées du fournisseur</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -61,7 +70,7 @@
                         <td><?= $liste['AdresseClient'] ?></td>
                         <td><?= $liste['CoordonneesClient'] ?></td>
                         <td>
-                            <a href="modif_form_client.php?id=<?= $liste['idClient'] ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>
+                            <a href="modif_form_fournisseur.php?id=<?= $liste['idClient'] ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>
                             <button type="button" class="btn btn-danger btn-sm col-lg-5 col-md-12 col-sm-12" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $liste['idClient'] ?>">
                                 Supprimer
                             </button>
@@ -84,7 +93,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Êtes-vous sûr de vouloir supprimer ce client ? <br>
+                    Êtes-vous sûr de vouloir supprimer ce fournisseur ? <br>
                     Cette action est irréversible.
                 </div>
                 <div class="modal-footer">
@@ -104,14 +113,14 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
 
     <script>
-        // Script pour passer l'ID du client à la modale et configurer le lien de suppression
+        // Script pour passer l'ID du fournisseur à la modale et configurer le lien de suppression
         var deleteModal = document.getElementById('deleteModal');
         deleteModal.addEventListener('show.bs.modal', function (event) {
             var button = event.relatedTarget; // Bouton qui a déclenché la modale
             var idClient = button.getAttribute('data-id'); // Extraction de l'ID
 
             var confirmDelete = document.getElementById('confirmDelete');
-            confirmDelete.href = 'delete_client.php?id=' + idClient; // Configuration du lien de suppression
+            confirmDelete.href = 'delete_fournisseur.php?id=' + idClient; // Configuration du lien de suppression
         });
     </script>
 </body>

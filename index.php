@@ -1,4 +1,5 @@
 <?php
+    session_start(); //Initialiser la session 
     include("connexion.php");
     $message = "";
     
@@ -22,7 +23,10 @@
             }
             else
             {
-                header("location:home.php");
+                // Connexion réussie
+                $_SESSION['logged_in'] = true;
+                $_SESSION['user_name'] = $nom; //stockage du nom de l'utilisateur
+                header("location: home.php");
             }
         }
     }
@@ -83,6 +87,11 @@
                     <div class="card-body p-5">
                         <h2 class="text-danger text-center mb-4"><i class="fas fa-sign-in-alt me-2"></i>Connectez-vous</h2>
                         <form action="index.php" method="post"> 
+                            <?php if($message != ""): ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <i class="fas fa-exclamation-triangle"></i> <?php echo $message; ?>
+                                </div>
+                            <?php endif; ?>
                             <fieldset>
                                 <div class="mb-3">
                                     <label for="nom" class="form-label">Nom de l'entreprise:</label>

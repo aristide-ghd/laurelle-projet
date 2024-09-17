@@ -14,7 +14,7 @@
     $montanttotal = $_POST['s_montanttotal'];
     $devisemontanttotal = $_POST['s_devisemontanttotal'];
     $produit = $_POST['s_produit'];
-    $client = $_POST['s_client'];
+    // $client = $_POST['s_client'];
     $modepaiement = $_POST['s_modepaiement'];
     $nom_modepaiement = $_POST['s_nom_modepaiement'];
     $montantrecette = $_POST['s_montantrecette'];
@@ -62,7 +62,7 @@
         if($bdd -> query($req1) == true)
         {
             echo "Transaction effectué avec succès";
-            header('location:client.php');
+            header('location:fournisseur.php');
         }
         else
         {
@@ -70,13 +70,13 @@
         }
     }
 
-    if(empty($datevente)||empty($quantitevendue)||empty($montanttotal)||empty($devisemontanttotal)||empty($produit)||empty($client)||empty($modepaiement))
+    if(empty($datevente)||empty($quantitevendue)||empty($montanttotal)||empty($devisemontanttotal)||empty($produit)||empty($modepaiement))
     {
         echo "<script>alert('Veuillez remplir tous les champs')</script>";
     }
     else
     {
-        $req2 = "INSERT INTO ventes values(0, '$datevente', '$quantitevendue', '$montanttotalfinal', '$produit', '$client', '$modepaiement')";
+        $req2 = "INSERT INTO ventes values(0, '$datevente', '$quantitevendue', '$montanttotalfinal', '$produit', '$modepaiement')";
         if($bdd -> query($req2) == true)
         {
             echo "Transaction effectué avec succès";

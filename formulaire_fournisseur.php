@@ -1,3 +1,15 @@
+<?php
+    session_start();
+
+    // Vérification si l'utilisateur est connecté
+    if(!isset($_SESSION['logged_in'])) {
+        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
+        header("Location: index.php");
+        exit;
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +18,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="css/form_prod.css"> -->
-    <title>Formulaire des clients</title>
+    <title>Formulaire des fournisseurs</title>
     <style>
         .footer {
             position: fixed;
@@ -23,23 +35,23 @@
     <?php include 'navbar/en_tete.php'; ?>
     
     <section class="container my-5 flex-grow-1">
-        <h1 class="ajout text-center mb-4">Ajouter un client</h1>
+        <h1 class="ajout text-center mb-4">Ajouter un fournisseur</h1>
         <form action="valider_transaction.php" method="post">
             <fieldset class="border p-4 rounded">
-                <legend class="w-auto">Client</legend>
+                <legend class="w-auto">Fournisseur</legend>
                 
                 <div class="mb-3">
-                    <label for="nomClient" class="form-label">Nom du client :</label>
+                    <label for="nomClient" class="form-label">Nom du fournisseur :</label>
                     <input type="text" id="nomClient" name="s_nomclient" class="form-control" required>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="adresseClient" class="form-label">Adresse du client :</label>
+                    <label for="adresseClient" class="form-label">Adresse du fournisseur :</label>
                     <input type="text" id="adresseClient" name="s_adresseclient" class="form-control" required>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="coordonneesClient" class="form-label">Coordonnées du client :</label>
+                    <label for="coordonneesClient" class="form-label">Coordonnées du fournisseur :</label>
                     <input type="text" id="coordonneesClient" name="s_coordonneesclient" class="form-control" required>
                 </div>
                 

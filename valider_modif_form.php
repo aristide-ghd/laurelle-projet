@@ -72,7 +72,7 @@
         if($bdd -> query($req) == true)
         {
             echo "<script>alert('Modification effectuée avec succès')</script>";
-            header ("location: client.php");
+            header ("location: fournisseur.php");
         }
         else
         {
