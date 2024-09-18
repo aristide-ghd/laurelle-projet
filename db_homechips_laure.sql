@@ -106,7 +106,7 @@ INSERT INTO `modepaiement` (`idModePaiement`, `NomModePaiement`) VALUES
 
 --
 -- Structure de la table `produits`
---
+--  
 
 CREATE TABLE `produits` (
   `idProduit` int(11) NOT NULL,
