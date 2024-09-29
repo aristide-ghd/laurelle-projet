@@ -1,12 +1,12 @@
 <?php
 // echo "ffffffffffffffffffff";
 // die;
-define("HOSTNAME", "localhost"); 
+define("HOSTNAME", "localhost");
 define("DATABASE", "db_homechips_laure");
-define("USERNAME", "aristide"); 
-define("PASSWORD", "root09/03");
+define("USERNAME", "root");
+define("PASSWORD", "");
 
-$dsn = 'mysql:dbname=' . DATABASE . ';host=' . HOSTNAME . ';charset=utf8';  
+$dsn = 'mysql:dbname=' . DATABASE . ';host=' . HOSTNAME . ';charset=utf8';
 
 try {
     $bdd = new PDO($dsn, USERNAME, PASSWORD);
