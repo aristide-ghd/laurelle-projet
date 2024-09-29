@@ -1,6 +1,6 @@
 <?php
     // Inclusion de la connexion à la base de données
-    include("connexion.php");
+    include("../connexion.php");
 
     // Vérification si l'ID de la recette est passé dans l'URL
     if (isset($_GET['id'])) {
@@ -14,11 +14,11 @@
         $requete->execute(['idRecette' => $idRecette]);
 
         // Redirection vers la page des recettes après suppression
-        header('Location: recette.php');
+        header('Location: ../recette.php');
         exit(); // S'assurer que le script s'arrête après la redirection
     } else {
         // Si aucun ID n'est fourni, rediriger vers la page des recettes
-        header('Location: recette.php');
+        header('Location: ../recette.php');
         exit();
     }
 ?>

@@ -1,6 +1,6 @@
 <?php
     // Inclusion de la connexion à la base de données
-    include("connexion.php");
+    include("../connexion.php");
 
     // Vérification si l'ID de la vente est passé dans l'URL
     if (isset($_GET['id'])) {
@@ -14,11 +14,11 @@
         $requete->execute(['idVente' => $idVente]);
 
         // Redirection vers la page des ventes après suppression
-        header('Location: vente.php');
+        header('Location: ../dashbord/vente.php');
         exit(); // S'assurer que le script s'arrête après la redirection
     } else {
         // Si aucun ID n'est fourni, rediriger vers la page des ventes
-        header('Location: vente.php');
+        header('Location: ../dashbord/vente.php');
         exit();
     }
 ?>

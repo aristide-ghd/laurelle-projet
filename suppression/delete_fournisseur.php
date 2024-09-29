@@ -1,6 +1,6 @@
 <?php
     // Inclusion de la connexion à la base de données
-    include("connexion.php");
+    include("../connexion.php");
 
     // Vérification si l'ID du fournisseur est passé dans l'URL
     if (isset($_GET['id'])) {
@@ -14,11 +14,11 @@
         $requete->execute(['idClient' => $idClient]);
 
         // Redirection vers la page des fournisseurs après suppression
-        header('Location: fournisseur.php');
+        header('Location: ../dashbord/fournisseur.php');
         exit(); // S'assurer que le script s'arrête après la redirection
     } else {
         // Si aucun ID n'est fourni, rediriger vers la page des fournisseurs
-        header('Location: fournisseur.php');
+        header('Location: ../dashbord/fournisseur.php');
         exit();
     }
 ?>
