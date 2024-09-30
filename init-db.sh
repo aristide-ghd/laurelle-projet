@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # Attendre que MySQL soit prêt
