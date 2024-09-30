@@ -82,7 +82,7 @@
                     </li>
                     <li class="nav-item ms-lg-5 logout">
                         <a class="btn btn-danger w-lg-auto w-md-auto w-100 my-xs-3 my-sm-3 my-md-0" href="../dashbord/logout.php">
-                            <i class="fas fa-sign-out-alt"></i> Se déconnecter
+                            <i class="fas fa-sign-out-alt"></i> Profil
                         </a>
                     </li>
 
