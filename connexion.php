@@ -1,6 +1,5 @@
 <?php
-// echo "ffffffffffffffffffff";
-// die;
+
 define("HOSTNAME", "localhost");
 define("DATABASE", "db_homechips_laure");
 define("USERNAME", "root");
