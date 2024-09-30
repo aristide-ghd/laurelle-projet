@@ -1,22 +1,13 @@
 <?php
-// echo "ffffffffffffffffffff";
-// die;
-define("HOSTNAME", "localhost");
-define("DATABASE", "db_homechips_laure");
-define("USERNAME", "root");
-define("PASSWORD", "");
-
-$dsn = 'mysql:dbname=' . DATABASE . ';host=' . HOSTNAME . ';charset=utf8';
+$host = 'db_homelaurechips';  // Nom du service dans docker-compose.yml
+$dbname = getenv('MYSQL_DATABASE');
+$user = getenv('MYSQL_USER');
+$pass = getenv('MYSQL_PASSWORD');
 
 try {
-    $bdd = new PDO($dsn, USERNAME, PASSWORD);
-    // Pour afficher les erreurs
+    $bdd = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // Pour récupérer le résultat des requêtes SELECT sous forme de tableaux associatifs 
-    $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-    die;
+} catch(PDOException $e) {
+    echo "Erreur de connexion : " . $e->getMessage();
 }
-
-?> 
+?>
