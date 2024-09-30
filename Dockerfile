@@ -3,8 +3,11 @@ FROM php:7.4-apache
 # Ajouter l'étiquette Name requise
 LABEL Name="HomeLaureChips"
 
-# Installer les extensions PHP nécessaires
-RUN docker-php-ext-install pdo pdo_mysql
+# Installer les extensions PHP nécessaires et les outils pour MySQL
+RUN apt-get update && apt-get install -y default-mysql-client \
+    && docker-php-ext-install pdo pdo_mysql \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copier les fichiers du projet dans le conteneur
 COPY . /var/www/html/
@@ -12,6 +15,9 @@ COPY . /var/www/html/
 # Configurer Apache
 RUN a2enmod rewrite
 
+# Copier le script d'initialisation
+COPY init-db.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/init-db.sh
 
-# Démarrer Apache en premier plan
-CMD ["apache2-foreground"]
+# Démarrer Apache et initialiser la base de données
+CMD ["/bin/bash", "-c", "/usr/local/bin/init-db.sh && apache2-foreground"]

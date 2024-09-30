@@ -1,6 +1,7 @@
-version: '3'
+version: '3.7'
+
 services:
-  web_HomeLaureChips:
+  web_homelaurechips:
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,12 +10,13 @@ services:
     volumes:
       - .:/var/www/html
     depends_on:
-      - db_HomeLaureChips
+      - db_homelaurechips
     environment:
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-  db_HomeLaureChips:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+  db_homelaurechips:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -25,4 +27,4 @@ services:
       - db_data:/var/lib/mysql
 
 volumes:
-  db_data:{}
+   db_data:

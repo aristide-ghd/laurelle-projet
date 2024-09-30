@@ -1,5 +1,5 @@
 <?php
-$host = 'db_HomeLaureChips';  // Nom du service dans docker-compose.yml
+$host = 'db_homelaurechips';  // Nom du service dans docker-compose.yml
 $dbname = getenv('MYSQL_DATABASE');
 $user = getenv('MYSQL_USER');
 $pass = getenv('MYSQL_PASSWORD');
