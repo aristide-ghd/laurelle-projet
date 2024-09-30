@@ -12,6 +12,9 @@ RUN apt-get update && apt-get install -y default-mysql-client \
 # Copier les fichiers du projet dans le conteneur
 COPY . /var/www/html/
 
+# Copier le fichier de configuration Apache personnalisé
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+
 # Configurer Apache
 RUN a2enmod rewrite
 
@@ -20,4 +23,4 @@ COPY init-db.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/init-db.sh
 
 # Démarrer Apache et initialiser la base de données
-CMD ["/bin/bash", "-c", "/usr/local/bin/init-db.sh && apache2-foreground"]
+CMD ["apache2-foreground"]
