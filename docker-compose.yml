@@ -21,8 +21,7 @@ services:
       - "traefik.http.routers.homelaurechips.rule=Host(`hlc.digitaleflex.com`)"
       - "traefik.http.routers.homelaurechips.entrypoints=websecure"
       - "traefik.http.routers.homelaurechips.tls.certresolver=letsencrypt"
-      - "traefik.http.services.homelaurechips.loadbalancer.server.port=80" # port utilisé par votre application
-      # Labels supplémentaires pour la sécurité et la stabilité
+      - "traefik.http.services.homelaurechips.loadbalancer.server.port=80" 
       - "traefik.http.routers.homelaurechips.service=homelaurechips"
       - "traefik.http.services.homelaurechips.loadbalancer.passhostheader=true"
       - "traefik.http.routers.homelaurechips.tls.options=default"
@@ -47,13 +46,13 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     networks:
-      - homelaurechips_network # Spécifiez le réseau pour la base de données
+      - homelaurechips_network
 
 volumes:
   db_data:
 
 networks:
   homelaurechips_network:
-    driver: bridge # Utilisez le driver bridge pour le réseau interne
+    driver: bridge
   proxy:
     external: true
