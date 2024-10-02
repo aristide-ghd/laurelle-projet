@@ -37,7 +37,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Charge la feuille de style Bootstrap 5.3.3 pour styliser la page avec le framework CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Charge la bibliothèque de styles Font Awesome version 6.0.0 pour afficher des icônes vectorielles (comme des utilisateurs, des flèches, etc.) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <title>Page de connexion</title>
     <style>
@@ -80,7 +82,7 @@
         <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded">
             <div class="row g-0">
                 <div class="col-lg-6 col-md-12 col-sm-12">
-                    <img class="img-fluid rounded-start h-100" src="image/connect.jpg" alt="Image de connexion">
+                    <img class="img-fluid rounded h-100" src="image/connect.jpg" alt="Image de connexion">
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-center">
                     <div class="card-body p-5">
@@ -101,13 +103,17 @@
                                     <input class="form-control" type="password" name="s_motdepasse" id="motdepasse" placeholder="Entrez votre mot de passe" required>
                                 </div>
                             </fieldset>
-                            <button class="btn btn-danger col-12" type="submit" name="valider"><i class="fas fa-lock me-2"></i>Se connecter</button>
+                            <button class="btn btn-danger col-12" type="submit" name="valider"><i class="fas fa-lock me-2"></i>Se connecter</button><br>
+                            <br>
+                            <p class="m-auto">Vous n'avez pas de compte?<a href="dashbord/inscription.php">Inscrivez-vous ici</a></p>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Charge la bibliothèque JavaScript Bootstrap 5.3.3, incluant les composants et les plugins Bootstrap (comme les modals, carousels, etc.) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
