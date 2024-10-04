@@ -8,14 +8,25 @@
         exit;
     }
     
+    // Inclure la connexion et récupérer l'instance de PDO
     include("../connexion.php");
-    $req = " SELECT * FROM produits ORDER BY idProduit";
-    $reponse = $bdd -> query($req);
-    $donnee = $reponse -> fetchAll();
+    $bdd = $db->getConnection(); // Utilisation de la méthode getConnection() pour récupérer la connexion
 
-    $req2 = " SELECT * FROM modepaiement ORDER BY idModePaiement";
-    $reponse2 = $bdd -> query($req2);
-    $donnee2 = $reponse2 -> fetchAll();
+    if ($bdd) {
+        // Requête pour les produits
+        $req = "SELECT * FROM produits ORDER BY idProduit";
+        $reponse = $bdd->query($req);
+        $donnee = $reponse->fetchAll();
+
+        // Requête pour les modes de paiement
+        $req2 = "SELECT * FROM modepaiement ORDER BY idModePaiement";
+        $reponse2 = $bdd->query($req2);
+        $donnee2 = $reponse2->fetchAll();
+    } else {
+        // Gestion de l'erreur si la connexion à la base de données échoue
+        echo "Erreur : Connexion à la base de données non établie.";
+        exit;
+    }
 ?>
 
 

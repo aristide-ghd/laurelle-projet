@@ -3,8 +3,9 @@ session_start(); // Initialiser la session
 include("connexion.php"); // Inclusion de la connexion à la base de données
 $message = "";
 
-// Récupérer la connexion depuis l'instance de la classe Database
-$bdd = $db->getConnection();
+// Créer une instance de la classe Database
+$database = new Database(); 
+$bdd = $database->getConnection(); // Récupérer la connexion depuis l'instance de la classe Database
 
 // Vérification si la connexion a échoué
 if (!$bdd) {
@@ -23,7 +24,7 @@ if (isset($_POST['valider'])) {
         $stmt->execute([':namebusiness' => $nom, ':motdepasse' => $mdp]);
         $donnee = $stmt->fetchAll();
 
-        if (!$donnee) {
+        if (empty($donnee)) { // Utiliser empty() pour vérifier si le résultat est vide
             $message = "Paramètre de connexion invalide";
         } else {
             // Connexion réussie
@@ -35,6 +36,7 @@ if (isset($_POST['valider'])) {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

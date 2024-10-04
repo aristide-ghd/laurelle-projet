@@ -2,7 +2,7 @@
     include("../connexion.php");
     $matvente = $_GET['id'];
     $req3 = "SELECT * FROM ventes where idVente = $matvente";
-    $reponse3 = $bdd -> query($req3);
+    $reponse3 = $db -> query($req3);
     $donnee3 = $reponse3 -> fetchAll();
 
     foreach($donnee3 as $liste)
@@ -16,11 +16,11 @@
     }
 
     $req = " SELECT * FROM produits ORDER BY idProduit";
-    $reponse = $bdd -> query($req);
+    $reponse = $db -> query($req);
     $donnee = $reponse -> fetchAll();
 
     $req2 = " SELECT * FROM modepaiement ORDER BY idModePaiement";
-    $reponse2 = $bdd -> query($req2);
+    $reponse2 = $db -> query($req2);
     $donnee2 = $reponse2 -> fetchAll();
 ?>
 
