@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `db_homechips_laure`
 --
+CREATE DATABASE IF NOT EXISTS db_homechips_laure;
+USE db_homechips_laure;
 
 -- --------------------------------------------------------
 

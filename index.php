@@ -1,36 +1,42 @@
 <?php
-    session_start(); //Initialiser la session 
-    include("connexion.php");
-    $message = "";
-    
-    if(isset($_POST['valider']))
-    {
-        $nom = $_POST['s_name'];
-        $mdp = $_POST['s_motdepasse'];
-        if(empty($nom)||empty($mdp))
-        {
-            $message = "Veuillez remplir tous les champs";
-        }
-        else
-        {
-            $req = "SELECT * FROM entreprise WHERE namebusiness = '$nom' AND motdepasse = '$mdp'";
-            $reponse = $bdd -> query($req);
-            $donnee = $reponse -> fetchAll();
-            
-            if(!$donnee)
-            {
-                $message = "Paramètre de connexion invalide";
-            }
-            else
-            {
-                // Connexion réussie
-                $_SESSION['logged_in'] = true;
-                $_SESSION['user_name'] = $nom; //stockage du nom de l'utilisateur
-                header("location: dashbord/home.php");
-            }
+session_start(); // Initialiser la session 
+include("connexion.php"); // Inclusion de la connexion à la base de données
+$message = "";
+
+// Créer une instance de la classe Database
+$database = new Database(); 
+$bdd = $database->getConnection(); // Récupérer la connexion depuis l'instance de la classe Database
+
+// Vérification si la connexion a échoué
+if (!$bdd) {
+    die("Échec de la connexion à la base de données.");
+}
+
+if (isset($_POST['valider'])) {
+    $nom = $_POST['s_name'];
+    $mdp = $_POST['s_motdepasse'];
+    if (empty($nom) || empty($mdp)) {
+        $message = "Veuillez remplir tous les champs";
+    } else {
+        // Utilisation de requêtes préparées pour éviter les injections SQL
+        $req = "SELECT * FROM entreprise WHERE namebusiness = :namebusiness AND motdepasse = :motdepasse";
+        $stmt = $bdd->prepare($req);
+        $stmt->execute([':namebusiness' => $nom, ':motdepasse' => $mdp]);
+        $donnee = $stmt->fetchAll();
+
+        if (empty($donnee)) { // Utiliser empty() pour vérifier si le résultat est vide
+            $message = "Paramètre de connexion invalide";
+        } else {
+            // Connexion réussie
+            $_SESSION['logged_in'] = true;
+            $_SESSION['user_name'] = $nom; // stockage du nom de l'utilisateur
+            header("Location: dashbord/home.php");
+            exit(); // Sortir après la redirection
         }
     }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

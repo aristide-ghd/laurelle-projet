@@ -2,7 +2,7 @@
     include("../connexion.php");
     $matmdp = $_GET['id'];
     $req1 = "SELECT * FROM modepaiement where idModePaiement = $matmdp";
-    $reponse1 = $bdd -> query($req1);
+    $reponse1 = $db -> query($req1);
     $donnee1 = $reponse1 -> fetchAll();
 ?>
 

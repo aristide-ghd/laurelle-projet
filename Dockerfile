@@ -9,6 +9,9 @@ RUN apt-get update && apt-get install -y default-mysql-client \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Nettoyer les fichiers de configuration Apache par défaut
+RUN rm -rf /var/www/html/*
+
 # Copier les fichiers du projet dans le conteneur
 COPY . /var/www/html/
 

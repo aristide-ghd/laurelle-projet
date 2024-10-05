@@ -8,7 +8,7 @@
         $idRecette = $_GET['id'];
 
         // Préparation de la requête SQL pour supprimer la recette
-        $requete = $bdd->prepare('DELETE FROM recettes WHERE idRecette = :idRecette');
+        $requete = $db->prepare('DELETE FROM recettes WHERE idRecette = :idRecette');
         
         // Exécution de la requête avec l'ID de la recette
         $requete->execute(['idRecette' => $idRecette]);

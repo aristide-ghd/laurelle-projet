@@ -8,7 +8,7 @@
         $idModePaiement = $_GET['id'];
 
         // Préparation de la requête SQL pour supprimer le mode de paiement
-        $requete = $bdd->prepare('DELETE FROM modepaiement WHERE idModePaiement = :idModePaiement');
+        $requete = $db->prepare('DELETE FROM modepaiement WHERE idModePaiement = :idModePaiement');
         
         // Exécution de la requête avec l'ID du mode de paiement
         $requete->execute(['idModePaiement' => $idModePaiement]);
