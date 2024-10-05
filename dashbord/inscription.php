@@ -112,7 +112,7 @@
 
                             <?php if($message_user != ""): ?>
                                 <div class="alert alert-info" role="alert">
-                                    <i class="fas fa-exclamation-circle"></i> <?php echo $message_user; ?>
+                                    <i class="fas fa-exclamation-circle"></i> <?php echo $message_user;?>
                                 </div>
                             <?php endif; ?>
 
@@ -120,6 +120,11 @@
                                 <div class="alert alert-success" role="alert">
                                     <i class="fas fa-check-circle"></i> <?php echo $message_register; ?>
                                 </div>
+                                <script>
+                                    setTimeout(function() {
+                                        window.location.href = "../index.php"; // redirige vers la page de connexion
+                                    }, 3000); // délai de 3 secondes
+                                </script>
                             <?php endif; ?>
 
                             <fieldset>

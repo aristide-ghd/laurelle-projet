@@ -1,35 +1,24 @@
 <?php
-    session_start(); //Initialiser la session 
-    include("connexion.php");
-    $message = "";
+    session_start(); //Initialiser la session
     
-    if(isset($_POST['valider']))
-    {
-        $nom = $_POST['s_name'];
-        $mdp = $_POST['s_motdepasse'];
-        if(empty($nom)||empty($mdp))
-        {
-            $message = "Veuillez remplir tous les champs";
-        }
-        else
-        {
-            $req = "SELECT * FROM entreprise WHERE namebusiness = '$nom' AND motdepasse = '$mdp'";
-            $reponse = $bdd -> query($req);
-            $donnee = $reponse -> fetchAll();
-            
-            if(!$donnee)
-            {
-                $message = "Paramètre de connexion invalide";
-            }
-            else
-            {
-                // Connexion réussie
-                $_SESSION['logged_in'] = true;
-                $_SESSION['user_name'] = $nom; //stockage du nom de l'utilisateur
-                header("location: dashbord/home.php");
-            }
-        }
-    }
+    // Récupere le message des champs stocké dans la session (si disponible)
+    $message_input = isset($_SESSION['message_input']) ? $_SESSION['message_input'] : '';
+
+    // Récupere le message de connexion invalide stocké dans la session (si disponible)
+    $message_login = isset($_SESSION['message_login']) ? $_SESSION['message_login'] : '';
+
+    // Récupere le message de connexion reussie stocké dans la session (si disponible)
+    $message_success = isset($_SESSION['message_success']) ? $_SESSION['message_success'] : '';
+
+
+    // Supprime le message des champs après l'avoir affiché pour éviter qu'il persiste
+    unset($_SESSION['message_input']);
+
+    // Supprime le message de connexion invalide après l'avoir affiché pour éviter qu'il persiste
+    unset($_SESSION['message_login']);
+
+    // Supprime le message de connexion reussie après l'avoir affiché pour éviter qu'il persiste
+    unset($_SESSION['message_success']);
 ?>
 
 <!DOCTYPE html>
@@ -37,8 +26,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Charge la feuille de style Bootstrap 5.3.3 pour styliser la page avec le framework CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <!-- Charge la bibliothèque de styles Font Awesome version 6.0.0 pour afficher des icônes vectorielles (comme des utilisateurs, des flèches, etc.) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <title>Page de connexion</title>
@@ -87,20 +78,38 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-center">
                     <div class="card-body p-5">
                         <h2 class="text-danger text-center mb-4"><i class="fas fa-sign-in-alt me-2"></i>Connectez-vous</h2>
-                        <form action="index.php" method="post"> 
-                            <?php if($message != ""): ?>
-                                <div class="alert alert-danger" role="alert">
-                                    <i class="fas fa-exclamation-triangle"></i> <?php echo $message; ?>
+                        <form action="validation/valider_connexion.php" method="post"> 
+                            <?php if($message_input != ""): ?>
+                                <div class="alert alert-warning" role="alert">
+                                    <i class="fas fa-exclamation-triangle"></i> <?php echo $message_input; ?>
                                 </div>
                             <?php endif; ?>
+
+                            <?php if($message_login != ""): ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <i class="fas fa-exclamation-triangle"></i> <?php echo $message_login; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if($message_success != ""): ?>
+                                <div class="alert alert-success" role="alert">
+                                    <i class="fas fa-check-circle"></i> <?php echo $message_success; ?>
+                                </div>
+                                <script>
+                                    setTimeout(function() {
+                                        window.location.href = "dashbord/home.php"; // redirige vers la page d'accueil
+                                    }, 3000); // délai de 3 secondes
+                                </script>
+                            <?php endif; ?>
+                            
                             <fieldset>
                                 <div class="mb-3">
                                     <label for="nom" class="form-label">Nom de l'entreprise:</label>
-                                    <input class="form-control" type="text" name="s_name" id="nom" placeholder="Entrez le nom" required>
+                                    <input class="form-control" type="text" name="s_name" id="nom" placeholder="Entrez le nom">
                                 </div>
                                 <div class="mb-4">
                                     <label for="motdepasse" class="form-label">Mot de passe:</label>
-                                    <input class="form-control" type="password" name="s_motdepasse" id="motdepasse" placeholder="Entrez votre mot de passe" required>
+                                    <input class="form-control" type="password" name="s_motdepasse" id="motdepasse" placeholder="Entrez votre mot de passe">
                                 </div>
                             </fieldset>
                             <button class="btn btn-danger col-12" type="submit" name="valider"><i class="fas fa-lock me-2"></i>Se connecter</button><br>

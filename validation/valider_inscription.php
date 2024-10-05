@@ -89,12 +89,13 @@
                         'mot_de_passe' => $hashed_password
                     ]);
 
-                    $message_register = "Inscription réussie";
+                    $message_register = "Inscription réussie. Vous serez redirigé vers la page de connexion dans quelques instants";
 
                     // Stocker les messages dans la session
                     $_SESSION['message_register'] = $message_register;
 
-                    header("location: ../index.php");
+                    // Redirection après enregistrements des informations 
+                    header("location: ../dashbord/inscription.php");
                     exit();
                 }
             }
