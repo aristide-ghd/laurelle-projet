@@ -49,6 +49,7 @@
                                 <p>Découvrez notre variété de chips croustillantes et savoureuses.</p>
                             </div>
                         </div>
+
                         <div class="carousel-item">
                             <img src="../image/chips5.jpg" class="d-block w-100" alt="Image 2">
                             <div class="carousel-caption d-none d-sm-block">
@@ -56,6 +57,7 @@
                                 <p class="">Nos chips sont disponibles dans une gamme de saveurs exquises.</p>
                             </div>
                         </div>
+
                         <div class="carousel-item">
                             <img src="../image/chips6.jpg" class="d-block w-100" alt="Image 3">
                             <div class="carousel-caption d-none d-sm-block">
@@ -64,17 +66,20 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Contrôles de navigation -->
                     <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
+
                     <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
             </div>
+            
             <div class="col-md-6 col-sm-12">
                 <div class=" p-4">
                     <h1 class="display-4">Bienvenue sur Homechip's Laure</h1>

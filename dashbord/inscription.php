@@ -4,6 +4,9 @@
     // Récupere le message des champs stocké dans la session (si disponible)
     $message_input = isset($_SESSION['message_input']) ? $_SESSION['message_input'] : '';
 
+    //Recupere le message d'email stocké dans la session (si disponible)
+    $message_email = isset($_SESSION['message_email']) ? $_SESSION['message_email'] : '';
+
     // Récupere le message de mot de passe stocké dans la session (si disponible)
     $message_password = isset($_SESSION['message_password']) ? $_SESSION['message_password'] : '';
 
@@ -14,16 +17,19 @@
     $message_register = isset($_SESSION['message_register']) ? $_SESSION['message_register'] : '';
 
 
-    // Supprime le message des champs après l affiché pour éviter qu'il persiste
+    // Supprime le message des champs après l'avoir affiché pour éviter qu'il persiste
     unset($_SESSION['message_input']);
 
-    // Supprime le message de mot de passe après l affiché pour éviter qu'il persiste
+    //Supprime le message d'email après l'avoir affiché pour eviter qu'il persiste
+    unset($_SESSION['message_email']);
+
+    // Supprime le message de mot de passe après l'avoir affiché pour éviter qu'il persiste
     unset($_SESSION['message_password']);
 
-    // Supprime le message d'utilisateur après l affiché pour éviter qu'il persiste
+    // Supprime le message d'utilisateur après l'avoir affiché pour éviter qu'il persiste
     unset($_SESSION['message_user']);
 
-    // Supprime le message d'inscription après l affiché pour éviter qu'il persiste
+    // Supprime le message d'inscription après l'avoir affiché pour éviter qu'il persiste
     unset($_SESSION['message_register']);
 ?>
 
@@ -93,33 +99,46 @@
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <img class="img-fluid rounded h-100" src="../image/register2.jpg" alt="Image d'inscription">
                 </div>
+
                 <!-- Formulaire d'inscription -->
                 <div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-center">
                     <div class="card-body p-5">
                         <h2 class="text-primary text-center mb-4"><i class="fas fa-user-plus me-2"></i>Inscrivez-vous</h2>
                         <form action="../validation/valider_inscription.php" method="post">
+                            <!-- Affichage du message des champs -->
                             <?php if($message_input != ""): ?>
                                 <div class="alert alert-warning" role="alert">
                                     <i class="fas fa-exclamation-triangle"></i> <?php echo $message_input; ?>
                                 </div>
                             <?php endif; ?>
+
+                            <!-- Affichage du message d'email -->
+                            <?php if($message_email != ""): ?>
+                                <div class="alert alert-warning" role="alert">
+                                    <i class="fas fa-exclamation-triangle"></i> <?php echo $message_email; ?>
+                                </div>
+                            <?php endif; ?>
                             
+                            <!-- Affichage du message de mot de passe -->
                             <?php if($message_password != ""): ?>
                                 <div class="alert alert-danger" role="alert">
                                     <i class="fas fa-exclamation-triangle"></i> <?php echo $message_password; ?>
                                 </div>
                             <?php endif; ?>
 
+                            <!-- Affichage du message d'utilisateur -->
                             <?php if($message_user != ""): ?>
                                 <div class="alert alert-info" role="alert">
                                     <i class="fas fa-exclamation-circle"></i> <?php echo $message_user;?>
                                 </div>
                             <?php endif; ?>
 
+                            <!-- Affichage du message d'inscription -->
                             <?php if($message_register != ""): ?>
                                 <div class="alert alert-success" role="alert">
                                     <i class="fas fa-check-circle"></i> <?php echo $message_register; ?>
                                 </div>
+                                <!-- Utilisation du javascript pour la redirection -->
                                 <script>
                                     setTimeout(function() {
                                         window.location.href = "../index.php"; // redirige vers la page de connexion
@@ -213,6 +232,7 @@
     <!-- Charge la bibliothèque intl-tel-input version 17.0.8 pour ajouter des fonctionnalités avancées à l'entrée de numéro de téléphone -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     
+    <!-- Utilisation de javascript pour le champs numero de telephone  -->
     <script>
         // Sélectionne l'élément de saisie du numéro de téléphone
         const input = document.querySelector("#phone"); 
@@ -229,6 +249,7 @@
         });
     </script>
 
+    <!-- Utilisation du javascript pour le champs Pays -->
     <script>
         // Fonction asynchrone pour récupérer la liste des pays à partir de l'API
         async function fetchCountries() {

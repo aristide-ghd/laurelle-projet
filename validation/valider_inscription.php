@@ -9,6 +9,7 @@
     include("../connexion.php");
 
     $message_input = "";
+    $message_email = "";
     $message_password = "";
     $message_user = "";
     $message_register = "";
@@ -39,64 +40,78 @@
         }
         else
         {
-            //Verification si les mots de passe correspondent
-            if($password !== $password_confirm)
+            //Verification de la validité de l'email
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)) 
             {
-                $message_password = "Les mots de passe ne correspondent pas";
+                $message_email = "Adresse email invalide";
 
-                // Stocker les messages dans la session
-                $_SESSION['message_password'] = $message_password;
+                //Stocker les messages dans la session
+                $_SESSION['message_email'] = $message_email;
 
                 header("location: ../dashbord/inscription.php");
                 exit();
             }
             else
             {
-                // Vérification si l'utilisateur existe déjà
-                $req = "SELECT * FROM entreprise WHERE nomEntreprise = :nom_entreprise ";
-                $stmt = $bdd -> prepare($req);
-                $stmt -> execute(['nom_entreprise' => $nom_entreprise]);
-                $donnee = $stmt -> fetch();
-
-                if($donnee)
+                //Verification si les mots de passe correspondent
+                if($password !== $password_confirm)
                 {
-                    $message_user = "Cet utilisateur existe déjà";
+                    $message_password = "Les mots de passe ne correspondent pas";
 
                     // Stocker les messages dans la session
-                    $_SESSION['message_user']  = $message_user;
+                    $_SESSION['message_password'] = $message_password;
 
                     header("location: ../dashbord/inscription.php");
                     exit();
                 }
                 else
                 {
-                    // Cryptage du mot de passe
-                    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                    // Vérification si l'utilisateur existe déjà
+                    $req = "SELECT * FROM entreprise WHERE nomEntreprise = :nom_entreprise ";
+                    $stmt = $bdd -> prepare($req);
+                    $stmt -> execute(['nom_entreprise' => $nom_entreprise]);
+                    $donnee = $stmt -> fetch();
 
-                    // Insertion dans la base de données
-                    $req1 = "INSERT INTO entreprise VALUES (:id_entreprise, :nom, :prenom, :email, :telephone, :pays, :nom_entreprise, :produit, :adresse_entreprise, :mot_de_passe)";
-                    $stmt = $bdd -> prepare($req1);
-                    $stmt -> execute([
-                        'id_entreprise' => 0,
-                        'nom' => $nom,
-                        'prenom' => $prenom,
-                        'email' => $email,
-                        'telephone' => $phone,
-                        'pays' => $country,
-                        'nom_entreprise' => $nom_entreprise,
-                        'produit' => $produit,
-                        'adresse_entreprise' => $adresse_entreprise,
-                        'mot_de_passe' => $hashed_password
-                    ]);
+                    if($donnee)
+                    {
+                        $message_user = "Cet utilisateur existe déjà";
 
-                    $message_register = "Inscription réussie. Vous serez redirigé vers la page de connexion dans quelques instants";
+                        // Stocker les messages dans la session
+                        $_SESSION['message_user']  = $message_user;
 
-                    // Stocker les messages dans la session
-                    $_SESSION['message_register'] = $message_register;
+                        header("location: ../dashbord/inscription.php");
+                        exit();
+                    }
+                    else
+                    {
+                        // Cryptage du mot de passe
+                        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                    // Redirection après enregistrements des informations 
-                    header("location: ../dashbord/inscription.php");
-                    exit();
+                        // Insertion dans la base de données
+                        $req1 = "INSERT INTO entreprise VALUES (:id_entreprise, :nom, :prenom, :email, :telephone, :pays, :nom_entreprise, :produit, :adresse_entreprise, :mot_de_passe)";
+                        $stmt = $bdd -> prepare($req1);
+                        $stmt -> execute([
+                            'id_entreprise' => 0,
+                            'nom' => $nom,
+                            'prenom' => $prenom,
+                            'email' => $email,
+                            'telephone' => $phone,
+                            'pays' => $country,
+                            'nom_entreprise' => $nom_entreprise,
+                            'produit' => $produit,
+                            'adresse_entreprise' => $adresse_entreprise,
+                            'mot_de_passe' => $hashed_password
+                        ]);
+
+                        $message_register = "Inscription réussie. Vous serez redirigé vers la page de connexion dans quelques instants";
+
+                        // Stocker les messages dans la session
+                        $_SESSION['message_register'] = $message_register;
+
+                        // Redirection après enregistrements des informations 
+                        header("location: ../dashbord/inscription.php");
+                        exit();
+                    }
                 }
             }
         }

@@ -79,22 +79,27 @@
                     <div class="card-body p-5">
                         <h2 class="text-danger text-center mb-4"><i class="fas fa-sign-in-alt me-2"></i>Connectez-vous</h2>
                         <form action="validation/valider_connexion.php" method="post"> 
+
+                            <!-- Affichage du message des champs -->
                             <?php if($message_input != ""): ?>
                                 <div class="alert alert-warning" role="alert">
                                     <i class="fas fa-exclamation-triangle"></i> <?php echo $message_input; ?>
                                 </div>
                             <?php endif; ?>
 
+                            <!-- Affichage du message de paramètre invalide -->
                             <?php if($message_login != ""): ?>
                                 <div class="alert alert-danger" role="alert">
                                     <i class="fas fa-exclamation-triangle"></i> <?php echo $message_login; ?>
                                 </div>
                             <?php endif; ?>
 
+                            <!-- Affichage du message de succès -->
                             <?php if($message_success != ""): ?>
                                 <div class="alert alert-success" role="alert">
                                     <i class="fas fa-check-circle"></i> <?php echo $message_success; ?>
                                 </div>
+                                <!-- Utilisation de javascript pour la redirection -->
                                 <script>
                                     setTimeout(function() {
                                         window.location.href = "dashbord/home.php"; // redirige vers la page d'accueil
@@ -112,6 +117,7 @@
                                     <input class="form-control" type="password" name="s_motdepasse" id="motdepasse" placeholder="Entrez votre mot de passe">
                                 </div>
                             </fieldset>
+                            
                             <button class="btn btn-danger col-12" type="submit" name="valider"><i class="fas fa-lock me-2"></i>Se connecter</button><br>
                             <br>
                             <p class="m-auto">Vous n'avez pas de compte?<a href="dashbord/inscription.php">Inscrivez-vous ici</a></p>

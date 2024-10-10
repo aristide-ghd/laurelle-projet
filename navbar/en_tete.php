@@ -14,7 +14,6 @@
             .logout{
                 margin-top: 15px;
             }
-        
         }
         header{
             position: fixed;
@@ -30,6 +29,17 @@
         }
         .offcanvas-body {
             padding: 1rem;
+        }
+        .link_profile{
+            font-size: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Bordure fine et transparente */
+        }
+        .link_profile:last-child {
+            border-bottom: none; /* Pas de bordure sur le dernier élément */
+        }
+        .link_profile i{
+            margin-right: 0.5rem;
         }
     </style>
 </head>
@@ -80,11 +90,20 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="../dashbord/gestion.php">Gestion financière</a>
                     </li>
-                    <li class="nav-item ms-lg-5 logout">
-                        <a class="btn btn-danger w-lg-auto w-md-auto w-100 my-xs-3 my-sm-3 my-md-0" href="../dashbord/logout.php">
-                            <i class="fas fa-sign-out-alt"></i> Profil
+                    <li class="nav-item dropdown ms-lg-5">
+                        <a class="btn btn-danger dropdown-toggle w-lg-auto w-md-auto w-100 my-xs-3 my-sm-3 my-md-0" href="../dashbord/profile.php" id="dropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> Profil
                         </a>
+                        <!-- <a class="nav-link d-flex align-items-center justify-content-center p-2 bg-dark rounded-circle" href="#" id="dropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 35px; height: 30px;">
+                            <i class="fas fa-user" style="font-size: 20px; color: white;"></i>
+                        </a> -->
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownProfile">
+                            <li class="link_profile"><a class="dropdown-item" href="../profile/account_info.php"><i class="fas fa-info-circle"></i>Informations du compte</a></li>
+                            <li class="link_profile"><a class="dropdown-item" href="../profile/settings.php"><i class="fas fa-cog"></i>Paramètres</a></li>
+                            <li class="link_profile"><a class="dropdown-item" href="../profile/logout.php"><i class="fas fa-sign-out-alt"></i>Déconnexion</a></li>
+                        </ul>
                     </li>
+
 
                 </ul>
             </div>
