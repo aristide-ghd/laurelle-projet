@@ -31,9 +31,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homechip's Laure</title>
+    <title>Informations du compte</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .footer {
             /* margin-top: 4%; */
@@ -64,12 +65,33 @@
         .bordered:last-child {
             border-bottom: none; /* Pas de bordure sur le dernier élément */
         }
+        .btn-primary{
+            margin-left: 10px;
+        }
+        #map {
+            width: 100%;
+            height: 400px;
+        }
+        .phone-icon {
+            color: #28a745; /* Vert pour le téléphone */
+        }
+        .facebook-icon {
+            color: #3b5998; /* Bleu pour Facebook */
+        }
+        .twitter-icon {
+            color: #1da1f2; /* Bleu clair pour Twitter */
+        }
+        .whatsapp-icon {
+            color: #25D366; /* Vert WhatsApp */
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
 
     <section class="container my-5 pt-5 flex-grow-1">
+
+        <!-- Informations de l'entreprise-->
         <div class="text-center mb-4">
             <h2 class="bg-gradient p-3 rounded shadow mt-4">
                 Informations de l'entreprise
@@ -122,6 +144,93 @@
                 </p>
             </div>
         </div>
+
+        <!-- À propos de l'entreprise -->
+        <div class="text-center mb-4">
+            <h2 class="bg-gradient p-3 rounded shadow mt-5">
+                À propos de l'entreprise
+            </h2>
+        </div>
+
+        <div class="card shadow-lg border-0">
+            <div class="card-body bg-white rounded">
+                <p class= "bordered">
+                    <i class="fas fa-info-circle"></i> 
+                    <strong>Description :</strong> Une brève description de l'entreprise, ses valeurs et sa mission.
+                </p>
+                <p class= "bordered">
+                    <i class="fas fa-bullseye"></i> 
+                    <strong>Objectifs :</strong> Un aperçu des objectifs à long terme et de la vision de l'entreprise.
+                </p>
+            </div>
+        </div>
+
+        <!-- Produits et Services -->
+        <div class="text-center mb-4">
+            <h2 class="bg-gradient p-3 rounded shadow mt-5">
+                Produits et Services
+            </h2>
+        </div>
+
+        <div class="card shadow-lg border-0">
+            <div class="card-body bg-white rounded">
+                <p class= "bordered">
+                    <i class="fas fa-box-open"></i> 
+                    <strong>Description des produits :</strong> Un résumé des produits ou services offerts par l'entreprise.
+                </p>
+                <a href="#" class="btn btn-primary">Télécharger le catalogue</a>
+            </div>
+        </div>
+
+        <!-- Localisation -->
+        <div class="text-center mb-4">
+            <h2 class="bg-gradient p-3 rounded shadow mt-5">
+                Localisation
+            </h2>
+        </div>
+
+        <div class="card shadow-lg border-0">
+            <div class="card-body bg-white rounded">
+                <p class= "bordered">
+                    <i class="fas fa-map"></i> 
+                    <strong>Ma Carte :</strong>
+                </p>
+                <div id="map"></div><br>
+                <p class= "bordered">
+                    <i class="fas fa-clock"></i> 
+                    <strong>Heures d'ouverture :</strong> Lundi - Vendredi, 9h - 17h
+                </p>
+            </div>
+        </div>
+
+        <!-- Contact et réseaux sociaux -->
+        <div class="text-center mb-4">
+            <h2 class="bg-gradient p-3 rounded shadow mt-5">
+                Contact et Réseaux Sociaux
+            </h2>
+        </div>
+
+        <div class="card shadow-lg border-0">
+            <div class="card-body bg-white rounded">
+                <p class= "bordered">
+                    <i class="fas fa-phone-alt phone-icon"></i> 
+                    <strong>Service Client :</strong> +123 456 789
+                </p>
+                <p class= "bordered">
+                    <i class="fab fa-facebook facebook-icon"></i> 
+                    <strong>Facebook :</strong> <a href="#">facebook.com/entreprise</a>
+                </p>
+                <p class= "bordered">
+                    <i class="fab fa-twitter twitter-icon"></i> 
+                    <strong>Twitter :</strong> <a href="#">@entreprise</a>
+                </p>
+                <p class= "bordered">
+                    <i class="fab fa-whatsapp whatsapp-icon"></i> 
+                    <strong>Whatsapp :</strong> <a href="https://wa.me/57136115">+229 57 13 61 15</a>
+                </p>
+            </div>
+        </div>
+
     </section>
     
     <footer class="bg-dark text-white text-center py-4 footer">
@@ -136,5 +245,27 @@
                 .catch(err => console.error('Échec de la copie : ', err));
         }
     </script>
+
+    <script>
+        function initMap() {
+            // Spécifie la localisation de l'entreprise (par exemple, Paris, France)
+            const entrepriseLocation = { lat: 48.8566, lng: 2.3522 };
+            
+            // Crée la carte, centrée sur la localisation de l'entreprise
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: entrepriseLocation,
+            });
+            
+            // Place un marqueur sur la localisation
+            const marker = new google.maps.Marker({
+                position: entrepriseLocation,
+                map: map,
+                title: "Localisation de l'entreprise",
+            });
+        }
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 </body>
 </html>
