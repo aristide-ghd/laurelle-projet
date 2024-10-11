@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 17 sep. 2024 à 19:05
--- Version du serveur : 10.11.8-MariaDB-0ubuntu0.23.10.1
--- Version de PHP : 8.2.10-2ubuntu2.2
+-- Généré le : ven. 11 oct. 2024 à 19:21
+-- Version du serveur : 10.4.28-MariaDB
+-- Version de PHP : 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -51,16 +51,25 @@ INSERT INTO `depenses` (`idDepense`, `MontantDepense`, `DateDepense`, `Descripti
 --
 
 CREATE TABLE `entreprise` (
-  `namebusiness` varchar(20) NOT NULL,
-  `motdepasse` varchar(30) NOT NULL
+  `id_entreprise` int(11) NOT NULL,
+  `Nom` varchar(20) NOT NULL,
+  `Prenom` varchar(30) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `Telephone` varchar(20) NOT NULL,
+  `Pays` varchar(20) NOT NULL,
+  `nomEntreprise` varchar(50) NOT NULL,
+  `Produit` varchar(255) NOT NULL,
+  `adresseEntreprise` varchar(255) NOT NULL,
+  `motDePasse` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `entreprise`
 --
 
-INSERT INTO `entreprise` (`namebusiness`, `motdepasse`) VALUES
-('Homechips Laure', 'Laure2024');
+INSERT INTO `entreprise` (`id_entreprise`, `Nom`, `Prenom`, `Email`, `Telephone`, `Pays`, `nomEntreprise`, `Produit`, `adresseEntreprise`, `motDePasse`) VALUES
+(1, 'GBOHAÏDA', 'Aristide', 'aristidegbohaida@gmail.com', '97 46 01 40', 'BJ', 'Ari-luxury', 'Parfums', 'Godomey', '$2y$10$v47eHi5dTwO1VhFRN5pyC.oNlWJpmmhLM8Td71WzNO5Jhtkn7sRUS'),
+(7, 'GBOHAÏDA', 'Aristide', 'aristidegbohaida@gmail.com', '6 12 12 12 12', 'AF', 'Diva', 'Parfums', 'Godomey', '$2y$10$EsFemKuwBaTHPGL0z/InqentieMaZMXLci8mldk47kynl43KzO8fe');
 
 -- --------------------------------------------------------
 
@@ -106,7 +115,7 @@ INSERT INTO `modepaiement` (`idModePaiement`, `NomModePaiement`) VALUES
 
 --
 -- Structure de la table `produits`
---  
+--
 
 CREATE TABLE `produits` (
   `idProduit` int(11) NOT NULL,
@@ -193,7 +202,7 @@ ALTER TABLE `depenses`
 -- Index pour la table `entreprise`
 --
 ALTER TABLE `entreprise`
-  ADD PRIMARY KEY (`namebusiness`);
+  ADD PRIMARY KEY (`id_entreprise`);
 
 --
 -- Index pour la table `fournisseurs`
@@ -237,6 +246,12 @@ ALTER TABLE `ventes`
 --
 ALTER TABLE `depenses`
   MODIFY `idDepense` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `entreprise`
+--
+ALTER TABLE `entreprise`
+  MODIFY `id_entreprise` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `fournisseurs`
