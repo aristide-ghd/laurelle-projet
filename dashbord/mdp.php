@@ -10,7 +10,7 @@
 
     include("../connexion.php");
     $req = " SELECT * FROM modepaiement ";
-    $reponse = $bdd -> query($req);
+    $reponse = $db -> query($req);
     $donnee = $reponse -> fetchAll();
 ?>
 

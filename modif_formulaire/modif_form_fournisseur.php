@@ -2,7 +2,7 @@
     include('../connexion.php');
     $matfournisseur = $_GET['id'];
     $req = "SELECT * FROM fournisseurs where idFournisseur= $matfournisseur";
-    $reponse = $bdd -> query($req);
+    $reponse = $db -> query($req);
     $donnee = $reponse -> fetchAll();
 ?>
 

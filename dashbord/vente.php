@@ -1,17 +1,28 @@
 <?php
-    session_start();
-    
-    // Vérification si l'utilisateur est connecté
-    if(!isset($_SESSION['logged_in'])) {
-        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
-        header("Location: ../index.php");
-        exit;
-    }
+session_start();
 
-    include("../connexion.php");
-    $req = " SELECT * FROM ventes ";
-    $reponse = $bdd -> query($req);
-    $donnee = $reponse -> fetchAll();
+// Vérification si l'utilisateur est connecté
+if(!isset($_SESSION['logged_in'])) {
+    header("Location: ../index.php");
+    exit;
+}
+
+include("../connexion.php");
+// Test de la connexion
+if (!isset($db)) {
+    die('La connexion à la base de données a échoué.');
+}
+
+// Récupération des données des ventes
+try {
+    $req = "SELECT * FROM ventes";
+    $stmt = $db->prepare($req);
+    $stmt->execute();
+    $donnee = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Erreur lors de la récupération des données : " . $e->getMessage();
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,26 +72,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                        foreach($donnee as $liste){  
-                    ?>
+                    <?php foreach($donnee as $liste): ?>
                     <tr>
-                        <td><?= $liste['idVente'] ?></td>
-                        <td><?= $liste['DateVente'] ?></td>
-                        <td><?= $liste['QuantiteVendue'] ?></td>
-                        <td><?= $liste['MontantTotal'] ?></td>
-                        <td><?= $liste['idProduit'] ?></td>
-                        <td><?= $liste['idModePaiement'] ?></td>
+                        <td><?= htmlspecialchars($liste['idVente']) ?></td>
+                        <td><?= htmlspecialchars($liste['DateVente']) ?></td>
+                        <td><?= htmlspecialchars($liste['QuantiteVendue']) ?></td>
+                        <td><?= htmlspecialchars($liste['MontantTotal']) ?></td>
+                        <td><?= htmlspecialchars($liste['idProduit']) ?></td>
+                        <td><?= htmlspecialchars($liste['idModePaiement']) ?></td>
                         <td>
-                            <a href="../modif_formulaire/modif_form_vente.php?id=<?= $liste['idVente'] ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>
-                            <button type="button" class="btn btn-danger btn-sm col-lg-5 col-md-12 col-sm-12"     data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $liste['idVente'] ?>">
+                            <a href="../modif_formulaire/modif_form_vente.php?id=<?= htmlspecialchars($liste['idVente']) ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>
+                            <button type="button" class="btn btn-danger btn-sm col-lg-5 col-md-12 col-sm-12" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= htmlspecialchars($liste['idVente']) ?>">
                                 Supprimer
                             </button>
                         </td>
                     </tr>
-                    <?php
-                        }  
-                    ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
@@ -100,7 +107,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <!-- Le lien de suppression réel -->
                     <a href="#" id="confirmDelete" class="btn btn-danger">Supprimer</a>
                 </div>
             </div>
@@ -112,8 +118,6 @@
         <p class="mb-0 ">Design by: <a href="https://ari-luxury.com" class="text-white text-decoration-none">Ari-Luxury</a></p>
     </footer>
     
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
-
     <script>
         // Script pour passer l'ID de vente à la modale et configurer le lien de suppression
         var deleteModal = document.getElementById('deleteModal');

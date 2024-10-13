@@ -2,7 +2,7 @@
     include("../connexion.php");
     $matdep = $_GET['id'];
     $req1 = "SELECT * FROM depenses where idDepense = $matdep";
-    $reponse1 = $bdd -> query($req1);
+    $reponse1 = $db -> query($req1);
     $donnee1 = $reponse1 -> fetchAll();
 
     foreach($donnee1 as $liste)
@@ -15,7 +15,7 @@
     }
 
     $req = " SELECT * FROM modepaiement ORDER BY idModePaiement";
-    $reponse = $bdd -> query($req);
+    $reponse = $db -> query($req);
     $donnee = $reponse -> fetchAll();
 ?>
 

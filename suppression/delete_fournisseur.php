@@ -8,7 +8,7 @@
         $idClient = $_GET['id'];
 
         // Préparation de la requête SQL pour supprimer le fournisseur
-        $requete = $bdd->prepare('DELETE FROM clients WHERE idClient = :idClient');
+        $requete = $db->prepare('DELETE FROM clients WHERE idClient = :idClient');
         
         // Exécution de la requête avec l'ID du fournisseur
         $requete->execute(['idClient' => $idClient]);

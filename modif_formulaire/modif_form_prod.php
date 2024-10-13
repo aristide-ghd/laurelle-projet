@@ -1,8 +1,9 @@
 <?php
-    include('../connexion.php');
+    require_once('../connexion.php');
+    require('navbar/en_tete.php');
     $matprod = $_GET['id'];
     $req = "SELECT * FROM produits where idProduit= $matprod";
-    $reponse = $bdd -> query($req);
+    $reponse = $db -> query($req);
     $donnee = $reponse -> fetchAll();
 
     // Séparer le prix de vente et la devise
