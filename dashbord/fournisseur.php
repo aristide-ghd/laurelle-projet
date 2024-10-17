@@ -42,6 +42,8 @@
             }
         }
     </style>
+
+    <?php include '../mode.php'; ?>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
