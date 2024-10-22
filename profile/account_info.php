@@ -127,7 +127,7 @@
 
         <div class="card shadow-lg border-0">
             <div class="card-body bg-white rounded">
-                <a href="modifier.php?field=nom" class="text-decoration-none text-dark">
+                <a href="../modif_infos_entreprise/identity.php" class="text-decoration-none text-dark" title="Modifier">
                     <p class="p-editable bordered-link">
                         <span>
                             <i class="fas fa-user-tie text-primary"></i>
@@ -138,7 +138,7 @@
                     </p>
                 </a>
 
-                <a href="" class="text-decoration-none text-dark">
+                <a href="../modif_infos_entreprise/email.php" class="text-decoration-none text-dark">
                     <p class="p-editable bordered-link">
                         <span>
                             <i class="fas fa-envelope text-primary"></i>
@@ -153,7 +153,7 @@
                     </p>
                 </a>
                 
-                <a href="" class="text-decoration-none text-dark">
+                <a href="../modif_infos_entreprise/phone.php" class="text-decoration-none text-dark">
                     <p class="p-editable bordered-link">
                         <span>
                             <i class="fas fa-phone text-primary"></i>
@@ -168,7 +168,7 @@
                     </p>
                 </a>
 
-                <a href="" class="text-decoration-none text-dark">
+                <a href="../modif_infos_entreprise/country.php" class="text-decoration-none text-dark">
                     <p class="p-editable bordered-link">
                         <span>
                             <i class="fas fa-globe text-primary"></i>
@@ -179,7 +179,7 @@
                     </p>
                 </a>
 
-                <a href="" class="text-decoration-none text-dark">
+                <a href="../modif_infos_entreprise/name_enterprise.php" class="text-decoration-none text-dark">
                     <p class="p-editable bordered-link">
                         <span>
                             <i class="fas fa-building text-primary"></i>
@@ -190,7 +190,7 @@
                     </p>
                 </a>
 
-                <a href="" class="text-decoration-none text-dark">
+                <a href="../modif_infos_entreprise/name_produit.php" class="text-decoration-none text-dark">
                     <p class="p-editable bordered-link">
                         <span>
                             <i class="fas fa-box text-primary"></i>
@@ -201,7 +201,7 @@
                     </p>
                 </a>
 
-                <a href="" class="text-decoration-none text-dark">
+                <a href="../modif_infos_entreprise/address_enterprise.php" class="text-decoration-none text-dark">
                     <p class="p-editable last-child">
                         <span>
                             <i class="fas fa-map-marker-alt text-primary"></i>
