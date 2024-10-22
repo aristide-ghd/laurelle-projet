@@ -39,7 +39,7 @@
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
 
-    <section class="container mt-5 flex-grow-1">
+    <section class="container my-5 flex-grow-1">
         <h1 class="ajout text-center mb-4">Voici une liste de vos produits</h1>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
@@ -99,10 +99,9 @@
         </div>
     </div>
 
-    <footer class="footer bg-dark text-white text-center py-4">
-        <p class="mb-0 ">Copyright © 2024 Homechip's Laure | Tous droits réservés</p>
-        <p class="mb-0 ">Design by: <a href="https://ari-luxury.com" class="text-white text-decoration-none">Ari-Luxury</a></p>
-    </footer>
+    <?php
+        include("../footer/pied_de_page.php");
+    ?>
 
     <!-- Bootstrap JS (optional, for interactive components) -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->

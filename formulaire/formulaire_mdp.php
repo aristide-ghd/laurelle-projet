@@ -53,10 +53,9 @@
         </form>
     </section>
 
-    <footer class="bg-dark text-white text-center py-4 footer">
-        <p class="mb-0 ">Copyright © 2024 Homechip's Laure | Tous droits réservés</p>
-        <p class="mb-0 ">Design by: <a href="https://ari-luxury.com" class="text-white text-decoration-none">Ari-Luxury</a></p>
-    </footer>
+    <?php
+        include("../footer/pied_de_page.php");
+    ?>
 
     <!-- Bootstrap JS (optional, for interactive components) -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->

@@ -39,10 +39,6 @@
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .footer {
-            /* margin-top: 4%; */
-            width: 100%;
-        }
         .bg-gradient {
             background: linear-gradient(45deg, #ff6f61, #ff946e);
         }
@@ -56,10 +52,10 @@
         .card-body i, .card-body strong {
             margin-right: 0.5rem;
         }
-        footer {
+        /* footer {
             font-size: 0.9rem;
             letter-spacing: 0.5px;
-        }
+        } */
         .bordered-link, .bordered{
             border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Bordure fine et transparente */
             margin-left: 10px;
@@ -105,10 +101,6 @@
         .whatsapp-icon {
             color: #25D366; /* Vert WhatsApp */
         }
-        /* .p-editable:hover {
-            background-color: #f0f0f0;
-            border-radius: 5px;
-        } */
     </style>
 
     <?php include '../mode.php'; ?>
@@ -138,7 +130,7 @@
                     </p>
                 </a>
 
-                <a href="../modif_infos_entreprise/email.php" class="text-decoration-none text-dark">
+                <a href="../modif_infos_entreprise/email.php" class="text-decoration-none text-dark" title="Modifier">
                     <p class="p-editable bordered-link">
                         <span>
                             <i class="fas fa-envelope text-primary"></i>
@@ -153,7 +145,7 @@
                     </p>
                 </a>
                 
-                <a href="../modif_infos_entreprise/phone.php" class="text-decoration-none text-dark">
+                <a href="../modif_infos_entreprise/phone.php" class="text-decoration-none text-dark" title="Modifier">
                     <p class="p-editable bordered-link">
                         <span>
                             <i class="fas fa-phone text-primary"></i>
@@ -168,7 +160,7 @@
                     </p>
                 </a>
 
-                <a href="../modif_infos_entreprise/country.php" class="text-decoration-none text-dark">
+                <a href="../modif_infos_entreprise/country.php" class="text-decoration-none text-dark" title="Modifier">
                     <p class="p-editable bordered-link">
                         <span>
                             <i class="fas fa-globe text-primary"></i>
@@ -179,7 +171,7 @@
                     </p>
                 </a>
 
-                <a href="../modif_infos_entreprise/name_enterprise.php" class="text-decoration-none text-dark">
+                <a href="../modif_infos_entreprise/name_enterprise.php" class="text-decoration-none text-dark" title="Modifier">
                     <p class="p-editable bordered-link">
                         <span>
                             <i class="fas fa-building text-primary"></i>
@@ -190,7 +182,7 @@
                     </p>
                 </a>
 
-                <a href="../modif_infos_entreprise/name_produit.php" class="text-decoration-none text-dark">
+                <a href="../modif_infos_entreprise/name_produit.php" class="text-decoration-none text-dark" title="Modifier">
                     <p class="p-editable bordered-link">
                         <span>
                             <i class="fas fa-box text-primary"></i>
@@ -201,7 +193,7 @@
                     </p>
                 </a>
 
-                <a href="../modif_infos_entreprise/address_enterprise.php" class="text-decoration-none text-dark">
+                <a href="../modif_infos_entreprise/address_enterprise.php" class="text-decoration-none text-dark" title="Modifier">
                     <p class="p-editable last-child">
                         <span>
                             <i class="fas fa-map-marker-alt text-primary"></i>
@@ -308,10 +300,9 @@
 
     </section>
     
-    <footer class="bg-dark text-white text-center py-4 footer">
-        <p class="mb-0 ">Copyright © 2024 Homechip's Laure | Tous droits réservés</p>
-        <p class="mb-0 ">Design by: <a href="https://ari-luxury.com" class="text-white text-decoration-none">Ari-Luxury    </a></p>
-    </footer>
+    <?php
+        include("../footer/pied_de_page.php");
+    ?>
 
     <script>
         function copyToClipboard(text) {
