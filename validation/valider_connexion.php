@@ -14,7 +14,7 @@
 
     if (isset($_POST['valider'])) 
     {
-        //Utilisation de trim pour eliminer les espaces inutiles dan les entrées
+        //Utilisation de trim pour eliminer les espaces inutiles dans les entrées
         $nom_entreprise = trim($_POST['s_name']);
         $mot_de_passe = trim($_POST['s_motdepasse']);
         
@@ -43,8 +43,8 @@
             {
                 $_SESSION['logged_in'] = true;
 
-                //Stocke le nom de l'entreprise dans la session
-                $_SESSION['user_name'] = $nom_entreprise;
+                //Stocke le mot de passe dans la session
+                $_SESSION['motDePasse'] = $donnee['motDePasse'];
 
                 //Stocke l'id de l'entreprise dans la session
                 $_SESSION['id_entreprise'] = $donnee['id_entreprise'];

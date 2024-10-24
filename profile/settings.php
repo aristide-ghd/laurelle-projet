@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page des Paramètres</title>
+    <title>Paramètres</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         .footer {
@@ -30,20 +30,20 @@
     <?php include '../navbar/en_tete.php'; ?>
 
     <section class="container my-5 pt-5 flex-grow-1">
-        <h2 class="mb-2">Modification du mot de passe</h2>
-        <form method="post" action="change_password.php">
+        <h2 class="mb-2 mt-5">Modification du mot de passe</h2>
+        <form method="post" action="../validation/change_password.php">
             <fieldset class="border p-4 rounded">
                 <div class="mb-3">
                     <label for="currentPassword" class="form-label">Mot de passe actuel</label>
-                    <input type="password" class="form-control" id="currentPassword" name="current_password" required>
+                    <input type="password" class="form-control" id="currentPassword" name="s_current_password" required>
                 </div>
                 <div class="mb-3">
                     <label for="newPassword" class="form-label">Nouveau mot de passe</label>
-                    <input type="password" class="form-control" id="newPassword" name="new_password" required>
+                    <input type="password" class="form-control" id="newPassword" name="s_new_password" required>
                 </div>
                 <div class="mb-3">
                     <label for="confirmPassword" class="form-label">Confirmer le nouveau mot de passe</label>
-                    <input type="password" class="form-control" id="confirmPassword" name="confirm_password" required>
+                    <input type="password" class="form-control" id="confirmPassword" name="s_confirm_password" required>
                 </div>
             </fieldset>
 

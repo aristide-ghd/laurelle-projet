@@ -35,11 +35,10 @@
         </div>
         <div>
             <p>
-                <a href="/terms-of-service.php">Conditions d'utilisation</a> | 
-                <a href="/privacy-policy.php">Politique de confidentialité</a>
+                <a href="../règlements/terms_of_service.php">Conditions d'utilisation</a> | 
+                <a href="../règlements/privacy_policy.php">Politique de confidentialité</a>
             </p>
         </div>
     </footer>
 </body>
 </html>
-
