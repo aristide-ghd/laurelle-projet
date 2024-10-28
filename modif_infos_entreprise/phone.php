@@ -1,6 +1,26 @@
 <?php
     session_start();
 
+    // Recuperer le message des champs stocké dans la session (si disponible)
+    $message_phone_input = isset($_SESSION['message_phone_input']) ? $_SESSION['message_phone_input'] : '';
+
+    // Recuperer le message de succès stocké dans la session (si disponible)
+    $message_phone_success = isset($_SESSION['message_phone_success']) ? $_SESSION['message_phone_success'] : '';
+
+    // Recuperer le message d'error stocké dans la session (si disponible)
+    $message_phone_error = isset($_SESSION['message_phone_error']) ? $_SESSION['message_phone_error'] : '';
+
+
+    // Supprimer le message des champs apres l'avoir affiché pour eviter qu'il persiste
+    unset($_SESSION['message_phone_input']);
+
+    // Supprimer le message de succès apres l'avoir affiché pour eviter qu'il persiste
+    unset($_SESSION['message_phone_success']);
+
+    // Supprimer le message d'error apres l'avoir affiché pour eviter qu'il persiste
+    unset($_SESSION['message_phone_error']);
+
+
     // Vérification si l'utilisateur est connecté
     if(!isset($_SESSION['logged_in'])) {
         // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
@@ -69,6 +89,33 @@
             </p>
         </a>
 
+        <!-- Affichage du message des champs -->
+        <?php if($message_phone_input != ""): ?>
+            <div class="alert alert-warning" role="alert">
+                <i class="fas fa-exclamation-triangle"></i> <?php echo $message_phone_input; ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- Affichage du message de succès -->
+        <?php if($message_phone_success != ""): ?>
+            <div class="alert alert-success" role="alert">
+                <i class="fas fa-check-circle"></i> <?php echo $message_phone_success; ?>
+            </div>
+            <!-- Utilisation de javascript pour la redirection -->
+            <script>
+                setTimeout(function() {
+                    window.location.href = "../profile/account_info.php"; // redirige vers la page d'accueil
+                }, 3000); // délai de 3 secondes
+            </script>
+        <?php endif; ?>
+
+        <!-- Affichage du message d'error -->
+        <?php if($message_phone_error != ""): ?>
+            <div class="alert alert-danger" role="alert">
+                <i class="fas fa-exclamation-triangle"></i> <?php echo $message_phone_error; ?>
+            </div>
+        <?php endif; ?>
+
         <h3 class="mb-2">Téléphone :</h3>
         <form method="post" action="../validation/valider_infos_entreprise.php">
             <fieldset class="border p-4 rounded">
@@ -79,7 +126,7 @@
             </fieldset>
 
             <div class="d-flex justify-content-between mt-4">
-                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="submit" name="submit_phone" class="btn btn-primary">Ajouter</button>
                 <button type="reset" class="btn btn-secondary">Annuler</button>
             </div>
         </form>

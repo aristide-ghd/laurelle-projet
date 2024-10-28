@@ -1,5 +1,10 @@
 <?php
-    session_start();
+    // Activer l'affichage des erreurs
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    session_start(); // Initialiser la session
 
     // Vérification si l'utilisateur est connecté
     if(!isset($_SESSION['logged_in'])) {
@@ -8,10 +13,11 @@
         exit;
     }
 
-    include("../connexion.php");
+    include("../connexion.php"); // Connexion a la base de donnée
 
-    $id_entreprise = $_SESSION['id_entreprise'];
+    $id_entreprise = $_SESSION['id_entreprise']; // Recupération d'id de lentreprise dans la session
 
+    // Requete pour afficher les infos de l'entreprise 
     $query = "SELECT * FROM entreprise WHERE id_entreprise = :id_entreprise";
     $stmt = $bdd -> prepare($query);
     $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);

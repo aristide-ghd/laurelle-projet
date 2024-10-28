@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-    <footer class="text-center bg-dark text-white pt-3 pb-2 d-flex justify-content-around">
+    <footer class="text-center bg-dark text-white pt-3 pb-2 d-lg-flex d-md-block justify-content-around">
         <div>
             <p>&copy; <?php echo date("Y"); ?> Homechip's Laure. Tous droits réservés.</p>
         </div>
