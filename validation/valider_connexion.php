@@ -5,12 +5,10 @@
     error_reporting(E_ALL);
 
     session_start(); // Initialiser la session
+    session_regenerate_id(true); // Regenere l'id de session pour plus de securité
 
-    include("../connexion.php");
+    include("../connexion.php"); // Connexion a la base de donnée
 
-    $message_input = "";
-    $message_login = "";
-    $message_success = "";
 
     if (isset($_POST['valider'])) 
     {
@@ -22,10 +20,6 @@
         {
             //Stocker les messages dans la session 
             $_SESSION['message_input'] = "Veuillez remplir tous les champs";
-
-            //Redirection
-            header("location: ../index.php");
-            exit();
         } 
         else 
         {
@@ -51,21 +45,16 @@
 
                 //Stocker les messages dans la session
                 $_SESSION['message_success'] = "Connexion réussie avec succès! Veuillez patienter quelques instants.";
-
-                //Redirection
-                header("location: ../index.php");
-
-                exit();
             } 
             else 
             {
                 //Stocker les messages dans la session
                 $_SESSION['message_login'] = "Paramètres de connexion invalide";
-
-                //Redirection
-                header("location: ../index.php");
-                exit();
             }
         }
+
+        //Redirection
+        header("location: ../index.php");
+        exit();
     }
 ?>

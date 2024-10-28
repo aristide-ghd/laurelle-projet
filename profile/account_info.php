@@ -1,10 +1,11 @@
 <?php
     // Activer l'affichage des erreurs
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+    // ini_set('display_errors', 1);
+    // ini_set('display_startup_errors', 1);
+    // error_reporting(E_ALL);
 
     session_start(); // Initialiser la session
+    session_regenerate_id(true); // Regenere l'id de session pour plus de securité
 
     // Vérification si l'utilisateur est connecté
     if(!isset($_SESSION['logged_in'])) {
@@ -14,6 +15,11 @@
     }
 
     include("../connexion.php"); // Connexion a la base de donnée
+
+    // Vérification de la connexion à la base de données
+    if (!$bdd) {
+        die("Erreur de connexion à la base de données");
+    }
 
     $id_entreprise = $_SESSION['id_entreprise']; // Recupération d'id de lentreprise dans la session
 
@@ -26,6 +32,7 @@
 
     if (!$entreprise) 
     {
+        // Affichage d'un message si aucune information de l'entreprise n'est trouvée
         echo "Aucune information disponible pour l'entreprise.";
         exit;
     }
@@ -39,12 +46,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informations du compte</title>
 
+    <!-- Inclusion de la bibliothèque Bootstrap pour le style -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
+    <!-- Inclusion de Font Awesome pour les icônes -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
+        /* Styles personnalisés pour les sections de la page */
         .bg-gradient {
             background: linear-gradient(45deg, #ff6f61, #ff946e);
         }
@@ -109,7 +120,7 @@
         }
     </style>
 
-    <?php include '../mode.php'; ?>
+    <?php include '../mode.php'; // Inclusion du mode d'affichage (clair/sombre) ?> 
 </head>
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
@@ -123,6 +134,7 @@
             </h2>
         </div>
 
+        <!-- Affichage des informations principales de l'entreprise -->
         <div class="card shadow-lg border-0">
             <div class="card-body bg-white rounded">
                 <a href="../modif_infos_entreprise/identity.php" class="text-decoration-none text-dark" title="Modifier">
@@ -136,6 +148,7 @@
                     </p>
                 </a>
 
+                <!-- Adresse e-mail avec option de copie -->
                 <a href="../modif_infos_entreprise/email.php" class="text-decoration-none text-dark" title="Modifier">
                     <p class="p-editable bordered-link">
                         <span>
@@ -151,6 +164,8 @@
                     </p>
                 </a>
                 
+                <!-- Informations supplémentaires : téléphone, pays, nom de l'entreprise, etc. -->
+                <!-- Chaque section est un lien qui redirige vers une page de modification -->
                 <a href="../modif_infos_entreprise/phone.php" class="text-decoration-none text-dark" title="Modifier">
                     <p class="p-editable bordered-link">
                         <span>

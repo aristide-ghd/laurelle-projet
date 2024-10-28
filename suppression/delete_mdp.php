@@ -2,6 +2,16 @@
     // Inclusion de la connexion à la base de données
     include("../connexion.php");
 
+    // Vérification de la connexion à la base de données
+    if (!$bdd) {
+        die("Erreur de connexion à la base de données");
+    }
+
+    // Vérification de la connexion à la base de données
+    if (!$bdd) {
+        die("Erreur de connexion à la base de données");
+    }
+
     // Vérification si l'ID du mode de paiement est passé dans l'URL
     if (isset($_GET['id'])) {
         // Récupération de l'ID du mode de paiement

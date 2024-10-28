@@ -1,20 +1,26 @@
 <?php
-    session_start();
+    // Activer l'affichage des erreurs pour le developpement
+    // ini_set('display_errors', 1);
+    // ini_set('display_startup_errors', 1);
+    // error_reporting(E_ALL);
+
+    session_start(); // Initialiser la session
+    session_regenerate_id(true); // Regenere l'id de session pour plus de securité
 
     // Récupere le message des champs stocké dans la session (si disponible)
-    $message_input = isset($_SESSION['message_input']) ? $_SESSION['message_input'] : '';
+    $message_input = htmlspecialchars($_SESSION['message_input'] ?? '', ENT_QUOTES, 'UTF-8');
 
     //Recupere le message d'email stocké dans la session (si disponible)
-    $message_email = isset($_SESSION['message_email']) ? $_SESSION['message_email'] : '';
+    $message_email = htmlspecialchars($_SESSION['message_email'] ?? '', ENT_QUOTES, 'UTF-8');
 
     // Récupere le message de mot de passe stocké dans la session (si disponible)
-    $message_password = isset($_SESSION['message_password']) ? $_SESSION['message_password'] : '';
+    $message_password = htmlspecialchars($_SESSION['message_password'] ?? '', ENT_QUOTES, 'UTF-8');
 
     // Récupere le message d'utilisateur stocké dans la session (si disponible)
-    $message_user = isset($_SESSION['message_user']) ? $_SESSION['message_user'] : '';
+    $message_user = htmlspecialchars($_SESSION['message_user'] ?? '', ENT_QUOTES, 'UTF-8');
 
     // Récupere le message d'inscription stocké dans la session (si disponible)
-    $message_register = isset($_SESSION['message_register']) ? $_SESSION['message_register'] : '';
+    $message_register = htmlspecialchars($_SESSION['message_register'] ?? '', ENT_QUOTES, 'UTF-8');
 
 
     // Supprime le message des champs après l'avoir affiché pour éviter qu'il persiste
@@ -47,8 +53,11 @@
 
     <!-- Charge la feuille de style CSS pour la bibliothèque intl-tel-input version 17.0.8, qui stylise le champ de saisie des numéros de téléphone avec un drapeau et un code de pays -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
-    <title>Page d'inscription</title>
+
+    <title>Inscription</title>
+
     <style>
+        /* Styles personnalisés pour les sections de la page */
         .pays{
             padding-top: 14px;
             padding-bottom: 15px;
@@ -93,8 +102,11 @@
 </head>
 <body>
     <div class="container d-lg-flex d-md-block d-sm-block justify-content-center mt-5 my-md-4 py-lg-5 py-md-0 my-sm-4">
+
         <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+
             <div class="row g-0">
+
                 <!-- Section image -->
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <img class="img-fluid rounded h-100" src="../image/register2.jpg" alt="Image d'inscription">
@@ -102,9 +114,13 @@
 
                 <!-- Formulaire d'inscription -->
                 <div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-center">
+
                     <div class="card-body p-5">
+
                         <h2 class="text-primary text-center mb-4"><i class="fas fa-user-plus me-2"></i>Inscrivez-vous</h2>
+
                         <form action="../validation/valider_inscription.php" method="post">
+                            
                             <!-- Affichage du message des champs -->
                             <?php if($message_input != ""): ?>
                                 <div class="alert alert-warning" role="alert">

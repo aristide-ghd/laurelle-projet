@@ -1,14 +1,20 @@
 <?php
-    session_start();
+    // Activer l'affichage des erreurs pour le developpement
+    // ini_set('display_errors', 1);
+    // ini_set('display_startup_errors', 1);
+    // error_reporting(E_ALL);
+
+    session_start(); // Initialiser la session
+    session_regenerate_id(true); // Regenere l'id de session pour plus de securité
 
     // Recuperer le message des champs stocké dans la session (si disponible)
-    $message_identity_input = isset($_SESSION['message_identity_input']) ? $_SESSION['message_identity_input'] : '';
+    $message_identity_input = htmlspecialchars($_SESSION['message_identity_input'] ?? '', ENT_QUOTES, 'UTF-8');
 
     // Recuperer le message de succès stocké dans la session (si disponible)
-    $message_identity_success = isset($_SESSION['message_identity_success']) ? $_SESSION['message_identity_success'] : '';
+    $message_identity_success = htmlspecialchars($_SESSION['message_identity_success'] ?? '', ENT_QUOTES, 'UTF-8');
 
     // Recuperer le message d'error stocké dans la session (si disponible)
-    $message_identity_error = isset($_SESSION['message_identity_error']) ? $_SESSION['message_identity_error'] : '';
+    $message_identity_error = htmlspecialchars($_SESSION['message_identity_error'] ?? '', ENT_QUOTES, 'UTF-8');
 
 
     // Supprimer le message des champs apres l'avoir affiché pour eviter qu'il persiste
@@ -28,15 +34,16 @@
         exit;
     }
 
-    include('../connexion.php');
+    include('../connexion.php'); // Connexion a la base de donnée
 
     // Vérification de la connexion à la base de données
     if (!$bdd) {
         die("Erreur de connexion à la base de données");
     }
 
-    $id_entreprise = $_SESSION['id_entreprise'];
+    $id_entreprise = $_SESSION['id_entreprise']; // Recupération d'id de lentreprise dans la session
 
+    // Requete pour afficher le nom et prenom
     $query = "SELECT Nom, Prenom FROM entreprise WHERE id_entreprise = :id_entreprise";
     $stmt = $bdd -> prepare($query);
     $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
@@ -45,6 +52,7 @@
 
     if (!$entreprise)
     {
+        // Affichage d'un message si aucune information de l'entreprise n'est trouvée
         echo "Aucune information disponible pour l'entreprise.";
         exit;
     }
@@ -56,9 +64,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Modification de l'identité</title>
+
+    <!-- Inclusion de la bibliothèque Bootstrap pour le style -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <style>
+        /* Styles personnalisés pour les sections de la page */
         .footer {
             /* margin-top: 4%; */
             width: 100%;
@@ -71,7 +84,7 @@
         }
     </style>
     
-    <?php include '../mode.php'; ?>
+    <?php include '../mode.php'; // Inclusion du mode d'affichage (clair/sombre) ?>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>

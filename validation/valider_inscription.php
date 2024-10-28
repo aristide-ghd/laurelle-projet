@@ -4,18 +4,15 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    session_start(); //Initialiser la session 
+    session_start(); // Initialiser la session
+    session_regenerate_id(true); // Regenere l'id de session pour plus de securité
 
-    include("../connexion.php");
+    include("../connexion.php"); // Connexion a la base de donnée
 
-    $message_input = "";
-    $message_email = "";
-    $message_password = "";
-    $message_user = "";
-    $message_register = "";
 
     if(isset($_POST['valider']))
     {
+        // Recuperation de données du formulaire 
         $nom = $_POST['s_nom'];
         $prenom = $_POST['s_prenom'];
         $email = $_POST['s_email'];
@@ -27,42 +24,27 @@
         $password = $_POST['s_password'];
         $password_confirm = $_POST['s_password_confirm'];
 
-        //Verification si les champs sont remplis
+        // Verification si les champs sont remplis
         if(empty($nom) || empty($prenom) || empty($email) || empty($phone) || empty($country) || empty($nom_entreprise) || empty($produit) || empty($adresse_entreprise) || empty($password) || empty($password_confirm))
         {
-            $message_input = "Veuillez remplir tous les champs";
-
             // Stocker les messages dans la session
-            $_SESSION['message_input'] = $message_input;
-
-            header("location: ../dashbord/inscription.php");
-            exit();
+            $_SESSION['message_input'] = "Veuillez remplir tous les champs";
         }
         else
         {
-            //Verification de la validité de l'email
+            // Verification de la validité de l'email
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)) 
             {
-                $message_email = "Adresse email invalide";
-
-                //Stocker les messages dans la session
-                $_SESSION['message_email'] = $message_email;
-
-                header("location: ../dashbord/inscription.php");
-                exit();
+                // Stocker les messages dans la session
+                $_SESSION['message_email'] = "Adresse email invalide";
             }
             else
             {
-                //Verification si les mots de passe correspondent
+                // Verification si les mots de passe correspondent
                 if($password !== $password_confirm)
                 {
-                    $message_password = "Les mots de passe ne correspondent pas";
-
                     // Stocker les messages dans la session
-                    $_SESSION['message_password'] = $message_password;
-
-                    header("location: ../dashbord/inscription.php");
-                    exit();
+                    $_SESSION['message_password'] = "Les mots de passe ne correspondent pas";
                 }
                 else
                 {
@@ -74,13 +56,8 @@
 
                     if($donnee)
                     {
-                        $message_user = "Cet utilisateur existe déjà";
-
                         // Stocker les messages dans la session
-                        $_SESSION['message_user']  = $message_user;
-
-                        header("location: ../dashbord/inscription.php");
-                        exit();
+                        $_SESSION['message_user']  = "Cet utilisateur existe déjà";
                     }
                     else
                     {
@@ -103,17 +80,15 @@
                             'mot_de_passe' => $hashed_password
                         ]);
 
-                        $message_register = "Inscription réussie. Vous serez redirigé vers la page de connexion dans quelques instants";
-
                         // Stocker les messages dans la session
-                        $_SESSION['message_register'] = $message_register;
-
-                        // Redirection après enregistrements des informations 
-                        header("location: ../dashbord/inscription.php");
-                        exit();
+                        $_SESSION['message_register'] = "Inscription réussie. Vous serez redirigé vers la page de connexion dans quelques instants";
                     }
                 }
             }
         }
+
+        // Redirection après enregistrements des informations 
+        header("location: ../dashbord/inscription.php");
+        exit();
     }
 ?>

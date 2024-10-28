@@ -1,14 +1,21 @@
 <?php
-    session_start(); //Initialiser la session
+    // Activer l'affichage des erreurs pour le developpement
+    // ini_set('display_errors', 1);
+    // ini_set('display_startup_errors', 1);
+    // error_reporting(E_ALL);
+
+    session_start(); // Initialiser la session
+    session_regenerate_id(true); // Regenere l'id de session pour plus de securité
+
     
     // Récupere le message des champs stocké dans la session (si disponible)
-    $message_input = isset($_SESSION['message_input']) ? $_SESSION['message_input'] : '';
+    $message_input = htmlspecialchars($_SESSION['message_input'] ?? '', ENT_QUOTES, 'UTF-8');
 
     // Récupere le message de connexion invalide stocké dans la session (si disponible)
-    $message_login = isset($_SESSION['message_login']) ? $_SESSION['message_login'] : '';
+    $message_login = htmlspecialchars($_SESSION['message_login'] ?? '', ENT_QUOTES, 'UTF-8');
 
     // Récupere le message de connexion reussie stocké dans la session (si disponible)
-    $message_success = isset($_SESSION['message_success']) ? $_SESSION['message_success'] : '';
+    $message_success = htmlspecialchars($_SESSION['message_success'] ?? '', ENT_QUOTES, 'UTF-8');
 
 
     // Supprime le message des champs après l'avoir affiché pour éviter qu'il persiste
@@ -19,6 +26,7 @@
 
     // Supprime le message de connexion reussie après l'avoir affiché pour éviter qu'il persiste
     unset($_SESSION['message_success']);
+
 ?>
 
 <!DOCTYPE html>
@@ -32,8 +40,11 @@
 
     <!-- Charge la bibliothèque de styles Font Awesome version 6.0.0 pour afficher des icônes vectorielles (comme des utilisateurs, des flèches, etc.) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <title>Page de connexion</title>
+
+    <title>Connexion</title>
+
     <style>
+        /* Styles personnalisés pour les sections de la page */
         body {
             background: linear-gradient(45deg, #6a11cb, #2575fc);
             font-family: 'Roboto', sans-serif;

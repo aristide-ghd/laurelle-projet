@@ -5,6 +5,7 @@
     error_reporting(E_ALL);
 
     session_start(); //Initialiser la session
+    session_regenerate_id(true); // Regenere l'id de session pour plus de securité
 
     // Vérification si l'utilisateur est connecté
     if(!isset($_SESSION['logged_in'])) {
@@ -18,11 +19,6 @@
 
     include("../connexion.php"); // Connexion a la base de donnée
 
-    // Déclaration des messages a afficher
-    $message_keyword_input = "";
-    $message_keyword_current = "";
-    $message_keyword_same = "";
-    $message_keyword_success = "";
 
     // Condition a la soumission du formulaire
     if(isset($_POST['submit_keyword']))
@@ -36,14 +32,8 @@
         //Vérification si les champs ne sont pas vides
         if (empty($current_password) || empty($new_password) || empty($confirm_password))
         {
-            $message_keyword_input = "Veuillez remplir tous les champs.";
-
             // Stocker le message dans la session
-            $_SESSION['message_keyword_input'] = $message_keyword_input;
-
-            // Redirection
-            header("location: ../profile/settings.php");
-            exit();
+            $_SESSION['message_keyword_input'] = "Veuillez remplir tous les champs.";
         }
         else
         {
@@ -57,62 +47,43 @@
             // Vérification si le mot de passe actuel est incorrect
             if (!password_verify($current_password, $donnee['motDePasse']))
             {
-                $message_keyword_current = "Votre mot de passe actuel est incorrect.";
-
                 // Stocker le message dans la session
-                $_SESSION['message_keyword_current'] = $message_keyword_current;
-
-                // Redirection
-                header("location: ../profile/settings.php");
-                exit();
+                $_SESSION['message_keyword_current'] = "Votre mot de passe actuel est incorrect.";
             }
             else
             {
                 // Verification si les nouveaux mots de passe sont identiques
                 if($new_password != $confirm_password)
                 {
-                    $message_keyword_same = "Les mots de passe nouvellement définis ne correspondent pas.";
-
                     // Stocker le message dans la session
-                    $_SESSION['message_keyword_same'] = $message_keyword_same;
-
-                    // Redirection
-                    header("location: ../profile/settings.php");
-                    exit();
+                    $_SESSION['message_keyword_same'] = "Les mots de passe nouvellement définis ne correspondent pas.";
                 }
                 else
                 {
                     $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
 
-                    // Requete pour enregistrer le nouveau mot de passe dans la base de donnée
-                    $req = "UPDATE entreprise
-                    SET motDePasse = '$hashed_password'
-                    WHERE id_entreprise = '$id_entreprise' ";
+                    // Requête pour mettre à jour le mot de passe dans la base de données
+                    $req = "UPDATE entreprise SET motDePasse = :hashed_password WHERE id_entreprise = :id_entreprise";
+                    $stmt = $bdd -> prepare($req);
+                    $stmt -> bindParam(':hashed_password', $hashed_password, PDO::PARAM_STR);
+                    $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
 
-                    if($bdd -> query($req) == true)
+                    if($stmt -> execute())
                     {
-                        $message_keyword_success = "Votre mot de passe a été mis a jour avec succès.";
-
                         // Stocker le message dans la session
-                        $_SESSION['message_keyword_success'] = $message_keyword_success;
-
-                        // Redirection
-                        header("location: ../profile/settings.php");
-                        exit();
+                        $_SESSION['message_keyword_success'] = "Votre mot de passe a été mis a jour avec succès.";
                     }
                     else
                     {
-                        $message_keyword_fail = "Echec de modification du mot de passe";
-
                         // Stocker le message dans la session
-                        $_SESSION['message_keyword_fail'] = $message_keyword_fail;
-
-                        // Redirection
-                        header("location: ../profile/settings.php");
-                        exit();
+                        $_SESSION['message_keyword_fail'] = "Echec de modification du mot de passe";
                     }
                 }
             }
         }
+
+        // Redirection
+        header("location: ../profile/settings.php");
+        exit();
     }
 ?>

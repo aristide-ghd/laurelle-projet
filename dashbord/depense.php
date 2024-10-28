@@ -9,6 +9,7 @@
     }
 
     include("../connexion.php");
+    
     $req = " SELECT * FROM depenses ";
     $reponse = $bdd -> query($req);
     $donnee = $reponse -> fetchAll();

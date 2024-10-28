@@ -1,25 +1,26 @@
 <?php
-    // Activer l'affichage des erreurs
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+    // Activer l'affichage des erreurs pour le developpement
+    // ini_set('display_errors', 1);
+    // ini_set('display_startup_errors', 1);
+    // error_reporting(E_ALL);
 
     session_start(); // Initialiser la session
+    session_regenerate_id(true); // Regenere l'id de session pour plus de securité
 
     // Recuperation du message des champs stocké dans la session (si disponible)
-    $message_keyword_input = isset($_SESSION['message_keyword_input']) ? $_SESSION['message_keyword_input'] : '';
+    $message_keyword_input = htmlspecialchars($_SESSION['message_keyword_input'] ?? '', ENT_QUOTES, 'UTF-8');
 
     // Recuperation du message du mot de passe actuel stocké dans la session (si disponible)
-    $message_keyword_current = isset($_SESSION['message_keyword_current']) ? $_SESSION['message_keyword_current'] : '';
+    $message_keyword_current = htmlspecialchars($_SESSION['message_keyword_current'] ?? '', ENT_QUOTES, 'UTF-8');
 
     // Recuperation du message de mots de passe non identiques stocké dans la session (si disponible)
-    $message_keyword_same = isset($_SESSION['message_keyword_same']) ? $_SESSION['message_keyword_same'] : '';
+    $message_keyword_same = htmlspecialchars($_SESSION['message_keyword_same'] ?? '', ENT_QUOTES, 'UTF-8');
 
     // Recuperation du message de mot de passe enregistré avec succès stocké dans la session (si disponible)
-    $message_keyword_success = isset($_SESSION['message_keyword_success']) ? $_SESSION['message_keyword_success'] : '';
+    $message_keyword_success = htmlspecialchars($_SESSION['message_keyword_success'] ?? '', ENT_QUOTES, 'UTF-8');
 
     // Recuperation du message d'echec de modification stocké dans la session (si disponible)
-    $message_keyword_fail = isset($_SESSION['message_keyword_fail']) ? $_SESSION['message_keyword_fail'] : '';
+    $message_keyword_fail = htmlspecialchars($_SESSION['message_keyword_fail'] ?? '', ENT_QUOTES, 'UTF-8');
 
 
     // Supprime le message des champs apres l'avoir affiché pour eviter qu'il persiste 
