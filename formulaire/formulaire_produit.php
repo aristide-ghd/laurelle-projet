@@ -4,8 +4,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    session_start(); // Initialiser la session
-    session_regenerate_id(true); // Regenere l'id de session pour plus de securité
+    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
     // Recuperer le message des champs stocké dans la session (si disponible)
     $message_produit_input = htmlspecialchars($_SESSION['message_produit_input'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -25,14 +24,6 @@
 
     // Supprimer le message d'echec apres l'avoir affiché pour eviter qu'il persiste
     unset($_SESSION['message_produit_fail']);
-
-
-    // Vérification si l'utilisateur est connecté
-    if(!isset($_SESSION['logged_in'])) {
-        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
-        header("Location: ../index.php");
-        exit;
-    }
 ?>
 
 

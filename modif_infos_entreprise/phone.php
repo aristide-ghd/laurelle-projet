@@ -4,8 +4,7 @@
     // ini_set('display_startup_errors', 1);
     // error_reporting(E_ALL);
 
-    session_start(); // Initialiser la session
-    session_regenerate_id(true); // Regenere l'id de session pour plus de securité
+    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
     // Recuperer le message des champs stocké dans la session (si disponible)
     $message_phone_input = htmlspecialchars($_SESSION['message_phone_input'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -27,19 +26,9 @@
     unset($_SESSION['message_phone_error']);
 
 
-    // Vérification si l'utilisateur est connecté
-    if(!isset($_SESSION['logged_in'])) {
-        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
-        header("Location: ../index.php");
-        exit;
-    }
-
     include('../connexion.php'); // Connexion a la base de donnée
 
-    // Vérification de la connexion à la base de données
-    if (!$bdd) {
-        die("Erreur de connexion à la base de données");
-    }
+    include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
     $id_entreprise = $_SESSION['id_entreprise']; // Recupération d'id de lentreprise dans la session
 

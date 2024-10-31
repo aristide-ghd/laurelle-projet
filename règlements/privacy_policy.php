@@ -1,19 +1,10 @@
 <?php
-
     // Activer l'affichage des erreurs pour le developpement
     // ini_set('display_errors', 1);
     // ini_set('display_startup_errors', 1);
     // error_reporting(E_ALL);
 
-    session_start(); // Initialiser la session
-    session_regenerate_id(true); // Regenere l'id de session pour plus de securité
-
-    // Vérification si l'utilisateur est connecté
-    if(!isset($_SESSION['logged_in'])) {
-        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
-        header("Location: ../index.php");
-        exit;
-    }
+    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 ?>
 
 

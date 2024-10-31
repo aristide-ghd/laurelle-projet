@@ -9,6 +9,8 @@
 
     include("../connexion.php"); // Connexion a la base de donnée
 
+    include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
+
 
     if(isset($_POST['valider']))
     {
