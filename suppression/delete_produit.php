@@ -10,7 +10,7 @@
         $idProduit = $_GET['id'];
 
         // Préparation de la requête SQL pour supprimer le produit
-        $requete = $bdd->prepare('DELETE FROM produits WHERE idProduit = :idProduit');
+        $requete = $db->prepare('DELETE FROM produits WHERE idProduit = :idProduit');
         
         // Exécution de la requête avec l'ID du produit
         $requete->execute(['idProduit' => $idProduit]);

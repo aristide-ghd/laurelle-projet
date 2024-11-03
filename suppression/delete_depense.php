@@ -10,7 +10,7 @@
         $idDepense = $_GET['id'];
 
         // Préparation de la requête SQL pour supprimer la depense
-        $requete = $bdd->prepare('DELETE FROM depenses WHERE idDepense = :idDepense');
+        $requete = $db->prepare('DELETE FROM depenses WHERE idDepense = :idDepense');
         
         // Exécution de la requête avec l'ID de la depense
         $requete->execute(['idDepense' => $idDepense]);

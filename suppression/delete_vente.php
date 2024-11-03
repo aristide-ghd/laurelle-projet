@@ -10,7 +10,7 @@
         $idVente = $_GET['id'];
 
         // Préparation de la requête SQL pour supprimer la vente
-        $requete = $bdd->prepare('DELETE FROM ventes WHERE idVente = :idVente');
+        $requete = $db->prepare('DELETE FROM ventes WHERE idVente = :idVente');
         
         // Exécution de la requête avec l'ID de la vente
         $requete->execute(['idVente' => $idVente]);
