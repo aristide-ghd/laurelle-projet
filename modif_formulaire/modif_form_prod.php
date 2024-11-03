@@ -31,15 +31,23 @@
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
-    $matprod = $_GET['id'];
+    $matprod = $_GET['id']; // Recuperation de l'id du produit a modifier
+
+    // Preparer les requetes pour eviter l'injection SQL
     $req = "SELECT * FROM produits WHERE idProduit = :idProduit";
     $stmt = $bdd -> prepare($req);
     $stmt -> execute(['idProduit' => $matprod]);
-    $donnee = $stmt -> fetchAll();
+    $update_produits = $stmt -> fetchAll();
 
+    if (!$update_produits)
+    {
+        // Affichage d'un message si aucune information n'est trouvée
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
+        exit();
+    }
 
     // Séparer le prix de vente et la devise
-    foreach ($donnee as &$liste) {
+    foreach ($update_produits as $liste) {
         $prixVenteDetails = explode(' ', $liste['PrixVente']);
         $liste['Prix'] = $prixVenteDetails[0]; // Le prix sans la devise
         $liste['DevisePrixVente'] = $prixVenteDetails[1]; // La devise
@@ -66,8 +74,10 @@
         }
     </style>
 
-    <?php include '../mode.php'; ?>
+    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
+
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
 
@@ -107,7 +117,7 @@
             <fieldset class="border p-4 rounded">
                 <legend class="fw-bold">Produit</legend>
 
-                <?php foreach($donnee as $liste){ ?>
+                <?php foreach($update_produits as $liste): ?>
 
                     <div class="mb-3">
                         <label for="s_numero" class="form-label">Matricule Produit :</label>
@@ -158,7 +168,8 @@
                         </div>
                     </div>
 
-                <?php } ?>
+                <?php endforeach; ?>
+
             </fieldset>
             
             <div class="mt-4 text-center">
@@ -187,4 +198,5 @@
         }
     </script>
 </body>
+
 </html>

@@ -30,11 +30,19 @@
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
-    $matmdp = $_GET['id'];
+    $matmdp = $_GET['id']; // Recuperation de l'id du mode de paiement a modifier
 
-    $req1 = "SELECT * FROM modepaiement WHERE idModePaiement = $matmdp";
-    $reponse1 = $bdd -> query($req1);
-    $donnee1 = $reponse1 -> fetchAll();
+    // Preparer les requetes pour eviter l'injection SQL
+    $req = $bdd -> prepare("SELECT * FROM modepaiement WHERE idModePaiement = $matmdp");
+    $req -> execute();
+    $update_mdp = $req -> fetchAll();
+
+    if (!$update_mdp)
+    {
+        // Affichage d'un message si aucune information n'est trouvée
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -54,8 +62,10 @@
         }
     </style>
 
-    <?php include '../mode.php'; ?>
+    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
+
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
 
@@ -95,19 +105,20 @@
             <fieldset class="border p-4 rounded">
                 <legend class="fw-bold">Mode de Paiement</legend>
 
-                <?php foreach($donnee1 as $liste){ ?>
+                <?php foreach($update_mdp as $liste): ?>
 
-                <div class="mb-3">
-                    <label for="s_numero" class="form-label">Matricule Mode Paiement :</label>
-                    <input type="text" id="s_numero" name="s_numero" class="form-control" value="<?= $liste['idModePaiement'] ?>" readonly>
-                </div>
+                    <div class="mb-3">
+                        <label for="s_numero" class="form-label">Matricule Mode Paiement :</label>
+                        <input type="text" id="s_numero" name="s_numero" class="form-control" value="<?= $liste['idModePaiement'] ?>" readonly>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="s_nom_modepaiement" class="form-label">Nom Mode de Paiement :</label>
-                    <input type="text" id="s_nom_modepaiement" name="s_nom_modepaiement" class="form-control" value="<?= $liste['NomModePaiement'] ?>">
-                </div>
+                    <div class="mb-3">
+                        <label for="s_nom_modepaiement" class="form-label">Nom Mode de Paiement :</label>
+                        <input type="text" id="s_nom_modepaiement" name="s_nom_modepaiement" class="form-control" value="<?= $liste['NomModePaiement'] ?>">
+                    </div>
 
-                <?php } ?>
+                <?php endforeach; ?>
+
             </fieldset>
 
             <div class="mt-4 text-center">
@@ -123,4 +134,5 @@
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
+
 </html>

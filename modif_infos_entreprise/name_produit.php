@@ -1,8 +1,8 @@
 <?php
     // Activer l'affichage des erreurs pour le developpement
-    // ini_set('display_errors', 1);
-    // ini_set('display_startup_errors', 1);
-    // error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
     include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
@@ -74,7 +74,9 @@
     </style>
     
     <?php include '../mode.php'; // Inclusion du mode d'affichage (clair/sombre) ?>
+
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
 
@@ -98,6 +100,7 @@
             <div class="alert alert-success" role="alert">
                 <i class="fas fa-check-circle"></i> <?php echo $message_name_produit_success; ?>
             </div>
+            
             <!-- Utilisation de javascript pour la redirection -->
             <script>
                 setTimeout(function() {
@@ -136,4 +139,5 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
 
 </body>
+
 </html>

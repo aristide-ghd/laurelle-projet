@@ -30,7 +30,7 @@
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
-    // Préparer les requêtes pour éviter l'injection SQL
+    // Préparation les requêtes pour éviter l'injection SQL
     $req = $bdd -> prepare("SELECT * FROM produits ORDER BY idProduit");
     $req -> execute();
     $produits = $req -> fetchAll();
@@ -42,14 +42,14 @@
     if (!$produits)
     {
         // Affichage d'un message si aucune information n'est trouvée
-        echo "Erreur lors de la recuperation des données. Veuillew reessayer plus tard !";
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
         exit();
     }
 
     if (!$modes_paiement)
     {
         // Affichage d'un message si aucune information n'est trouvée
-        echo "Erreur lors de la recuperation des données. Veuillew reessayer plus tard !";
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
         exit();
     }
 ?>
@@ -73,7 +73,7 @@
         }
     </style>
 
-    <?php include '../mode.php'; ?>
+    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
@@ -130,7 +130,7 @@
                             <option value="CFA">CFA</option>
                             <option value="EUR">Euro</option>
                             <option value="USD">Dollar</option>
-                            <!-- Ajouter d'autres devises si nécessaire -->
+                            <!-- Ajout d'autres devises si nécessaire -->
                         </select>
                     </div>
                 </div>

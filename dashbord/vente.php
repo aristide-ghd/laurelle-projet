@@ -1,13 +1,27 @@
 <?php
+    // Activer l'affichage des erreurs pour le developpement
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+
     include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
     include("../connexion.php"); // Connexion a la base de donnée
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
     
-    $req = " SELECT * FROM ventes ";
-    $reponse = $bdd -> query($req);
-    $donnee = $reponse -> fetchAll();
+    // Préparer les requêtes pour éviter l'injection SQL
+    $req = $bdd -> prepare(" SELECT * FROM ventes ");
+    $req -> execute();
+    $ventes = $req -> fetchAll();
+
+    if (!$ventes)
+    {
+        // Affichage d'un message si aucune information n'est trouvée
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,8 +55,10 @@
         }
     </style>
 
-    <?php include '../mode.php'; ?>
+    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
+
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
 
@@ -50,6 +66,7 @@
         <h1 class="ajout mb-4 text-center">Voici ci-joint une liste des ventes effectuées</h1>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
+
                 <thead class="table-dark">
                     <tr>
                         <th>Matricule Vente</th>
@@ -61,6 +78,7 @@
                         <th class="col-lg-2 col-md-2">Actions</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     <?php
                         foreach($donnee as $liste){  
@@ -74,7 +92,7 @@
                         <td><?= $liste['idModePaiement'] ?></td>
                         <td>
                             <a href="../modif_formulaire/modif_form_vente.php?id=<?= $liste['idVente'] ?>" class="btn btn-primary btn-sm col-lg-5 col-md-12 col-sm-12">Modifier</a>
-                            <button type="button" class="btn btn-danger btn-sm col-lg-5 col-md-12 col-sm-12"     data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $liste['idVente'] ?>">
+                            <button type="button" class="btn btn-danger btn-sm col-lg-5 col-md-12 col-sm-12" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $liste['idVente'] ?>">
                                 Supprimer
                             </button>
                         </td>
@@ -83,6 +101,7 @@
                         }  
                     ?>
                 </tbody>
+
             </table>
         </div>
 
@@ -100,10 +119,12 @@
                     <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
                 <div class="modal-body">
                     Êtes-vous sûr de vouloir supprimer cette vente ? <br>
                     Cette action est irréversible.
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                     <!-- Le lien de suppression réel -->
@@ -130,5 +151,7 @@
             confirmDelete.href = '../suppression/delete_vente.php?id=' + idVente; // Configuration du lien de suppression
         });
     </script>
+
 </body>
+
 </html>

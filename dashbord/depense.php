@@ -1,13 +1,27 @@
 <?php
+    // Activer l'affichage des erreurs
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    
     include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
     include("../connexion.php"); // Connexion a la base de donnée
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
-    $req = " SELECT * FROM depenses ";
-    $reponse = $bdd -> query($req);
-    $donnee = $reponse -> fetchAll();
+    // Préparer les requêtes pour éviter l'injection SQL
+    $req = $bdd -> prepare(" SELECT * FROM depenses ");
+    $req -> execute();
+    $depenses = $req -> fetchAll();
+
+    if (!$depenses)
+    {
+        // Affichage d'un message si aucune information n'est trouvée
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +48,7 @@
         }
     </style>
 
-    <?php include '../mode.php'; ?>
+    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
@@ -54,9 +68,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                        foreach($donnee as $liste){  
-                    ?>
+                    <?php foreach ($depenses as $liste): ?>
                     <tr>
                         <td><?= $liste['idDepense'] ?></td>
                         <td><?= $liste['MontantDepense'] ?></td>
@@ -70,9 +82,7 @@
                             </button>
                         </td>
                     </tr>
-                    <?php
-                        }  
-                    ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

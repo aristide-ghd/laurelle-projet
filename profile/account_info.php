@@ -1,8 +1,8 @@
 <?php
     // Activer l'affichage des erreurs
-    // ini_set('display_errors', 1);
-    // ini_set('display_startup_errors', 1);
-    // error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
     include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
@@ -110,7 +110,9 @@
     </style>
 
     <?php include '../mode.php'; // Inclusion du mode d'affichage (clair/sombre) ?> 
+
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
 
@@ -133,6 +135,7 @@
                             <strong>Noms et Prénoms :</strong> 
                             <?= htmlspecialchars($entreprise['Prenom']); ?> <?= htmlspecialchars($entreprise['Nom']); ?>
                         </span>
+
                         <i class="fas fa-arrow-right"></i>
                     </p>
                 </a>
@@ -149,6 +152,7 @@
                                 <i class="fas fa-copy"></i>
                             </button>
                         </span>
+
                         <i class="fas fa-arrow-right"></i>
                     </p>
                 </a>
@@ -166,6 +170,7 @@
                                 <i class="fas fa-copy"></i>
                             </button>
                         </span>
+
                         <i class="fas fa-arrow-right"></i>
                     </p>
                 </a>
@@ -177,6 +182,7 @@
                             <strong>Pays :</strong> 
                             <?= htmlspecialchars($entreprise['Pays']); ?>
                         </span>
+
                         <i class="fas fa-arrow-right"></i>
                     </p>
                 </a>
@@ -199,6 +205,7 @@
                             <strong>Nom du produit :</strong> 
                             <?= htmlspecialchars($entreprise['Produit']); ?>
                         </span>
+
                         <i class="fas fa-arrow-right"></i>
                     </p>
                 </a>
@@ -210,6 +217,7 @@
                             <strong>Adresse :</strong> 
                             <?= htmlspecialchars($entreprise['adresseEntreprise']); ?>
                         </span>
+
                         <i class="fas fa-arrow-right"></i>
                     </p>
                 </a>
@@ -250,6 +258,7 @@
                     <i class="fas fa-box-open"></i> 
                     <strong>Description des produits :</strong> Un résumé des produits ou services offerts par l'entreprise.
                 </p>
+
                 <a href="#" class="btn btn-primary">Télécharger le catalogue</a>
             </div>
         </div>
@@ -343,5 +352,7 @@
     </script>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+
 </body>
+
 </html>

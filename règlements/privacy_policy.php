@@ -1,8 +1,8 @@
 <?php
     // Activer l'affichage des erreurs pour le developpement
-    // ini_set('display_errors', 1);
-    // ini_set('display_startup_errors', 1);
-    // error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
     include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 ?>
@@ -34,7 +34,9 @@
     </style>
 
     <?php include '../mode.php'; // Inclusion du mode d'affichage (clair/sombre) ?>
+
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include('../navbar/en_tete.php'); ?>
 
@@ -72,5 +74,7 @@
     <?php
         include('../footer/pied_de_page.php');
     ?>
+
 </body>
+
 </html>

@@ -1,8 +1,8 @@
 <?php
     // Activer l'affichage des erreurs pour le developpement
-    // ini_set('display_errors', 1);
-    // ini_set('display_startup_errors', 1);
-    // error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
     include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
@@ -44,8 +44,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Paramètres</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <style>
         .footer {
             /* margin-top: 4%; */
@@ -53,8 +56,10 @@
         }
     </style>
     
-    <?php include '../mode.php'; ?>
+    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
+
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
 
@@ -98,18 +103,22 @@
 
         <form method="post" action="../validation/change_password.php">
             <fieldset class="border p-4 rounded">
+
                 <div class="mb-3">
                     <label for="currentPassword" class="form-label">Mot de passe actuel</label>
                     <input type="password" class="form-control" id="currentPassword" name="s_current_password">
                 </div>
+
                 <div class="mb-3">
                     <label for="newPassword" class="form-label">Nouveau mot de passe</label>
                     <input type="password" class="form-control" id="newPassword" name="s_new_password">
                 </div>
+
                 <div class="mb-3">
                     <label for="confirmPassword" class="form-label">Confirmer le nouveau mot de passe</label>
                     <input type="password" class="form-control" id="confirmPassword" name="s_confirm_password">
                 </div>
+
             </fieldset>
 
             <div class="d-flex justify-content-between mt-4">
@@ -117,6 +126,7 @@
                 <button type="reset" class="btn btn-secondary">Annuler</button>
             </div>
         </form>
+
     </section>
 
     <button id="toggleTheme" class="btn btn-secondary mt-3">Activer le mode sombre</button>
@@ -145,6 +155,9 @@
     <?php
         include("../footer/pied_de_page.php");
     ?>
+
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
+
 </body>
+
 </html>

@@ -30,13 +30,21 @@
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
-    $matdep = $_GET['id'];
+    $matdep = $_GET['id']; // Recuperation de l'id de la depense a modifié
 
-    $req1 = "SELECT * FROM depenses WHERE idDepense = $matdep";
-    $reponse1 = $bdd -> query($req1);
-    $donnee1 = $reponse1 -> fetchAll();
+    // Preparer les requetes pour eviter l'injection SQL
+    $req = $bdd -> prepare("SELECT * FROM depenses WHERE idDepense = $matdep");
+    $req -> execute();
+    $update_depenses = $req -> fetchAll();
 
-    foreach($donnee1 as $liste)
+    if (!$update_depenses)
+    {
+        // Affichage d'un message si aucune information n'est trouvée
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
+        exit();
+    }
+
+    foreach ($update_depenses as $liste)
     {
         $mdp = $liste['idModePaiement'];
 
@@ -45,9 +53,17 @@
         $liste['DeviseMontantDepense'] = $montantDepenseDetails[1];
     }
 
-    $req = " SELECT * FROM modepaiement ORDER BY idModePaiement";
-    $reponse = $bdd -> query($req);
-    $donnee = $reponse -> fetchAll();
+    // Preparer les requetes pour eviter l'injection SQL
+    $req1 = $bdd -> prepare("SELECT * FROM modepaiement ORDER BY idModePaiement");
+    $req1 -> execute();
+    $liste_mdp = $req1 -> fetchAll();
+
+    if (!$liste_mdp)
+    {
+        // Affichage d'un message si aucune information n'est trouvée
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -67,8 +83,10 @@
         }
     </style>
 
-    <?php include '../mode.php'; ?>
+    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
+
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
 
@@ -144,18 +162,18 @@
                     <label for="listmode" class="form-label">Mode de Paiement :</label>
                     <select name="s_modepaiement" id="listmode" class="form-select">
                         <?php
-                                foreach ($donnee as $listemode)
+                                foreach ($liste_mdp as $liste_mode)
                                 {
-                                    if($listemode['idModePaiement'] == $mdp)
+                                    if($liste_mode['idModePaiement'] == $mdp)
                                     {?>
-                                        <option selected value="<?= $listemode['idModePaiement'] ?>">
-                                                                <?= $listemode['NomModePaiement'] ?>
+                                        <option selected value="<?= $liste_mode['idModePaiement'] ?>">
+                                                                <?= $liste_mode['NomModePaiement'] ?>
                                         </option>
                         <?php       }
                                     else
                                     {?>
-                                        <option value="<?= $listemode['idModePaiement'] ?>">
-                                                        <?= $listemode['NomModePaiement'] ?>
+                                        <option value="<?= $liste_mode['idModePaiement'] ?>">
+                                                        <?= $liste_mode['NomModePaiement'] ?>
                                         </option>
                         <?php       }
                                 }?>
@@ -176,4 +194,5 @@
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
+
 </html>

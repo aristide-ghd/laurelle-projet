@@ -1,8 +1,8 @@
 <?php
     // Activer l'affichage des erreurs pour le developpement
-    // ini_set('display_errors', 1);
-    // ini_set('display_startup_errors', 1);
-    // error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
     session_start(); // Initialiser la session
     session_regenerate_id(true); // Regenere l'id de session pour plus de securité
@@ -99,7 +99,9 @@
             color: blue;
         }
     </style>
+
 </head>
+
 <body>
     <div class="container d-lg-flex d-md-block d-sm-block justify-content-center mt-5 my-md-4 py-lg-5 py-md-0 my-sm-4">
 
@@ -164,16 +166,19 @@
 
                             <fieldset>
                                 <div class="row">
+
                                     <!-- Nom -->
                                     <div class="col-md-6 mb-3">
                                         <label for="nom" class="form-label">Nom :</label>
                                         <input type="text" class="form-control" id="nom" name="s_nom" placeholder="Votre nom">
                                     </div> 
+
                                     <!-- Prénom -->
                                     <div class="col-md-6 mb-3">
                                         <label for="prenom" class="form-label">Prénom :</label>
                                         <input type="text" class="form-control" id="prenom" name="s_prenom" placeholder="Votre prénom">
                                     </div>
+
                                 </div>
                                 
                                 <!-- Email -->
@@ -183,6 +188,7 @@
                                 </div>
                                 
                                 <div class="row">
+
                                     <!-- Numéro de téléphone -->
                                     <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                         <label for="phone" class="form-label">Numéro de téléphone :</label>
@@ -194,9 +200,11 @@
                                         <label for="country" class="form-label">Pays :</label>
                                         <select class="form-select rounded-5 pays" id="country" name="s_country"></select>
                                     </div>
+
                                 </div>
                                 
                                 <div class="row">
+
                                     <!-- Nom de l'entreprise -->
                                     <div class="col-md-6 mb-3">
                                         <label for="nom_entreprise" class="form-label">Nom de l'entreprise :</label>
@@ -208,6 +216,7 @@
                                         <label for="produit" class="form-label">Type de produit :</label>
                                         <input type="text" class="form-control" id="produit" name="s_produit" placeholder="Type de produit vendu">
                                     </div>
+
                                 </div>
 
                                 <!-- Adresse de l'entreprise -->
@@ -218,14 +227,17 @@
 
                                 <!-- Mot de passe -->
                                 <div class="row">
+
                                     <div class="col-md-6 mb-3">
                                         <label for="password" class="form-label">Mot de passe :</label>
                                         <input type="password" class="form-control" id="password" name="s_password" placeholder="Mot de passe">
                                     </div>
+
                                     <div class="col-md-6 mb-3">
                                         <label for="password_confirm" class="form-label">Confirmer le mot de passe :</label>
                                         <input type="password" class="form-control" id="password_confirm" name="s_password_confirm" placeholder="Confirmez le mot de passe">
                                     </div>
+
                                 </div>
                             </fieldset>
                             <br>
@@ -308,4 +320,5 @@
     </script>
 
 </body>
+
 </html>

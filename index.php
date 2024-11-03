@@ -1,8 +1,8 @@
 <?php
     // Activer l'affichage des erreurs pour le developpement
-    // ini_set('display_errors', 1);
-    // ini_set('display_startup_errors', 1);
-    // error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
     session_start(); // Initialiser la session
     session_regenerate_id(true); // Regenere l'id de session pour plus de securité
@@ -78,7 +78,9 @@
             font-weight: bold;
         }
     </style>
+
 </head>
+
 <body>
     <div class="container d-lg-flex d-md-block d-sm-block mt-5 my-md-4 py-lg-5 py-md-0 my-sm-4 justify-content-center">
         <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded">
@@ -110,6 +112,7 @@
                                 <div class="alert alert-success" role="alert">
                                     <i class="fas fa-check-circle"></i> <?php echo $message_success; ?>
                                 </div>
+
                                 <!-- Utilisation de javascript pour la redirection -->
                                 <script>
                                     setTimeout(function() {
@@ -123,6 +126,7 @@
                                     <label for="nom" class="form-label">Nom de l'entreprise:</label>
                                     <input class="form-control" type="text" name="s_name" id="nom" placeholder="Entrez le nom">
                                 </div>
+
                                 <div class="mb-4">
                                     <label for="motdepasse" class="form-label">Mot de passe:</label>
                                     <input class="form-control" type="password" name="s_motdepasse" id="motdepasse" placeholder="Entrez votre mot de passe">
@@ -141,5 +145,7 @@
 
     <!-- Charge la bibliothèque JavaScript Bootstrap 5.3.3, incluant les composants et les plugins Bootstrap (comme les modals, carousels, etc.) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
+
 </html>

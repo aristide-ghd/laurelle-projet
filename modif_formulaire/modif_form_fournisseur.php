@@ -30,10 +30,19 @@
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
-    $matfournisseur = $_GET['id'];
-    $req = "SELECT * FROM fournisseurs WHERE idFournisseur= $matfournisseur";
-    $reponse = $bdd -> query($req);
-    $donnee = $reponse -> fetchAll();
+    $matfournisseur = $_GET['id']; // Recuperation de l'id du fournisseur a modifié
+
+    // Preparer les requetes pour eviter l'injection SQL
+    $req = $bdd -> prepare("SELECT * FROM fournisseurs WHERE idFournisseur= $matfournisseur");
+    $req -> execute();
+    $update_fournisseurs = $req -> fetchAll();
+
+    if(!$update_fournisseurs)
+    {
+        // Affichage d'un message si aucune information n'est trouvée
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -53,8 +62,10 @@
         }
     </style>
 
-    <?php include '../mode.php'; ?>
+    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
+
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
 
@@ -93,7 +104,8 @@
         <form action="../validation/valider_modif_form.php" method="post">
             <fieldset class="border p-4 rounded">
                 <legend class="fw-bold">Fournisseur</legend>
-                <?php foreach($donnee as $liste){ ?>
+
+                <?php foreach($update_fournisseurs as $liste): ?>
 
                     <div class="mb-3">
                         <label for="s_numero" class="form-label">Matricule fournisseur :</label>
@@ -115,7 +127,8 @@
                         <input type="text" id="s_coordonneesfournisseur" name="s_coordonneesfournisseur" class="form-control" value="<?= $liste['CoordonneesFournisseur'] ?>">
                     </div>
 
-                <?php } ?>
+                <?php endforeach; ?>
+                
             </fieldset>
 
             <div class="mt-4 text-center">
@@ -131,4 +144,5 @@
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
+
 </html>

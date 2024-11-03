@@ -1,8 +1,8 @@
 <?php
     // Activer l'affichage des erreurs pour le developpement
-    // ini_set('display_errors', 1);
-    // ini_set('display_startup_errors', 1);
-    // error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
     include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
@@ -77,7 +77,9 @@
     </style>
     
     <?php include '../mode.php'; // Inclusion du mode d'affichage (clair/sombre) ?>
+
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
 
@@ -101,6 +103,7 @@
             <div class="alert alert-success" role="alert">
                 <i class="fas fa-check-circle"></i> <?php echo $message_phone_success; ?>
             </div>
+            
             <!-- Utilisation de javascript pour la redirection -->
             <script>
                 setTimeout(function() {
@@ -158,5 +161,7 @@
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" // Charge le script utils.js pour des fonctionnalités supplémentaires, comme la validation des numéros de téléphone
         });
     </script>
+
 </body>
+
 </html>

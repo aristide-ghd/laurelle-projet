@@ -30,13 +30,22 @@
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
-    $matvente = $_GET['id'];
+    $matvente = $_GET['id']; // Recuperation de l'id de la vente a modifier
 
-    $req3 = "SELECT * FROM ventes WHERE idVente = $matvente";
-    $reponse3 = $bdd -> query($req3);
-    $donnee3 = $reponse3 -> fetchAll();
+    // Preparer les requetes pour eviter l'injection SQL
+    $req3 = $bdd -> prepare("SELECT * FROM ventes WHERE idVente = $matvente");
+    $req3 -> execute();
+    $update_ventes = $req3 -> fetchAll();
 
-    foreach($donnee3 as $liste)
+
+    if (!$update_ventes)
+    {
+        // Affichage d'un message si aucune information n'est trouvée
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
+        exit();
+    }
+
+    foreach($update_ventes as $liste)
     {
         $produit = $liste['idProduit'];
         $mdp = $liste['idModePaiement'];
@@ -46,13 +55,33 @@
         $liste['DeviseMontantTotal'] = $montantTotalDetails[1];
     }
 
-    $req = " SELECT * FROM produits ORDER BY idProduit";
-    $reponse = $bdd -> query($req);
-    $donnee = $reponse -> fetchAll();
 
-    $req2 = " SELECT * FROM modepaiement ORDER BY idModePaiement";
-    $reponse2 = $bdd -> query($req2);
-    $donnee2 = $reponse2 -> fetchAll();
+
+    // Preparer les requetes pour eviter l'injection SQL
+    $req = $bdd -> prepare("SELECT * FROM produits ORDER BY idProduit");
+    $req -> execute();
+    $liste_produits = $req -> fetchAll();
+
+    if (!$liste_produits)
+    {
+        // Affichage d'un message si aucune information n'est trouvée
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
+        exit();
+    }
+
+
+
+    // Preparer les requetes pour eviter l'injection SQL
+    $req2 = $bdd -> prepare(" SELECT * FROM modepaiement ORDER BY idModePaiement");
+    $req2 -> execute();
+    $liste_mdp = $req2 -> fetchAll();
+
+    if (!$liste_mdp)
+    {
+        // Affichage d'un message si aucune information n'est trouvée
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
+        exit();
+    }
 ?>
 
 
@@ -73,8 +102,10 @@
         }
     </style>
 
-    <?php include '../mode.php'; ?>
+    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
+
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
 
@@ -150,18 +181,18 @@
                     <label for="listproduit" class="form-label">Produit :</label>
                     <select name="s_produit" id="listproduit" class="form-select">
                         <?php
-                                foreach ($donnee as $listeproduit)
+                                foreach ($liste_produits as $liste_produit)
                                 {
-                                    if($listeproduit['idProduit'] == $produit)
+                                    if($liste_produit['idProduit'] == $produit)
                                     {?>
-                                        <option selected value="<?= $listeproduit['idProduit'] ?>">
-                                                                <?= $listeproduit['NomProduit'] ?>
+                                        <option selected value="<?= $liste_produit['idProduit'] ?>">
+                                                                <?= $liste_produit['NomProduit'] ?>
                                         </option>
                         <?php       }
                                     else
                                     {?>
-                                        <option value="<?= $listeproduit['idProduit'] ?>">
-                                                        <?= $listeproduit['NomProduit'] ?>
+                                        <option value="<?= $liste_produit['idProduit'] ?>">
+                                                        <?= $liste_produit['NomProduit'] ?>
                                         </option>
                         <?php       }
                                 }?>
@@ -172,18 +203,18 @@
                     <label for="listmode" class="form-label">Mode de Paiement :</label>
                     <select name="s_modepaiement" id="listmode" class="form-select">
                         <?php
-                                foreach ($donnee2 as $listemode)
+                                foreach ($liste_mdp as $liste_mode)
                                 {
-                                    if($listemode['idModePaiement'] == $mdp)
+                                    if($liste_mode['idModePaiement'] == $mdp)
                                     {?>
-                                        <option selected value="<?= $listemode['idModePaiement'] ?>">
-                                                                <?= $listemode['NomModePaiement'] ?>
+                                        <option selected value="<?= $liste_mode['idModePaiement'] ?>">
+                                                                <?= $liste_mode['NomModePaiement'] ?>
                                         </option>
                         <?php       }
                                     else
                                     {?>
-                                        <option value="<?= $listemode['idModePaiement'] ?>">
-                                                        <?= $listemode['NomModePaiement'] ?>
+                                        <option value="<?= $liste_mode['idModePaiement'] ?>">
+                                                        <?= $liste_mode['NomModePaiement'] ?>
                                         </option>
                         <?php       }
                                 }?>
@@ -204,4 +235,5 @@
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
+
 </html>

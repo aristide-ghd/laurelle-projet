@@ -60,11 +60,13 @@
                 <h5 id="offcanvasMenuLabel"><a class="navbar-brand fw-bold text-dark" href="../dashbord/home.php">Homechip's Laure</a></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+
             <div class="offcanvas-body bg-dark">
                 <ul class="navbar-nav flex-column-md ms-lg-auto me-lg-5">
                     <li class="nav-item">
                         <a class="nav-link text-white" href="../dashbord/home.php">Accueil</a>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link text-white dropdown-toggle" href="#" id="dropdownTransactions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Transactions
@@ -78,6 +80,7 @@
                             <li><a class="dropdown-item" href="../formulaire/formulaire_mdp.php">Formulaire Mode de Paiement</a></li>
                         </ul>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link text-white dropdown-toggle" href="#" id="dropdownEvents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Evènements financiers
@@ -91,9 +94,11 @@
                             <li><a class="dropdown-item" href="../dashbord/mdp.php">Mode de Paiement</a></li>
                         </ul>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link text-white" href="../dashbord/gestion.php">Gestion financière</a>
                     </li>
+
                     <li class="nav-item dropdown ms-lg-5">
                         <a class="btn btn-danger dropdown-toggle w-lg-auto w-md-auto w-100 my-xs-3 my-sm-3 my-md-0" href="../dashbord/profile.php" id="dropdownProfile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user"></i> Profil
@@ -107,8 +112,6 @@
                             <li class="link_profile"><a class="dropdown-item" href="../profile/logout.php"><i class="fas fa-sign-out-alt"></i>Déconnexion</a></li>
                         </ul>
                     </li>
-
-
                 </ul>
             </div>
         </div>
@@ -116,5 +119,7 @@
 </header>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
+
 </html>

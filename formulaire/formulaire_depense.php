@@ -38,7 +38,7 @@
     if (!$modes_paiement)
     {
         // Affichage d'un message si aucune information n'est trouvée
-        echo "Erreur lors de la recuperation des données. Veuillew reessayer plus tard !";
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
         exit();
     }
 ?>
@@ -61,8 +61,10 @@
         }
     </style>
 
-    <?php include '../mode.php'; ?>
+    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
+
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
     
@@ -150,4 +152,5 @@
     <!-- Bootstrap JS (optional, for interactive components) -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
+
 </html>

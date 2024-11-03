@@ -1,13 +1,26 @@
 <?php
+    // Activer l'affichage des erreurs pour le developpement
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
     include("../connexion.php"); // Connexion a la base de donnée
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
     
-    $req = " SELECT * FROM modepaiement ";
-    $reponse = $bdd -> query($req);
-    $donnee = $reponse -> fetchAll();
+    // Préparer les requêtes pour éviter l'injection SQL
+    $req = $bdd -> prepare(" SELECT * FROM modepaiement ");
+    $req -> execute();
+    $modespaiements = $req -> fetchAll();
+
+    if (!$modespaiements)
+    {
+        // Affichage d'un message si aucune information n'est trouvée
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -35,8 +48,10 @@
         }
     </style>
 
-    <?php include '../mode.php'; ?>
+    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
+
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
 
@@ -44,6 +59,7 @@
         <h1 class=" ajout text-center mb-4">Liste des modes de paiement</h1>
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
+
                 <thead class="table-dark">
                     <tr>
                         <th>Matricule Mode de Paiement</th>
@@ -51,10 +67,9 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    <?php
-                        foreach($donnee as $liste){  
-                    ?>
+                    <?php foreach($modespaiements as $liste): ?>
                     <tr>
                         <td><?= $liste['idModePaiement'] ?></td>
                         <td><?= $liste['NomModePaiement'] ?></td>
@@ -65,10 +80,9 @@
                             </button>
                         </td>
                     </tr>
-                    <?php
-                        }  
-                    ?>
+                    <?php endforeach; ?>
                 </tbody>
+                
             </table>
         </div>
 
@@ -116,5 +130,7 @@
             confirmDelete.href = '../suppression/delete_mdp.php?id=' + idModePaiement; // Configuration du lien de suppression
         });
     </script>
+
 </body>
+
 </html>
