@@ -81,7 +81,7 @@
 
                 <tbody>
                     <?php
-                        foreach($donnee as $liste){  
+                        foreach($ventes as $liste){  
                     ?>
                     <tr>
                         <td><?= $liste['idVente'] ?></td>

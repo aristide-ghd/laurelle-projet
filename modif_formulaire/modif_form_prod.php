@@ -117,8 +117,6 @@
             <fieldset class="border p-4 rounded">
                 <legend class="fw-bold">Produit</legend>
 
-                <?php foreach($update_produits as $liste): ?>
-
                     <div class="mb-3">
                         <label for="s_numero" class="form-label">Matricule Produit :</label>
                         <input type="text" id="s_numero" name="s_numero" class="form-control" value="<?= $liste['idProduit'] ?>" readonly>
@@ -167,8 +165,6 @@
                             </select>
                         </div>
                     </div>
-
-                <?php endforeach; ?>
 
             </fieldset>
             
