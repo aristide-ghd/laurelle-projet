@@ -1,52 +1,50 @@
 <?php
-session_start(); // Initialiser la session 
-include("connexion.php"); // Inclusion de la connexion à la base de données
-$message = "";
+    // Activer l'affichage des erreurs pour le developpement
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
-// Créer une instance de la classe Database
-$database = new Database(); 
-$bdd = $database->getConnection(); // Récupérer la connexion depuis l'instance de la classe Database
+    session_start(); // Initialiser la session
+    session_regenerate_id(true); // Regenere l'id de session pour plus de securité
 
-// Vérification si la connexion a échoué
-if (!$bdd) {
-    die("Échec de la connexion à la base de données.");
-}
+    
+    // Récupere le message des champs stocké dans la session (si disponible)
+    $message_input = htmlspecialchars($_SESSION['message_input'] ?? '', ENT_QUOTES, 'UTF-8');
 
-if (isset($_POST['valider'])) {
-    $nom = $_POST['s_name'];
-    $mdp = $_POST['s_motdepasse'];
-    if (empty($nom) || empty($mdp)) {
-        $message = "Veuillez remplir tous les champs";
-    } else {
-        // Utilisation de requêtes préparées pour éviter les injections SQL
-        $req = "SELECT * FROM entreprise WHERE namebusiness = :namebusiness AND motdepasse = :motdepasse";
-        $stmt = $bdd->prepare($req);
-        $stmt->execute([':namebusiness' => $nom, ':motdepasse' => $mdp]);
-        $donnee = $stmt->fetchAll();
+    // Récupere le message de connexion invalide stocké dans la session (si disponible)
+    $message_login = htmlspecialchars($_SESSION['message_login'] ?? '', ENT_QUOTES, 'UTF-8');
 
-        if (empty($donnee)) { // Utiliser empty() pour vérifier si le résultat est vide
-            $message = "Paramètre de connexion invalide";
-        } else {
-            // Connexion réussie
-            $_SESSION['logged_in'] = true;
-            $_SESSION['user_name'] = $nom; // stockage du nom de l'utilisateur
-            header("Location: dashbord/home.php");
-            exit(); // Sortir après la redirection
-        }
-    }
-}
+    // Récupere le message de connexion reussie stocké dans la session (si disponible)
+    $message_success = htmlspecialchars($_SESSION['message_success'] ?? '', ENT_QUOTES, 'UTF-8');
+
+
+    // Supprime le message des champs après l'avoir affiché pour éviter qu'il persiste
+    unset($_SESSION['message_input']);
+
+    // Supprime le message de connexion invalide après l'avoir affiché pour éviter qu'il persiste
+    unset($_SESSION['message_login']);
+
+    // Supprime le message de connexion reussie après l'avoir affiché pour éviter qu'il persiste
+    unset($_SESSION['message_success']);
+
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Charge la feuille de style Bootstrap 5.3.3 pour styliser la page avec le framework CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Charge la bibliothèque de styles Font Awesome version 6.0.0 pour afficher des icônes vectorielles (comme des utilisateurs, des flèches, etc.) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <title>Page de connexion</title>
+
+    <title>Connexion</title>
+
     <style>
+        /* Styles personnalisés pour les sections de la page */
         body {
             background: linear-gradient(45deg, #6a11cb, #2575fc);
             font-family: 'Roboto', sans-serif;
@@ -80,40 +78,74 @@ if (isset($_POST['valider'])) {
             font-weight: bold;
         }
     </style>
+
 </head>
+
 <body>
     <div class="container d-lg-flex d-md-block d-sm-block mt-5 my-md-4 py-lg-5 py-md-0 my-sm-4 justify-content-center">
         <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded">
             <div class="row g-0">
                 <div class="col-lg-6 col-md-12 col-sm-12">
-                    <img class="img-fluid rounded-start h-100" src="image/connect.jpg" alt="Image de connexion">
+                    <img class="img-fluid rounded h-100" src="image/connect.jpg" alt="Image de connexion">
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 d-flex align-items-center">
                     <div class="card-body p-5">
                         <h2 class="text-danger text-center mb-4"><i class="fas fa-sign-in-alt me-2"></i>Connectez-vous</h2>
-                        <form action="index.php" method="post"> 
-                            <?php if($message != ""): ?>
-                                <div class="alert alert-danger" role="alert">
-                                    <i class="fas fa-exclamation-triangle"></i> <?php echo $message; ?>
+                        <form action="validation/valider_connexion.php" method="post"> 
+
+                            <!-- Affichage du message des champs -->
+                            <?php if($message_input != ""): ?>
+                                <div class="alert alert-warning" role="alert">
+                                    <i class="fas fa-exclamation-triangle"></i> <?php echo $message_input; ?>
                                 </div>
                             <?php endif; ?>
+
+                            <!-- Affichage du message de paramètre invalide -->
+                            <?php if($message_login != ""): ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <i class="fas fa-exclamation-triangle"></i> <?php echo $message_login; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <!-- Affichage du message de succès -->
+                            <?php if($message_success != ""): ?>
+                                <div class="alert alert-success" role="alert">
+                                    <i class="fas fa-check-circle"></i> <?php echo $message_success; ?>
+                                </div>
+
+                                <!-- Utilisation de javascript pour la redirection -->
+                                <script>
+                                    setTimeout(function() {
+                                        window.location.href = "dashbord/home.php"; // redirige vers la page d'accueil
+                                    }, 3000); // délai de 3 secondes
+                                </script>
+                            <?php endif; ?>
+                            
                             <fieldset>
                                 <div class="mb-3">
                                     <label for="nom" class="form-label">Nom de l'entreprise:</label>
-                                    <input class="form-control" type="text" name="s_name" id="nom" placeholder="Entrez le nom" required>
+                                    <input class="form-control" type="text" name="s_name" id="nom" placeholder="Entrez le nom">
                                 </div>
+
                                 <div class="mb-4">
                                     <label for="motdepasse" class="form-label">Mot de passe:</label>
-                                    <input class="form-control" type="password" name="s_motdepasse" id="motdepasse" placeholder="Entrez votre mot de passe" required>
+                                    <input class="form-control" type="password" name="s_motdepasse" id="motdepasse" placeholder="Entrez votre mot de passe">
                                 </div>
                             </fieldset>
-                            <button class="btn btn-danger col-12" type="submit" name="valider"><i class="fas fa-lock me-2"></i>Se connecter</button>
+                            
+                            <button class="btn btn-danger col-12" type="submit" name="valider"><i class="fas fa-lock me-2"></i>Se connecter</button><br>
+                            <br>
+                            <p class="m-auto">Vous n'avez pas de compte?<a href="dashbord/inscription.php">Inscrivez-vous ici</a></p>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Charge la bibliothèque JavaScript Bootstrap 5.3.3, incluant les composants et les plugins Bootstrap (comme les modals, carousels, etc.) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
+
 </html>

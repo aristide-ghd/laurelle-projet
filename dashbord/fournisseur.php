@@ -1,17 +1,27 @@
 <?php 
-    session_start();
-    
-    // Vérification si l'utilisateur est connecté
-    if(!isset($_SESSION['logged_in'])) {
-        // Redirection vers la page de connexion si l'utilisateur n'est pas connecté
-        header("Location: ../index.php");
-        exit;
-    }
+    // Activer l'affichage des erreurs
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
-    include('../connexion.php');
-    $req = "SELECT * FROM fournisseurs";
-    $reponse = $db -> query($req);
-    $donnee = $reponse -> fetchAll();
+    
+    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
+
+    include('../connexion.php'); // Connexion a la base de donnée
+
+    include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
+    
+    // Préparer les requêtes pour éviter l'injection SQL
+    $req = $bdd -> prepare("SELECT * FROM fournisseurs");
+    $req -> execute();
+    $fournisseurs = $req -> fetchAll();
+
+    if (!$fournisseurs)
+    {
+        // Affichage d'un message si aucune information n'est trouvée
+        echo "Erreur lors de la recuperation des données. Veuillez reessayer plus tard !";
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -19,8 +29,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <title>Page fournisseur</title>
+
     <style>
         .ajout {
             margin-top: 60px;
@@ -42,6 +55,8 @@
             }
         }
     </style>
+
+    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <?php include '../navbar/en_tete.php'; ?>
@@ -60,9 +75,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
-                        foreach($donnee as $liste){
-                    ?>
+                    <?php foreach($fournisseurs as $liste): ?>
                     <tr>
                         <td><?= $liste['idFournisseur'] ?></td>
                         <td><?= $liste['NomFournisseur'] ?></td>
@@ -75,12 +88,15 @@
                             </button>
                         </td>
                     </tr>
-                    <?php 
-                        }
-                    ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
+
+        <a href="../formulaire/formulaire_fournisseur.php" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Enregistrer un fournisseur
+        </a>
+
     </section>
 
     <!-- Modale Bootstrap pour la confirmation de suppression -->
@@ -104,10 +120,9 @@
         </div>
     </div>
 
-    <footer class="footer bg-dark text-white text-center py-4 mt-auto">
-        <p class="mb-0 ">Copyright © 2024 Homechip's Laure | Tous droits réservés</p>
-        <p class="mb-0 ">Design by: <a href="https://ari-luxury.com" class="text-white text-decoration-none">Ari-Luxury</a></p>
-    </footer>
+    <?php
+        include("../footer/pied_de_page.php");
+    ?>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
 
