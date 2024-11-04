@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : ven. 11 oct. 2024 à 19:21
+-- Généré le : lun. 04 nov. 2024 à 04:44
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `db_homechips_laure`
 --
-CREATE DATABASE IF NOT EXISTS db_homechips_laure;
-USE db_homechips_laure;
 
 -- --------------------------------------------------------
 
@@ -42,9 +40,10 @@ CREATE TABLE `depenses` (
 --
 
 INSERT INTO `depenses` (`idDepense`, `MontantDepense`, `DateDepense`, `DescriptionDepense`, `idModePaiement`) VALUES
-(1, '2000 USD', '2024-08-21', 'Achat de banane', 2),
+(1, '2000 USD', '2024-08-21', 'Achat de banan', 2),
 (2, '5600 USD', '2024-08-31', 'vuvuvu', 2),
-(3, '3000 CFA', '2024-09-17', 'daccord', 4);
+(3, '3000 CFA', '2024-09-17', 'daccord', 4),
+(4, '1000 CFA', '2024-10-31', 'bien', 5);
 
 -- --------------------------------------------------------
 
@@ -70,7 +69,7 @@ CREATE TABLE `entreprise` (
 --
 
 INSERT INTO `entreprise` (`id_entreprise`, `Nom`, `Prenom`, `Email`, `Telephone`, `Pays`, `nomEntreprise`, `Produit`, `adresseEntreprise`, `motDePasse`) VALUES
-(1, 'GBOHAÏDA', 'Aristide', 'aristidegbohaida@gmail.com', '97 46 01 40', 'BJ', 'Ari-luxury', 'Parfums', 'Godomey', '$2y$10$v47eHi5dTwO1VhFRN5pyC.oNlWJpmmhLM8Td71WzNO5Jhtkn7sRUS'),
+(1, 'GBOHAÏDA', 'Eboun-oluwa', 'aristidegbohaida@gmail.com', '92 25 25 25', 'AF', 'Ari-luxury', 'Parfum', 'Godomey', '$2y$10$pa1mPHukD.9C5C.wNggm1OIO6BGWCjhOSliHtuFDTWAyRsARFSKsi'),
 (7, 'GBOHAÏDA', 'Aristide', 'aristidegbohaida@gmail.com', '6 12 12 12 12', 'AF', 'Diva', 'Parfums', 'Godomey', '$2y$10$EsFemKuwBaTHPGL0z/InqentieMaZMXLci8mldk47kynl43KzO8fe');
 
 -- --------------------------------------------------------
@@ -91,7 +90,10 @@ CREATE TABLE `fournisseurs` (
 --
 
 INSERT INTO `fournisseurs` (`idFournisseur`, `NomFournisseur`, `AdresseFournisseur`, `CoordonneesFournisseur`) VALUES
-(1, 'Akaba', 'Tori', 'akaba@gmail.com');
+(1, 'Akaba', 'Tori', 'akaba@gmail.com'),
+(2, 'John Doe', 'Ganvié', '+229 97 97 97 97'),
+(3, 'Bio', 'Calavi', '+229 96 96 96 96'),
+(4, 'Guera', 'Cotonou', '+229 56 56 56 56');
 
 -- --------------------------------------------------------
 
@@ -111,7 +113,11 @@ CREATE TABLE `modepaiement` (
 INSERT INTO `modepaiement` (`idModePaiement`, `NomModePaiement`) VALUES
 (2, 'Mobile Money MTN'),
 (3, 'Espèces'),
-(4, 'Mobile Money Moov');
+(4, 'Mobile Money Moov'),
+(5, 'Carte UBA'),
+(6, 'Carte EcoBank'),
+(7, 'Carte BOA'),
+(8, 'Par tranche');
 
 -- --------------------------------------------------------
 
@@ -141,7 +147,8 @@ INSERT INTO `produits` (`idProduit`, `NomProduit`, `DescriptionProduit`, `PrixVe
 (9, 'casquettes', 'habillement ', '2000 USD', '2000 USD'),
 (10, 'Plastique', 'Objet', '1500 EUR', '1000 EUR'),
 (11, 'coco', 'Aliment', '2000 USD', '1000 USD'),
-(12, 'kghiyg', 'ljkibijk ', '100 EUR', '2000 EUR');
+(12, 'kghiyg', 'ljkibijk ', '100 EUR', '2000 EUR'),
+(13, 'Fourré', 'Aliment', '2000 CFA', '1000 CFA');
 
 -- --------------------------------------------------------
 
@@ -164,7 +171,8 @@ CREATE TABLE `recettes` (
 INSERT INTO `recettes` (`idRecette`, `MontantRecette`, `DateRecette`, `DescriptionRecette`, `idModePaiement`) VALUES
 (2, '2000 EUR', '2024-08-31', 'Vente d´huile', 2),
 (3, '600 USD', '2024-08-21', 'ggggg', 3),
-(4, '2000 CFA', '2024-09-17', 'bien', 2);
+(4, '2000 CFA', '2024-09-17', 'bien', 2),
+(5, '1000 EUR', '2024-10-31', 'ok', 7);
 
 -- --------------------------------------------------------
 
@@ -187,7 +195,8 @@ CREATE TABLE `ventes` (
 
 INSERT INTO `ventes` (`idVente`, `DateVente`, `QuantiteVendue`, `MontantTotal`, `idProduit`, `idModePaiement`) VALUES
 (1, '2024-09-17', 5, '5000 CFA', 4, 3),
-(2, '2024-09-17', 3, '15000 CFA', 8, 2);
+(2, '2024-09-17', 3, '15000 CFA', 8, 2),
+(3, '2024-10-31', 3, '1500 USD', 9, 6);
 
 --
 -- Index pour les tables déchargées
@@ -247,7 +256,7 @@ ALTER TABLE `ventes`
 -- AUTO_INCREMENT pour la table `depenses`
 --
 ALTER TABLE `depenses`
-  MODIFY `idDepense` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idDepense` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `entreprise`
@@ -259,31 +268,31 @@ ALTER TABLE `entreprise`
 -- AUTO_INCREMENT pour la table `fournisseurs`
 --
 ALTER TABLE `fournisseurs`
-  MODIFY `idFournisseur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idFournisseur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `modepaiement`
 --
 ALTER TABLE `modepaiement`
-  MODIFY `idModePaiement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idModePaiement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT pour la table `recettes`
 --
 ALTER TABLE `recettes`
-  MODIFY `idRecette` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idRecette` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `ventes`
 --
 ALTER TABLE `ventes`
-  MODIFY `idVente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idVente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
