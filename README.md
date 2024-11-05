@@ -1,2 +1,2 @@
-# Avant de fusioner il faire un 
+# Avant de fusionner il faut faire un 
 git pull origin main
