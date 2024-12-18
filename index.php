@@ -124,7 +124,7 @@
                             <fieldset>
                                 <div class="mb-3">
                                     <label for="nom" class="form-label">Nom de l'entreprise:</label>
-                                    <input class="form-control" type="text" name="s_name" id="nom" placeholder="Entrez le nom">
+                                    <input class="form-control" type="text" name="s_nom_entreprise" id="nom" placeholder="Entrez le nom">
                                 </div>
 
                                 <div class="mb-4">

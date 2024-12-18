@@ -17,7 +17,7 @@
     $message_password = htmlspecialchars($_SESSION['message_password'] ?? '', ENT_QUOTES, 'UTF-8');
 
     // Récupere le message d'utilisateur stocké dans la session (si disponible)
-    $message_user = htmlspecialchars($_SESSION['message_user'] ?? '', ENT_QUOTES, 'UTF-8');
+    $message_entreprise = htmlspecialchars($_SESSION['message_entreprise'] ?? '', ENT_QUOTES, 'UTF-8');
 
     // Récupere le message d'inscription stocké dans la session (si disponible)
     $message_register = htmlspecialchars($_SESSION['message_register'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -33,7 +33,7 @@
     unset($_SESSION['message_password']);
 
     // Supprime le message d'utilisateur après l'avoir affiché pour éviter qu'il persiste
-    unset($_SESSION['message_user']);
+    unset($_SESSION['message_entreprise']);
 
     // Supprime le message d'inscription après l'avoir affiché pour éviter qu'il persiste
     unset($_SESSION['message_register']);
@@ -145,9 +145,9 @@
                             <?php endif; ?>
 
                             <!-- Affichage du message d'utilisateur -->
-                            <?php if($message_user != ""): ?>
+                            <?php if($message_entreprise != ""): ?>
                                 <div class="alert alert-info" role="alert">
-                                    <i class="fas fa-exclamation-circle"></i> <?php echo $message_user;?>
+                                    <i class="fas fa-exclamation-circle"></i> <?php echo $message_entreprise;?>
                                 </div>
                             <?php endif; ?>
 
@@ -165,65 +165,72 @@
                             <?php endif; ?>
 
                             <fieldset>
-                                <div class="row">
+                                <!-- <div class="row"> -->
 
                                     <!-- Nom -->
-                                    <div class="col-md-6 mb-3">
+                                    <!-- <div class="col-md-6 mb-3">
                                         <label for="nom" class="form-label">Nom :</label>
                                         <input type="text" class="form-control" id="nom" name="s_nom" placeholder="Votre nom">
-                                    </div> 
+                                    </div>  -->
 
                                     <!-- Prénom -->
-                                    <div class="col-md-6 mb-3">
+                                    <!-- <div class="col-md-6 mb-3">
                                         <label for="prenom" class="form-label">Prénom :</label>
                                         <input type="text" class="form-control" id="prenom" name="s_prenom" placeholder="Votre prénom">
-                                    </div>
+                                    </div> -->
 
-                                </div>
+                                <!-- </div> -->
                                 
                                 <!-- Email -->
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email :</label>
-                                    <input type="email" class="form-control" id="email" name="s_email" placeholder="Votre email">
+                                    <label for="email_business" class="form-label">Email de l'entreprise :</label>
+                                    <input type="email" class="form-control" id="email_business" name="s_email_business" placeholder="Email de l'entreprise">
                                 </div>
                                 
-                                <div class="row">
+                                <!-- <div class="row"> -->
 
                                     <!-- Numéro de téléphone -->
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                                    <!-- <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                         <label for="phone" class="form-label">Numéro de téléphone :</label>
                                         <input type="tel" id="phone" name="s_phone" class="form-control">
-                                    </div>
+                                    </div> -->
                                     
                                     <!-- Pays -->
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                                    <!-- <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                         <label for="country" class="form-label">Pays :</label>
                                         <select class="form-select rounded-5 pays" id="country" name="s_country"></select>
-                                    </div>
+                                    </div> -->
 
-                                </div>
+                                <!-- </div> -->
                                 
-                                <div class="row">
+                                <!-- <div class="row"> -->
 
                                     <!-- Nom de l'entreprise -->
-                                    <div class="col-md-6 mb-3">
+                                    <div class="mb-3">
                                         <label for="nom_entreprise" class="form-label">Nom de l'entreprise :</label>
                                         <input type="text" class="form-control" id="nom_entreprise" name="s_nom_entreprise" placeholder="Nom de l'entreprise">
                                     </div>
                                     
                                     <!-- Type de produit -->
-                                    <div class="col-md-6 mb-3">
+                                    <!-- <div class="col-md-6 mb-3">
                                         <label for="produit" class="form-label">Type de produit :</label>
                                         <input type="text" class="form-control" id="produit" name="s_produit" placeholder="Type de produit vendu">
-                                    </div>
+                                    </div> -->
 
-                                </div>
+                                <!-- </div> -->
 
                                 <!-- Adresse de l'entreprise -->
-                                <div class="mb-3">
+                                <!-- <div class="mb-3">
                                     <label for="adresse_entreprise" class="form-label">Adresse de l'entreprise :</label>
                                     <input type="text" class="form-control" id="adresse_entreprise" name="s_adresse_entreprise" placeholder="Adresse de l'entreprise">
-                                </div>
+                                </div> -->
+
+                                <!-- Nom d'utilisateur -->
+                                <div class="mb-3">
+                                    <label for="nom_user" class="form-label">Nom d'utilisateur :</label>
+                                    <input type="text" class="form-control" id="nom_user" name="s_nom_utilisateur" placeholder="Votre nom d'utilisateur">
+                                </div> 
+
 
                                 <!-- Mot de passe -->
                                 <div class="row">
@@ -258,11 +265,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <!-- Charge la bibliothèque intl-tel-input version 17.0.8 pour ajouter des fonctionnalités avancées à l'entrée de numéro de téléphone -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script> -->
     
     <!-- Utilisation de javascript pour le champs numero de telephone  -->
-    <script>
-        // Sélectionne l'élément de saisie du numéro de téléphone
+    <!-- <script> -->
+        <!-- // Sélectionne l'élément de saisie du numéro de téléphone
         const input = document.querySelector("#phone"); 
 
         const iti = window.intlTelInput(input, { // Initialise la bibliothèque intlTelInput pour l'élément de saisie du téléphone
@@ -274,12 +281,12 @@
             preferredCountries: ["fr", "us", "gb", "ben"], // Liste des pays en priorité (exemple)
 
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" // Charge le script utils.js pour des fonctionnalités supplémentaires, comme la validation des numéros de téléphone
-        });
-    </script>
+        }); -->
+    <!-- </script> -->
 
     <!-- Utilisation du javascript pour le champs Pays -->
-    <script>
-        // Fonction asynchrone pour récupérer la liste des pays à partir de l'API
+    <!-- <script> -->
+        <!-- // Fonction asynchrone pour récupérer la liste des pays à partir de l'API
         async function fetchCountries() {
             try {
                 // Effectue une requête pour obtenir la liste de tous les pays via l'API REST Countries
@@ -316,8 +323,8 @@
         }
 
         // Appeler la fonction pour remplir la liste
-        fetchCountries();
-    </script>
+        fetchCountries(); -->
+    <!-- </script> -->
 
 </body>
 

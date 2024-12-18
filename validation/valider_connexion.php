@@ -15,7 +15,7 @@
     if (isset($_POST['valider'])) 
     {
         //Utilisation de trim pour eliminer les espaces inutiles dans les entrées
-        $nom_entreprise = trim($_POST['s_name']);
+        $nom_entreprise = trim($_POST['s_nom_entreprise']);
         $mot_de_passe = trim($_POST['s_motdepasse']);
         
         if (empty($nom_entreprise) || empty($mot_de_passe)) 
@@ -26,7 +26,7 @@
         else 
         {
             // Préparation de la requête pour obtenir le mot de passe haché
-            $req = $bdd -> prepare("SELECT id_entreprise, motDePasse FROM entreprise WHERE nomEntreprise = :nomEntreprise");
+            $req = $bdd -> prepare("SELECT id_entreprise, mot_de_passe FROM entreprise WHERE nom_entreprise = :nomEntreprise");
 
             //Utilisation de la methode bindParams() pour securiser la requete SQL  
             $req -> bindParam(':nomEntreprise', $nom_entreprise, PDO::PARAM_STR);
@@ -35,12 +35,12 @@
             $donnee = $req->fetch(PDO::FETCH_ASSOC);
 
             // Vérification si l'entreprise existe et si le mot de passe est correct
-            if ($donnee && password_verify($mot_de_passe, $donnee['motDePasse'])) //Comparaison du mot de passe saisi et celui haché
+            if ($donnee && password_verify($mot_de_passe, $donnee['mot_de_passe'])) //Comparaison du mot de passe saisi et celui haché
             {
                 $_SESSION['logged_in'] = true;
 
                 //Stocke le mot de passe dans la session
-                $_SESSION['motDePasse'] = $donnee['motDePasse'];
+                $_SESSION['motDePasse'] = $donnee['mot_de_passe'];
 
                 //Stocke l'id de l'entreprise dans la session
                 $_SESSION['id_entreprise'] = $donnee['id_entreprise'];
