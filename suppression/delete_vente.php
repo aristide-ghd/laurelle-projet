@@ -1,6 +1,6 @@
 <?php
     // Inclusion de la connexion à la base de données
-    include("../connexion.php");
+    include("../sign_in.php");
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 

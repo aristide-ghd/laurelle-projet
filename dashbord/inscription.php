@@ -184,7 +184,7 @@
                                 <!-- Email -->
                                 <div class="mb-3">
                                     <label for="email_business" class="form-label">Email de l'entreprise :</label>
-                                    <input type="email" class="form-control" id="email_business" name="s_email_business" placeholder="Email de l'entreprise">
+                                    <input type="" class="form-control" id="email_business" name="s_email_business" placeholder="Email de l'entreprise">
                                 </div>
                                 
                                 <!-- <div class="row"> -->

@@ -26,14 +26,14 @@
     unset($_SESSION['message_name_entreprise_error']);
 
 
-    include('../connexion.php'); // Connexion a la base de donnée
+    include('../sign_in.php'); // Connexion a la base de donnée
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
     $id_entreprise = $_SESSION['id_entreprise']; // Recupération d'id de lentreprise dans la session
 
     // Requete pour afficher le nom de l'entreprise 
-    $query = "SELECT nomEntreprise FROM entreprise WHERE id_entreprise = :id_entreprise";
+    $query = "SELECT nom_entreprise FROM entreprise WHERE id_entreprise = :id_entreprise";
     $stmt = $bdd -> prepare($query);
     $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
     $stmt -> execute();
@@ -121,7 +121,7 @@
             <fieldset class="border p-4 rounded">
                 <div class="mb-3">
                     <label for="nom_entreprise" class="form-label"></label>
-                    <input type="text" class="form-control" id="nom_entreprise" name="s_nom_entreprise" value="<?= htmlspecialchars($entreprise['nomEntreprise'])?>">
+                    <input type="text" class="form-control" id="nom_entreprise" name="s_nom_entreprise" value="<?= htmlspecialchars($entreprise['nom_entreprise'])?>">
                 </div>
             </fieldset>
 

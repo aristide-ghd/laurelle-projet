@@ -8,48 +8,46 @@
 
     $id_entreprise = $_SESSION['id_entreprise']; // Recupération d'id de lentreprise dans la session
 
-    include('../connexion.php'); // Connexion a la base de donnée
+    include('../sign_in.php'); // Connexion a la base de donnée
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
 
-    // -----------------------NOM ET PRENOM ------------------------------------------
-    if (isset($_POST['submit_identity']))
+    // -----------------------NOM de l'utilisateur ------------------------------------------
+    if (isset($_POST['submit_name_user']))
     {
         // Récupération des données du formulaire
         // Utilisation de trim pour eliminer les espaces inutiles dans les entrées
-        $firstname = trim($_POST['s_firstname']);
-        $lastname = trim($_POST['s_lastname']);
+        $nom_user = trim($_POST['s_name_user']);
 
         // Vérification que les champs ne sont pas vides
-        if (empty($firstname) || empty($lastname))
+        if (empty($nom_user))
         {
             // Stocke le message dans la session
-            $_SESSION['message_identity_input'] = "Veuillez remplir tous les champs";
+            $_SESSION['message_name_user_input'] = "Veuillez remplir tous les champs";
         }
         else
         {
             // Requête pour mettre à jour les informations de l'entreprise
-            $req = "UPDATE entreprise SET Nom = :nom, Prenom = :prenom WHERE id_entreprise = :id_entreprise ";
+            $req = "UPDATE entreprise SET nom_utilisateur = :nom_user WHERE id_entreprise = :id_entreprise ";
             $stmt = $bdd -> prepare($req);
-            $stmt -> bindParam(':nom', $lastname, PDO::PARAM_STR);
-            $stmt -> bindParam(':prenom', $firstname, PDO::PARAM_STR);
+            $stmt -> bindParam(':nom_user', $nom_user, PDO::PARAM_STR);
             $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
             
             if ($stmt -> execute())
             {
                 // Stocke le message dans la session
-                $_SESSION['message_identity_success'] = "Modification effectuée avec succès. Veuillez patientez pendant que nous vous redirigeons";
+                $_SESSION['message_name_user_success'] = "Modification effectuée avec succès. Veuillez patientez pendant que nous vous redirigeons";
             }
             else
             {
                 // Stocke le message dans la session
-                $_SESSION['message_identity_error'] = "Echec de modification";
+                $_SESSION['message_name_user_error'] = "Echec de modification";
             }
         }
 
         // Redirection
-        header ("location: ../modif_infos_entreprise/identity.php");
+        header ("location: ../modif_infos_entreprise/name_user.php");
         exit();
     }
 
@@ -58,10 +56,10 @@
     {
         // Récupération des données du formulaire
         // Utilisation de trim pour eliminer les espaces inutiles dans les entrées
-        $email = trim($_POST['s_email']);
+        $email_business = trim($_POST['s_email']);
 
         // Vérification que les champs ne sont pas vides
-        if (empty($email))
+        if (empty($email_business))
         {
             // Stocke le message dans la session
             $_SESSION['message_email_input'] = "Veuillez remplir le champ";
@@ -69,7 +67,7 @@
         else
         {
             // Validation de l'email
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+            if (!filter_var($email_business, FILTER_VALIDATE_EMAIL)) 
             {
                 // Stocke le message dans la sessio
                 $_SESSION['message_email_validate'] = "Format d'email invalide";
@@ -77,9 +75,9 @@
             else
             {
                 // Requête pour mettre à jour les informations de l'entreprise
-                $req = "UPDATE entreprise SET Email = :email WHERE id_entreprise = :id_entreprise ";
+                $req = "UPDATE entreprise SET email_business = :email WHERE id_entreprise = :id_entreprise ";
                 $stmt = $bdd -> prepare($req);
-                $stmt -> bindParam(':email', $email, PDO::PARAM_STR);
+                $stmt -> bindParam(':email', $email_business, PDO::PARAM_STR);
                 $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
 
                 if ($stmt -> execute())
@@ -101,80 +99,80 @@
     }
 
     // ---------------------------- TELEPHONE ----------------------------------------
-    if(isset($_POST['submit_phone']))
-    {
-        // Récupération des données du formulaire
-        // Utilisation de trim pour eliminer les espaces inutiles dans les entrées
-        $telephone = trim($_POST['s_phone']); 
+    // if(isset($_POST['submit_phone']))
+    // {
+    //     // Récupération des données du formulaire
+    //     // Utilisation de trim pour eliminer les espaces inutiles dans les entrées
+    //     $telephone = trim($_POST['s_phone']); 
 
-        // Vérification que les champs ne sont pas vides
-        if (empty($telephone))
-        {
-            // Stocke le message dans la session
-            $_SESSION['message_phone_input'] = "Veuillez remplir le champ";
-        }
-        else
-        {
-            // Requête pour mettre à jour les informations de l'entreprise
-            $req = "UPDATE entreprise SET Telephone = :telephone WHERE id_entreprise = :id_entreprise ";
-            $stmt = $bdd -> prepare($req);
-            $stmt -> bindParam(':telephone', $telephone, PDO::PARAM_STR);
-            $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
+    //     // Vérification que les champs ne sont pas vides
+    //     if (empty($telephone))
+    //     {
+    //         // Stocke le message dans la session
+    //         $_SESSION['message_phone_input'] = "Veuillez remplir le champ";
+    //     }
+    //     else
+    //     {
+    //         // Requête pour mettre à jour les informations de l'entreprise
+    //         $req = "UPDATE entreprise SET Telephone = :telephone WHERE id_entreprise = :id_entreprise ";
+    //         $stmt = $bdd -> prepare($req);
+    //         $stmt -> bindParam(':telephone', $telephone, PDO::PARAM_STR);
+    //         $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
 
-            if ($stmt -> execute())
-            {
-                // Stocke le message dans la session
-                $_SESSION['message_phone_success'] = "Modification effectuée avec succès. Veuillez patientez pendant que nous vous redirigeons";
-            }
-            else
-            {
-                // Stocke le message dans la session
-                $_SESSION['message_phone_error'] = "Echec de modification";
-            }
-        }
+    //         if ($stmt -> execute())
+    //         {
+    //             // Stocke le message dans la session
+    //             $_SESSION['message_phone_success'] = "Modification effectuée avec succès. Veuillez patientez pendant que nous vous redirigeons";
+    //         }
+    //         else
+    //         {
+    //             // Stocke le message dans la session
+    //             $_SESSION['message_phone_error'] = "Echec de modification";
+    //         }
+    //     }
 
-        // Redirection
-        header("location: ../modif_infos_entreprise/phone.php");
-        exit();
-    }
+    //     // Redirection
+    //     header("location: ../modif_infos_entreprise/phone.php");
+    //     exit();
+    // }
 
     // -------------------------- PAYS ------------------------------------------------
-    if(isset($_POST['submit_country']))
-    {
-        // Récupération des données du formulaire
-        // Utilisation de trim pour eliminer les espaces inutiles dans les entrées
-        $country = trim($_POST['s_country']);
+    // if(isset($_POST['submit_country']))
+    // {
+    //     // Récupération des données du formulaire
+    //     // Utilisation de trim pour eliminer les espaces inutiles dans les entrées
+    //     $country = trim($_POST['s_country']);
 
-        // Vérification que les champs ne sont pas vides
-        if (empty($country))
-        {
-            // Stocke le message dans la session
-            $_SESSION['message_country_input'] = "Veuillez remplir le champ";
-        }
-        else
-        {
-            // Requête pour mettre à jour les informations de l'entreprise
-            $req = "UPDATE entreprise SET Pays = :pays WHERE id_entreprise = :id_entreprise ";
-            $stmt = $bdd -> prepare($req);
-            $stmt -> bindParam(':pays', $country, PDO::PARAM_STR);
-            $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
+    //     // Vérification que les champs ne sont pas vides
+    //     if (empty($country))
+    //     {
+    //         // Stocke le message dans la session
+    //         $_SESSION['message_country_input'] = "Veuillez remplir le champ";
+    //     }
+    //     else
+    //     {
+    //         // Requête pour mettre à jour les informations de l'entreprise
+    //         $req = "UPDATE entreprise SET Pays = :pays WHERE id_entreprise = :id_entreprise ";
+    //         $stmt = $bdd -> prepare($req);
+    //         $stmt -> bindParam(':pays', $country, PDO::PARAM_STR);
+    //         $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
 
-            if ($stmt -> execute())
-            {
-                // Stocke le message dans la session
-                $_SESSION['message_country_success'] = "Modification effectuée avec succès. Veuillez patientez pendant que nous vous redirigeons";
-            }
-            else
-            {
-                // Stocke le message dans la session
-                $_SESSION['message_country_error'] = "Echec de modification";
-            }
-        }
+    //         if ($stmt -> execute())
+    //         {
+    //             // Stocke le message dans la session
+    //             $_SESSION['message_country_success'] = "Modification effectuée avec succès. Veuillez patientez pendant que nous vous redirigeons";
+    //         }
+    //         else
+    //         {
+    //             // Stocke le message dans la session
+    //             $_SESSION['message_country_error'] = "Echec de modification";
+    //         }
+    //     }
 
-        // Redirection
-        header("location: ../modif_infos_entreprise/country.php");
-        exit();
-    }
+    //     // Redirection
+    //     header("location: ../modif_infos_entreprise/country.php");
+    //     exit();
+    // }
 
     // --------------------------- NOM DE L'ENTREPRISE -----------------------------------
     if(isset($_POST['submit_name_entreprise']))
@@ -192,7 +190,7 @@
         else
         {
             // Requête pour mettre à jour les informations de l'entreprise
-            $req = "UPDATE entreprise SET nomEntreprise = :nomEntreprise WHERE id_entreprise = :id_entreprise ";
+            $req = "UPDATE entreprise SET nom_entreprise = :nomEntreprise WHERE id_entreprise = :id_entreprise ";
             $stmt = $bdd -> prepare($req);
             $stmt -> bindParam(':nomEntreprise', $nom_entreprise, PDO::PARAM_STR);
             $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
@@ -215,78 +213,78 @@
     }
         
     // ------------------------ TYPE DE PRODUIT ------------------------------------------
-    if(isset($_POST['submit_name_produit']))
-    {
-        // Récupération des données du formulaire
-        // Utilisation de trim pour eliminer les espaces inutiles dans les entrées
-        $produit = trim($_POST['s_produit']);
+    // if(isset($_POST['submit_name_produit']))
+    // {
+    //     // Récupération des données du formulaire
+    //     // Utilisation de trim pour eliminer les espaces inutiles dans les entrées
+    //     $produit = trim($_POST['s_produit']);
 
-        // Vérification que les champs ne sont pas vides
-        if (empty($produit))
-        {
-            // Stocke le message dans la session
-            $_SESSION['message_name_produit_input'] = "Veuillez remplir le champ";
-        }
-        else
-        {
-            // Requête pour mettre à jour les informations de l'entreprise
-            $req = "UPDATE entreprise SET Produit = :produit WHERE id_entreprise = :id_entreprise ";
-            $stmt = $bdd -> prepare($req);
-            $stmt -> bindParam(':produit', $produit, PDO::PARAM_STR);
-            $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
+    //     // Vérification que les champs ne sont pas vides
+    //     if (empty($produit))
+    //     {
+    //         // Stocke le message dans la session
+    //         $_SESSION['message_name_produit_input'] = "Veuillez remplir le champ";
+    //     }
+    //     else
+    //     {
+    //         // Requête pour mettre à jour les informations de l'entreprise
+    //         $req = "UPDATE entreprise SET Produit = :produit WHERE id_entreprise = :id_entreprise ";
+    //         $stmt = $bdd -> prepare($req);
+    //         $stmt -> bindParam(':produit', $produit, PDO::PARAM_STR);
+    //         $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
 
-            if ($stmt -> execute())
-            {
-                // Stocke le message dans la session
-                $_SESSION['message_name_produit_success'] = "Modification effectuée avec succès. Veuillez patientez pendant que nous vous redirigeons";
-            }
-            else
-            {   
-                // Stocke le message dans la session
-                $_SESSION['message_name_produit_error'] = "Echec de modification";
-            }
-        }
+    //         if ($stmt -> execute())
+    //         {
+    //             // Stocke le message dans la session
+    //             $_SESSION['message_name_produit_success'] = "Modification effectuée avec succès. Veuillez patientez pendant que nous vous redirigeons";
+    //         }
+    //         else
+    //         {   
+    //             // Stocke le message dans la session
+    //             $_SESSION['message_name_produit_error'] = "Echec de modification";
+    //         }
+    //     }
 
-        // Redirection
-        header("location: ../modif_infos_entreprise/name_produit.php");
-        exit();
-    }
+    //     // Redirection
+    //     header("location: ../modif_infos_entreprise/name_produit.php");
+    //     exit();
+    // }
 
     // ------------------------------ADRESSE DE L'ENTREPRISE -------------------------------
-    if(isset($_POST['submit_adresse_entreprise']))
-    {
-        // Récupération des données du formulaire
-        // Utilisation de trim pour eliminer les espaces inutiles dans les entrées
-        $adresse_entreprise = trim($_POST['s_adresse_entreprise']);
+    // if(isset($_POST['submit_adresse_entreprise']))
+    // {
+    //     // Récupération des données du formulaire
+    //     // Utilisation de trim pour eliminer les espaces inutiles dans les entrées
+    //     $adresse_entreprise = trim($_POST['s_adresse_entreprise']);
 
-        // Vérification que les champs ne sont pas vides
-        if (empty($adresse_entreprise))
-        {
-            // Stocke le message dans la session
-            $_SESSION['message_address_entreprise_input'] = "Veuillez remplir le champ";
-        }
-        else
-        {
-            // Requête pour mettre à jour les informations de l'entreprise
-            $req = "UPDATE entreprise SET adresseEntreprise = :adresseEntreprise WHERE id_entreprise = :id_entreprise ";
-            $stmt = $bdd -> prepare($req);
-            $stmt -> bindParam(':adresseEntreprise', $adresse_entreprise, PDO::PARAM_STR);
-            $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
+    //     // Vérification que les champs ne sont pas vides
+    //     if (empty($adresse_entreprise))
+    //     {
+    //         // Stocke le message dans la session
+    //         $_SESSION['message_address_entreprise_input'] = "Veuillez remplir le champ";
+    //     }
+    //     else
+    //     {
+    //         // Requête pour mettre à jour les informations de l'entreprise
+    //         $req = "UPDATE entreprise SET adresseEntreprise = :adresseEntreprise WHERE id_entreprise = :id_entreprise ";
+    //         $stmt = $bdd -> prepare($req);
+    //         $stmt -> bindParam(':adresseEntreprise', $adresse_entreprise, PDO::PARAM_STR);
+    //         $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
 
-            if ($stmt -> execute())
-            {
-                // Stocke le message dans la session
-                $_SESSION['message_address_entreprise_success'] = "Modification effectuée avec succès. Veuillez patientez pendant que nous vous redirigeons";
-            }
-            else
-            {
-                // Stocke le message dans la session
-                $_SESSION['message_address_entreprise_error'] = "Echec de modification";
-            }
-        }
+    //         if ($stmt -> execute())
+    //         {
+    //             // Stocke le message dans la session
+    //             $_SESSION['message_address_entreprise_success'] = "Modification effectuée avec succès. Veuillez patientez pendant que nous vous redirigeons";
+    //         }
+    //         else
+    //         {
+    //             // Stocke le message dans la session
+    //             $_SESSION['message_address_entreprise_error'] = "Echec de modification";
+    //         }
+    //     }
 
-        // Redirection
-        header("location: ../modif_infos_entreprise/address_enterprise.php");
-        exit();
-    }
+    //     // Redirection
+    //     header("location: ../modif_infos_entreprise/address_enterprise.php");
+    //     exit();
+    // }
 ?>

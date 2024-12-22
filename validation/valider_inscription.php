@@ -7,7 +7,7 @@
     session_start(); // Initialiser la session
     session_regenerate_id(true); // Regenere l'id de session pour plus de securité
 
-    include("../connexion.php"); // Connexion a la base de donnée
+    include("../sign_in.php"); // Connexion a la base de donnée
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
@@ -22,7 +22,7 @@
         $password_confirm = $_POST['s_password_confirm'];
 
         // Verification si les champs sont remplis
-        if(empty($email_business) || empty($nom_entreprise) || empty($nom_user) || empty($password) || empty($password_confirm))
+        if(empty($email_business) || empty($nom_entreprise) || empty($nom_utilisateur) || empty($password) || empty($password_confirm))
         {
             // Stocker les messages dans la session
             $_SESSION['message_input'] = "Veuillez remplir tous les champs";

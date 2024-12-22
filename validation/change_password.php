@@ -9,7 +9,7 @@
     $motDePasse = $_SESSION['motDePasse']; // Recuperation du mot de passe dentreprise dans la session
     $id_entreprise = $_SESSION['id_entreprise']; // Recuperation d'id de lentreprise dans la session
 
-    include("../connexion.php"); // Connexion a la base de donnée
+    include("../sign_in.php"); // Connexion a la base de donnée
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
@@ -32,7 +32,7 @@
         else
         {
             // Requete pour utiliser le mot de passe stocké dans la base de donnée en fonction de l'id de lentreprise
-            $query = "SELECT motDePasse FROM entreprise WHERE id_entreprise = :id_entreprise";
+            $query = "SELECT mot_de_passe FROM entreprise WHERE id_entreprise = :id_entreprise";
             $stmt = $bdd -> prepare($query);
             $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
             $stmt -> execute();
@@ -57,7 +57,7 @@
                     $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
 
                     // Requête pour mettre à jour le mot de passe dans la base de données
-                    $req = "UPDATE entreprise SET motDePasse = :hashed_password WHERE id_entreprise = :id_entreprise";
+                    $req = "UPDATE entreprise SET mot_de_passe = :hashed_password WHERE id_entreprise = :id_entreprise";
                     $stmt = $bdd -> prepare($req);
                     $stmt -> bindParam(':hashed_password', $hashed_password, PDO::PARAM_STR);
                     $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);

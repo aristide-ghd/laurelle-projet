@@ -6,7 +6,7 @@
 
     include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
-    include("../connexion.php"); // Connexion a la base de donnée
+    include("../sign_in.php"); // Connexion a la base de donnée
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
@@ -128,17 +128,6 @@
         <!-- Affichage des informations principales de l'entreprise -->
         <div class="card shadow-lg border-0">
             <div class="card-body bg-white rounded">
-                <a href="../modif_infos_entreprise/identity.php" class="text-decoration-none text-dark" title="Modifier">
-                    <p class="p-editable bordered-link">
-                        <span>
-                            <i class="fas fa-user-tie text-primary"></i>
-                            <strong>Noms et Prénoms :</strong> 
-                            <?= htmlspecialchars($entreprise['Prenom']); ?> <?= htmlspecialchars($entreprise['Nom']); ?>
-                        </span>
-
-                        <i class="fas fa-arrow-right"></i>
-                    </p>
-                </a>
 
                 <!-- Adresse e-mail avec option de copie -->
                 <a href="../modif_infos_entreprise/email.php" class="text-decoration-none text-dark" title="Modifier">
@@ -146,9 +135,9 @@
                         <span>
                             <i class="fas fa-envelope text-primary"></i>
                             <strong>Email :</strong> 
-                            <?= htmlspecialchars($entreprise['Email']); ?>
+                            <?= htmlspecialchars($entreprise['email_business']); ?>
 
-                            <button class="btn btn-link text-decoration-none" onclick="copyToClipboard('<?= htmlspecialchars($entreprise['Email']); ?>')" title="Copier l'email">
+                            <button class="btn btn-link text-decoration-none" onclick="copyToClipboard('<?= htmlspecialchars($entreprise['email_business']); ?>')" title="Copier l'email">
                                 <i class="fas fa-copy"></i>
                             </button>
                         </span>
@@ -157,70 +146,31 @@
                     </p>
                 </a>
                 
-                <!-- Informations supplémentaires : téléphone, pays, nom de l'entreprise, etc. -->
+                <!-- Informations supplémentaire :nom de l'entreprise, etc. -->
                 <!-- Chaque section est un lien qui redirige vers une page de modification -->
-                <a href="../modif_infos_entreprise/phone.php" class="text-decoration-none text-dark" title="Modifier">
-                    <p class="p-editable bordered-link">
-                        <span>
-                            <i class="fas fa-phone text-primary"></i>
-                            <strong>Téléphone :</strong> 
-                            <?= htmlspecialchars($entreprise['Telephone']); ?>
-
-                            <button class="btn btn-link text-decoration-none" onclick="copyToClipboard('<?= htmlspecialchars($entreprise['Telephone']); ?>')" title="Copier le numéro de téléphone">
-                                <i class="fas fa-copy"></i>
-                            </button>
-                        </span>
-
-                        <i class="fas fa-arrow-right"></i>
-                    </p>
-                </a>
-
-                <a href="../modif_infos_entreprise/country.php" class="text-decoration-none text-dark" title="Modifier">
-                    <p class="p-editable bordered-link">
-                        <span>
-                            <i class="fas fa-globe text-primary"></i>
-                            <strong>Pays :</strong> 
-                            <?= htmlspecialchars($entreprise['Pays']); ?>
-                        </span>
-
-                        <i class="fas fa-arrow-right"></i>
-                    </p>
-                </a>
 
                 <a href="../modif_infos_entreprise/name_enterprise.php" class="text-decoration-none text-dark" title="Modifier">
                     <p class="p-editable bordered-link">
                         <span>
                             <i class="fas fa-building text-primary"></i>
                             <strong>Nom de l'entreprise :</strong> 
-                            <?= htmlspecialchars($entreprise['nomEntreprise']); ?>
+                            <?= htmlspecialchars($entreprise['nom_entreprise']); ?>
                         </span>
                         <i class="fas fa-arrow-right"></i>
                     </p>
                 </a>
 
-                <a href="../modif_infos_entreprise/name_produit.php" class="text-decoration-none text-dark" title="Modifier">
-                    <p class="p-editable bordered-link">
+                <a href="../modif_infos_entreprise/name_user.php" class="text-decoration-none text-dark" title="Modifier">
+                    <p class="p-editable bordered">
                         <span>
-                            <i class="fas fa-box text-primary"></i>
-                            <strong>Nom du produit :</strong> 
-                            <?= htmlspecialchars($entreprise['Produit']); ?>
+                            <i class="fas fa-building text-primary"></i>
+                            <strong>Nom de l'utilisateur :</strong> 
+                            <?= htmlspecialchars($entreprise['nom_utilisateur']); ?>
                         </span>
-
                         <i class="fas fa-arrow-right"></i>
                     </p>
                 </a>
 
-                <a href="../modif_infos_entreprise/address_enterprise.php" class="text-decoration-none text-dark" title="Modifier">
-                    <p class="p-editable last-child">
-                        <span>
-                            <i class="fas fa-map-marker-alt text-primary"></i>
-                            <strong>Adresse :</strong> 
-                            <?= htmlspecialchars($entreprise['adresseEntreprise']); ?>
-                        </span>
-
-                        <i class="fas fa-arrow-right"></i>
-                    </p>
-                </a>
             </div>
         </div>
 

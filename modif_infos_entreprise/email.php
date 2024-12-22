@@ -32,14 +32,14 @@
     unset($_SESSION['message_email_error']);
 
 
-    include('../connexion.php'); // Connexion a la base de donnée
+    include('../sign_in.php'); // Connexion a la base de donnée
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
     $id_entreprise = $_SESSION['id_entreprise']; // Recupération d'id de lentreprise dans la session
 
     // Requete pour afficher lemail de l'entreprise 
-    $query = "SELECT Email FROM entreprise WHERE id_entreprise = :id_entreprise";
+    $query = "SELECT email_business FROM entreprise WHERE id_entreprise = :id_entreprise";
     $stmt = $bdd -> prepare($query);
     $stmt -> bindParam(':id_entreprise', $id_entreprise, PDO::PARAM_INT);
     $stmt -> execute();
@@ -134,7 +134,7 @@
             <fieldset class="border p-4 rounded">
                 <div class="mb-3">
                     <label for="email" class="form-label"></label>
-                    <input type="email" class="form-control" id="email" name="s_email" value="<?= htmlspecialchars($entreprise['Email'])?>">
+                    <input type="email" class="form-control" id="email" name="s_email" value="<?= htmlspecialchars($entreprise['email_business'])?>">
                 </div>
             </fieldset>
 

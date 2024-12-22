@@ -26,7 +26,7 @@
     unset($_SESSION['message_fournisseur_fail']);
 
 
-    include("../connexion.php"); // Connexion a la base de donnée
+    include("../sign_in.php"); // Connexion a la base de donnée
 
     include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
 
