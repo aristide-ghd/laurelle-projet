@@ -39,7 +39,7 @@
             $donnee = $stmt -> fetch(PDO::FETCH_ASSOC);
 
             // Vérification si le mot de passe actuel est incorrect
-            if (!password_verify($current_password, $donnee['motDePasse']))
+            if (!password_verify($current_password, $donnee['mot_de_passe']))
             {
                 // Stocker le message dans la session
                 $_SESSION['message_keyword_current'] = "Votre mot de passe actuel est incorrect.";
