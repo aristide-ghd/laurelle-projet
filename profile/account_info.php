@@ -247,7 +247,7 @@
             <div class="card-body bg-white rounded">
                 <p class= "bordered">
                     <i class="fas fa-phone-alt phone-icon"></i> 
-                    <strong>Service Client :</strong> +123 456 789
+                    <strong>Service Client :</strong> +229 549 361 86
                 </p>
 
                 <p class= "bordered">
@@ -262,7 +262,7 @@
 
                 <p class= "bordered">
                     <i class="fab fa-whatsapp whatsapp-icon"></i> 
-                    <strong>Whatsapp :</strong> <a href="https://wa.me/57136115">+229 57 13 61 15</a>
+                    <strong>Whatsapp :</strong> <a href="https://wa.me/54936186">+229 54 93 61 86</a>
                 </p>
             </div>
         </div>
