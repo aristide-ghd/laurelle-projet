@@ -252,7 +252,7 @@
 
                 <p class= "bordered">
                     <i class="fab fa-facebook facebook-icon"></i> 
-                    <strong>Facebook :</strong> <a href="#">facebook.com/entreprise</a>
+                    <strong>Facebook :</strong> <a href="https://web.facebook.com/profile.php?id=61554966975796">facebook.com/entreprise</a>
                 </p>
 
                 <p class= "bordered">

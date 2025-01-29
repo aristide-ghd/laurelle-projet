@@ -33,7 +33,7 @@
             <p>Contactez-nous : <a href="mailto:info@aquafarm.com">info@homelaurechip.com</a></p>
         </div>
         <div>
-            <a href="https://www.facebook.com/" target="_blank">Facebook</a> |
+            <a href="https://web.facebook.com/profile.php?id=61554966975796" target="_blank">Facebook</a> |
             <a href="https://www.twitter.com/" target="_blank">Twitter</a> |
             <a href="https://www.instagram.com/" target="_blank">Instagram</a>
         </div>
