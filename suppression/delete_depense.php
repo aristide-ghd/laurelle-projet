@@ -1,4 +1,9 @@
 <?php
+    // Activer l'affichage des erreurs
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     // Inclusion de la connexion à la base de données
     include("../sign_in.php");
 
@@ -10,7 +15,7 @@
         $idDepense = $_GET['id'];
 
         // Préparation de la requête SQL pour supprimer la depense
-        $requete = $db->prepare('DELETE FROM depenses WHERE idDepense = :idDepense');
+        $requete = $bdd->prepare('DELETE FROM depenses WHERE idDepense = :idDepense');
         
         // Exécution de la requête avec l'ID de la depense
         $requete->execute(['idDepense' => $idDepense]);

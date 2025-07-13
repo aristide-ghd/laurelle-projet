@@ -1,4 +1,9 @@
 <?php
+    // Activer l'affichage des erreurs
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     // Inclusion de la connexion à la base de données
     include("../sign_in.php");
 
@@ -10,7 +15,7 @@
         $idClient = $_GET['id'];
 
         // Préparation de la requête SQL pour supprimer le fournisseur
-        $requete = $db->prepare('DELETE FROM clients WHERE idClient = :idClient');
+        $requete = $bdd->prepare('DELETE FROM clients WHERE idClient = :idClient');
         
         // Exécution de la requête avec l'ID du fournisseur
         $requete->execute(['idClient' => $idClient]);

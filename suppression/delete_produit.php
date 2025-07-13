@@ -1,4 +1,9 @@
 <?php
+    // Activer l'affichage des erreurs
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     // Inclusion de la connexion à la base de données
     include("../sign_in.php");
 
@@ -10,7 +15,7 @@
         $idProduit = $_GET['id'];
 
         // Préparation de la requête SQL pour supprimer le produit
-        $requete = $db->prepare('DELETE FROM produits WHERE idProduit = :idProduit');
+        $requete = $bdd->prepare('DELETE FROM produits WHERE idProduit = :idProduit');
         
         // Exécution de la requête avec l'ID du produit
         $requete->execute(['idProduit' => $idProduit]);

@@ -1,4 +1,9 @@
 <?php
+    // Activer l'affichage des erreurs
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    
     // Inclusion de la connexion à la base de données
     include("../sign_in.php");
 
@@ -10,7 +15,7 @@
         $idVente = $_GET['id'];
 
         // Préparation de la requête SQL pour supprimer la vente
-        $requete = $db->prepare('DELETE FROM ventes WHERE idVente = :idVente');
+        $requete = $bdd->prepare('DELETE FROM ventes WHERE idVente = :idVente');
         
         // Exécution de la requête avec l'ID de la vente
         $requete->execute(['idVente' => $idVente]);

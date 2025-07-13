@@ -1,4 +1,9 @@
 <?php
+    // Activer l'affichage des erreurs
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     // Inclusion de la connexion à la base de données
     include("../sign_in.php");
 
@@ -10,7 +15,7 @@
         $idModePaiement = $_GET['id'];
 
         // Préparation de la requête SQL pour supprimer le mode de paiement
-        $requete = $db->prepare('DELETE FROM modepaiement WHERE idModePaiement = :idModePaiement');
+        $requete = $bdd->prepare('DELETE FROM modepaiement WHERE idModePaiement = :idModePaiement');
         
         // Exécution de la requête avec l'ID du mode de paiement
         $requete->execute(['idModePaiement' => $idModePaiement]);

@@ -1,4 +1,9 @@
 <?php
+    // Activer l'affichage des erreurs
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     // Inclusion de la connexion à la base de données
     include("../sign.php");
 
@@ -10,7 +15,7 @@
         $idRecette = $_GET['id'];
 
         // Préparation de la requête SQL pour supprimer la recette
-        $requete = $db->prepare('DELETE FROM recettes WHERE idRecette = :idRecette');
+        $requete = $bdd->prepare('DELETE FROM recettes WHERE idRecette = :idRecette');
         
         // Exécution de la requête avec l'ID de la recette
         $requete->execute(['idRecette' => $idRecette]);
