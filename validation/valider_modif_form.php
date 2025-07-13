@@ -4,11 +4,11 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
+    include("../includes/session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
-    include("../sign_in.php"); // Connexion a la base de donnée
+    include("../includes/sign_in.php"); // Connexion a la base de donnée
 
-    include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
+    include("../includes/db_connected_verify.php"); // Vérification de la connexion à la base de données
 
 
 

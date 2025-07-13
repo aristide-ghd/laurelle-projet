@@ -5,9 +5,9 @@
     error_reporting(E_ALL);
 
     // Inclusion de la connexion à la base de données
-    include("../sign_in.php");
+    include("../includes/sign_in.php");
 
-    include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
+    include("../includes/db_connected_verify.php"); // Vérification de la connexion à la base de données
 
     // Vérification si l'ID du mode de paiement est passé dans l'URL
     if (isset($_GET['id'])) {

@@ -4,7 +4,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
+    include("../includes/session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
     // Recuperer le message des champs stocké dans la session (si disponible)
     $message_fournisseur_input = htmlspecialchars($_SESSION['message_fournisseur_input'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -49,10 +49,10 @@
         }
     </style>
 
-    <?php include '../mode.php'; ?>
+    <?php include '../includes/mode.php'; ?>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <?php include '../navbar/en_tete.php'; ?>
+    <?php include '../includes/en_tete.php';; ?>
     
     <section class="container my-5 flex-grow-1">
         <h1 class="ajout text-center mb-4">Ajouter un fournisseur</h1>

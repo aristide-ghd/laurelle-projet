@@ -5,7 +5,7 @@
     error_reporting(E_ALL);
 
 
-    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
+    include("../includes/session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
     // Recuperer le message des champs stocké dans la session (si disponible)
     $message_produit_input = htmlspecialchars($_SESSION['message_produit_input'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -27,9 +27,9 @@
     unset($_SESSION['message_produit_fail']);
 
 
-    include("../sign_in.php"); // Connexion a la base de donnée
+    include("../includes/sign_in.php"); // Connexion a la base de donnée
 
-    include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
+    include("../includes/db_connected_verify.php"); // Vérification de la connexion à la base de données
 
     $matprod = $_GET['id']; // Recuperation de l'id du produit a modifier
 
@@ -74,12 +74,12 @@
         }
     </style>
 
-    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
+    <?php include '../includes/mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
 
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <?php include '../navbar/en_tete.php'; ?>
+    <?php include '../includes/en_tete.php';; ?>
 
     <section class="container my-5 flex-grow-1">
         <h1 class="ajout text-center mb-4">Modification d'un produit</h1>

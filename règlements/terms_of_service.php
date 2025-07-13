@@ -4,7 +4,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
+    include("../includes/session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 ?>
 
 
@@ -33,7 +33,7 @@
         }
     </style>
 
-    <?php include '../mode.php'; // Inclusion du mode d'affichage (clair/sombre) ?>
+    <?php include '../includes/mode.php'; // Inclusion du mode d'affichage (clair/sombre) ?>
 
 </head>
 

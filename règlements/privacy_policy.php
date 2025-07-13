@@ -4,7 +4,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
+    include("../includes/session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 ?>
 
 
@@ -19,7 +19,7 @@
     <!-- Inclusion de la bibliothèque Bootstrap pour le style -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/all.min.css" rel="stylesheet">
 
     <style>
         @media only screen and (max-width: 576px) {
@@ -33,12 +33,12 @@
         }
     </style>
 
-    <?php include '../mode.php'; // Inclusion du mode d'affichage (clair/sombre) ?>
+    <?php include '../includes/mode.php'; // Inclusion du mode d'affichage (clair/sombre) ?>
 
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <?php include('../navbar/en_tete.php'); ?>
+    <?php include('../includes/en_tete.php'); ?>
 
     <section class="container mb-5 flex-grow-1">
         <h1 class="text-center mb-4">Politique de confidentialité</h1>

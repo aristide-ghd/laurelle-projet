@@ -5,7 +5,7 @@
     error_reporting(E_ALL);
 
 
-    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
+    include("../includes/session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 ?>
 
 
@@ -35,12 +35,12 @@
 
     </style>
 
-    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
+    <?php include '../includes/mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
 
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <?php include '../navbar/en_tete.php'; ?>
+    <?php include '../includes/en_tete.php';; ?>
 
     <section class="container my-5 pt-5 flex-grow-1">
         <div class="row bigbloc mt-5 ">

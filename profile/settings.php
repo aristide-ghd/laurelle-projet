@@ -4,7 +4,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
+    include("../includes/session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
     // Recuperation du message des champs stocké dans la session (si disponible)
     $message_keyword_input = htmlspecialchars($_SESSION['message_keyword_input'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -56,12 +56,12 @@
         }
     </style>
     
-    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
+    <?php include '../includes/mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
 
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <?php include '../navbar/en_tete.php'; ?>
+    <?php include '../includes/en_tete.php';; ?>
 
     <section class="container my-5 pt-5 flex-grow-1">
         <h2 class="mb-2 mt-5">Modification du mot de passe</h2>

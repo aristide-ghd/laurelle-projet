@@ -4,11 +4,11 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
+    include("../includes/session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
-    include("../sign_in.php"); // Connexion a la base de donnée
+    include("../includes/sign_in.php"); // Connexion a la base de donnée
 
-    include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
+    include("../includes/db_connected_verify.php"); // Vérification de la connexion à la base de données
     
     // Préparer les requêtes pour éviter l'injection SQL
     $req = $bdd -> prepare(" SELECT * FROM modepaiement ");
@@ -47,12 +47,12 @@
         }
     </style>
 
-    <?php include '../mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
+    <?php include '../includes/mode.php'; // Fichier pour activer le mode sombre et le mode clair ?>
 
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <?php include '../navbar/en_tete.php'; ?>
+    <?php include '../includes/en_tete.php';; ?>
 
     <section class="container my-5 flex-grow-1">
         <h1 class=" ajout text-center mb-4">Liste des modes de paiement</h1>

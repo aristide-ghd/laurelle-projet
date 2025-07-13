@@ -7,7 +7,7 @@
     // Inclusion de la connexion à la base de données
     include("../sign.php");
 
-    include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
+    include("../includes/db_connected_verify.php"); // Vérification de la connexion à la base de données
 
     // Vérification si l'ID de la recette est passé dans l'URL
     if (isset($_GET['id'])) {

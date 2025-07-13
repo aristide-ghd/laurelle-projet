@@ -4,14 +4,14 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
+    include("../includes/session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
     $motDePasse = $_SESSION['motDePasse']; // Recuperation du mot de passe dentreprise dans la session
     $id_entreprise = $_SESSION['id_entreprise']; // Recuperation d'id de lentreprise dans la session
 
-    include("../sign_in.php"); // Connexion a la base de donnée
+    include("../includes/sign_in.php"); // Connexion a la base de donnée
 
-    include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
+    include("../includes/db_connected_verify.php"); // Vérification de la connexion à la base de données
 
 
     // Condition a la soumission du formulaire

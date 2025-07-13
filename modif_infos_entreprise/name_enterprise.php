@@ -4,7 +4,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    include("../session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
+    include("../includes/session_start_verify.php"); // Fichier pour verifier la connexion_user avec la session
 
     // Recuperer le message des champs stocké dans la session (si disponible)
     $message_name_entreprise_input = htmlspecialchars($_SESSION['message_name_entreprise_input'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -26,9 +26,9 @@
     unset($_SESSION['message_name_entreprise_error']);
 
 
-    include('../sign_in.php'); // Connexion a la base de donnée
+    include('../includes/sign_in.php'); // Connexion a la base de donnée
 
-    include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
+    include("../includes/db_connected_verify.php"); // Vérification de la connexion à la base de données
 
     $id_entreprise = $_SESSION['id_entreprise']; // Recupération d'id de lentreprise dans la session
 
@@ -73,12 +73,12 @@
         }
     </style>
     
-    <?php include '../mode.php'; // Inclusion du mode d'affichage (clair/sombre) ?>
+    <?php include '../includes/mode.php'; // Inclusion du mode d'affichage (clair/sombre) ?>
 
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <?php include '../navbar/en_tete.php'; ?>
+    <?php include '../includes/en_tete.php';; ?>
 
     <section class="container my-5 pt-5 flex-grow-1">
         <a href="../profile/account_info.php" class="text-decoration-none text-dark">

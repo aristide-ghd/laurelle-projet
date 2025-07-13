@@ -7,9 +7,9 @@
     session_start(); // Initialiser la session
     session_regenerate_id(true); // Regenere l'id de session pour plus de securité
 
-    include("../sign_in.php"); // Connexion a la base de donnée
+    include("../includes/sign_in.php"); // Connexion a la base de donnée
 
-    include("../db_connected_verify.php"); // Vérification de la connexion à la base de données
+    include("../includes/db_connected_verify.php"); // Vérification de la connexion à la base de données
 
 
     if(isset($_POST['valider']))
