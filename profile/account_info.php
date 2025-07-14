@@ -39,9 +39,10 @@
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Inclusion de Font Awesome pour les icônes -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/all.min.css" rel="stylesheet">
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Inclusion de la bibliothèque Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
     <style>
         /* Styles personnalisés pour les sections de la page */
@@ -227,7 +228,7 @@
                     <strong>Ma Carte :</strong>
                 </p>
 
-                <div id="map"></div><br>
+                <div id="map" style="width: 100%; height: 400px;"></div><br>
 
                 <p class= "bordered">
                     <i class="fas fa-clock"></i> 
@@ -276,12 +277,12 @@
     <script>
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text)
-                .then(() => alert('Copié dans le presse-papiers'))
-                .catch(err => console.error('Échec de la copie : ', err));
+            .then(() => alert('Copié dans le presse-papiers'))
+            .catch(err => console.error('Échec de la copie : ', err.message));
         }
     </script>
 
-    <script>
+    <!-- <script>
         function initMap() {
             // Spécifie la localisation de l'entreprise (par exemple, Paris, France)
             const entrepriseLocation = { lat: 48.8566, lng: 2.3522 };
@@ -301,7 +302,34 @@
         }
     </script>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF9lpHgcXyoniXflYcw8KeuptRjAb4Rl4&callback=initMap"></script> -->
+
+    <!-- script de Leaflet pour la carte apres le chargement de la page -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Attend que toute la page et le DOM soient entièrement chargés avant d'exécuter ce code
+        document.addEventListener("DOMContentLoaded", function () {
+
+        // Initialise une nouvelle carte Leaflet et l'associe à la div ayant l'ID 'map'
+        // Définit aussi la position initiale de la carte (latitude, longitude) et le niveau de zoom (13)
+        // Échangeur de Godomey : Latitude 6.3756, Longitude 2.3600
+        var map = L.map('map').setView([6.391907844995512, 2.350569414807899], 18); // zoom un peu plus proche
+
+        // Ajoute un fond de carte (tiles) à partir des serveurs OpenStreetMap
+        // 'attribution' permet d'afficher la mention © OpenStreetMap dans un coin de la carte
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+        }).addTo(map);  // ajoute ce fond de carte à l'instance de la carte précédemment créée
+
+        // Place un marqueur (icône) à la position indiquée sur la carte
+        L.marker([6.391907844995512, 2.350569414807899]).addTo(map)
+
+        // Ajoute un popup texte à ce marqueur
+        .bindPopup('Localisation de l\'entreprise.')
+        // Ouvre automatiquement ce popup à l'affichage de la carte
+        .openPopup();
+    });
+    </script>
 
 </body>
 
